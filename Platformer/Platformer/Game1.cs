@@ -35,8 +35,8 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = 600;
-            graphics.PreferredBackBufferHeight = 700;
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
 
             Camera.SetGraphicsDeviceManager(graphics);
@@ -56,7 +56,7 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
 
-            scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholderbig2").Scl(Camera.worldWidth)
+            scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholderbig2").Scl(Camera.worldWidth*15)
             .At(new Vector2(0f, 46 * Camera.worldWidth/600)));
 
             scene.AddSprite(new Character(Content));
