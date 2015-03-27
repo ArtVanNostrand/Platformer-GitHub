@@ -1,0 +1,54 @@
+C:\Users\Asus\Desktop\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\Lidgren.Network.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Asus\Desktop\Platformer\Platformer\obj\x86\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer\Platformer\obj\x86\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\obj\x86\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\obj\x86\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Lidgren.Network.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\sand.png
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\spriteplaceholdercharacter.png
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\backgroundbeachplaceholderbig.jpg
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\backgroundbeachplaceholderbig2.jpg
