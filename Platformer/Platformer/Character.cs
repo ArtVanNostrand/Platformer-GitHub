@@ -13,7 +13,7 @@ namespace Platformer
 
 
 
-        public Character(ContentManager content) : base(content,"spriteplaceholdercharacter")
+        public Character(ContentManager content) : base(content,"imageplaceholderchar")
         {
 
 

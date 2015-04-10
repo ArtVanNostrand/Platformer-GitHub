@@ -56,8 +56,14 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
 
-            scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholderbig2").Scl(Camera.worldWidth*15)
-            .At(new Vector2(0f, 46 * Camera.worldWidth/600)));
+
+            scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholder1200x600").Scl((float)Camera.worldWidth * 1.3f)
+     .At(new Vector2(0f, 46 * Camera.worldWidth / 600)));
+
+            scene.AddSprite(new Sprite(Content, "imagebeachbackground1200x600").Scl((float)Camera.worldWidth*1.3f)
+            .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
+
+     
 
             scene.AddSprite(new Character(Content));
 

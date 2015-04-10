@@ -50,5 +50,7 @@ C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Sh
 C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\sand.png
 C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\spriteplaceholdercharacter.png
-C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\backgroundbeachplaceholderbig.jpg
 C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\backgroundbeachplaceholderbig2.jpg
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\imagebeachbackground1200x600.png
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\imageplaceholderchar.png
+C:\Users\Asus\Desktop\Platformer 0.01\Platformer\Platformer\bin\Windows\Debug\Content\backgroundbeachplaceholder1200x600.jpg
