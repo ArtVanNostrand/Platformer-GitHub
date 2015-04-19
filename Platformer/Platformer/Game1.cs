@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace Platformer
@@ -19,6 +20,7 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
+        Song musiclevel1;
 
         public Game1()
             : base()
@@ -43,6 +45,9 @@ namespace Platformer
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
 
+            MediaPlayer.Play(musiclevel1);
+
+
             base.Initialize();
         }
 
@@ -63,7 +68,7 @@ namespace Platformer
             scene.AddSprite(new Sprite(Content, "imagebeachbackground1200x600").Scl((float)Camera.worldWidth*1.3f)
             .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
 
-     
+            musiclevel1 = Content.Load<Song>("musiclevel1");
 
             scene.AddSprite(new Character(Content));
 
@@ -76,6 +81,7 @@ namespace Platformer
         /// </summary>
         protected override void UnloadContent()
         {
+          musiclevel1.Dispose();
             // TODO: Unload any non ContentManager content here
         }
 

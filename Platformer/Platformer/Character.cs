@@ -8,9 +8,13 @@ using System.Text;
 
 namespace Platformer
 {
+
+   
     class Character : Sprite
     {
 
+        float jumptime = 0f;
+        int jumpflag = 0;
 
 
         public Character(ContentManager content) : base(content,"imageplaceholderchar")
@@ -37,6 +41,7 @@ namespace Platformer
 
         public override void Update(GameTime gameTime){
 
+           jumptime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
             //float a = (float)mpos.Y - tpos.Y;
@@ -47,10 +52,32 @@ namespace Platformer
 
             KeyboardState state = Keyboard.GetState();
 
-            //if (state.IsKeyDown(Keys.Up))
-            //{
-            //    this.position.Y += 0.1f;
-            //}
+
+
+            //saltar começo
+            if (jumpflag == 0)
+            {
+                if (state.IsKeyDown(Keys.Up))
+                {
+
+                    jumptime = 0f;
+                    this.position.Y += 0.2f;
+                    jumpflag = 1;
+                }
+            }
+
+            if (jumpflag >0)
+            {
+                if (jumptime > 0.2f)
+                {
+                    this.position.Y -= 0.2f;
+                    jumpflag--;
+                }
+            }
+            //saltar fim
+
+
+
             //if (state.IsKeyDown(Keys.Down))
             //{
             //    this.position.Y -= 0.1f;
