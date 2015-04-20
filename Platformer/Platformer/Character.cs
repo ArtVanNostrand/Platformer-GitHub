@@ -20,7 +20,7 @@ namespace Platformer
 
         float jumptime = 0f;
         int jumpflag = 0;
-
+        bool ZPressed = false;
 
 
         public Character(ContentManager content) : base(content,"imageplaceholderchar")
@@ -60,32 +60,48 @@ namespace Platformer
 
 
 
-            //saltar começo
+            //clicar saltar
             if (jumpflag == 0)
             {
-                if (state.IsKeyDown(Keys.Z))
-                {
+                
+            if (Keyboard.GetState().IsKeyUp(Keys.Z)) ZPressed = false;
+            if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
+            {
+                ZPressed = true;
                     jumptime = 0f;
-                    do
-                    {
-                        this.position.Y += 0.0001f;
-                    } while (position.Y < 0.2f);
+                    this.position.Y += 0.03f;
                     jumpflag = 1;
                 }
             }
+            //clicar saltar
 
+            //ascender
+            if (jumpflag > 0 && jumptime < 0.15f)
+            {
+                this.position.Y += 0.04f;
+            }
+            //ascender
+
+            //descender
             if (jumpflag >0)
             {
-                if (jumptime > 0.2f)
+                if (jumptime > 0.15f)
                 {
-                    do{
-                    this.position.Y -= 0.001f;
-                    }while(position.Y > 0f);
-                    jumpflag--;
+                    this.position.Y -= 0.04f;
                 }
             }
-            //saltar fim
+            //descender
 
+            //para
+            if (jumpflag > 0)
+            {
+                if (this.position.Y <= 0f)
+                {
+                    jumptime = 0f;
+                    jumpflag = 0;
+                }
+            }
+           //para
 
 
             //if (state.IsKeyDown(Keys.Down))

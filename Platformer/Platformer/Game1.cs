@@ -110,6 +110,7 @@ namespace Platformer
             if (Keyboard.GetState().IsKeyUp(Keys.Z)) ZPressed = false;
             if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
              {
+                 ZPressed = true;
                  soundjump.Play();
              }
 
