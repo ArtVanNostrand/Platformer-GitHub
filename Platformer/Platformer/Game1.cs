@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 #endregion
 
 namespace Platformer
@@ -21,6 +22,8 @@ namespace Platformer
         SpriteBatch spriteBatch;
         Scene scene;
         Song musiclevel1;
+        SoundEffect soundjump;
+        bool ZPressed = false;
 
         public Game1()
             : base()
@@ -37,6 +40,8 @@ namespace Platformer
         /// </summary>
         protected override void Initialize()
         {
+
+
             graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
@@ -45,10 +50,12 @@ namespace Platformer
             Camera.SetTarget(Vector2.Zero);
             Camera.SetWorldWidth(5);
 
+            base.Initialize();
+
             MediaPlayer.Play(musiclevel1);
 
 
-            base.Initialize();
+            
         }
 
         /// <summary>
@@ -68,7 +75,12 @@ namespace Platformer
             scene.AddSprite(new Sprite(Content, "imagebeachbackground1200x600").Scl((float)Camera.worldWidth*1.3f)
             .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
 
-            musiclevel1 = Content.Load<Song>("musiclevel1");
+
+            soundjump = Content.Load<SoundEffect>("soundeffectjump");
+
+            musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
+
+           
 
             scene.AddSprite(new Character(Content));
 
@@ -95,8 +107,13 @@ namespace Platformer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            scene.Update(gameTime);
+            if (Keyboard.GetState().IsKeyUp(Keys.Z)) ZPressed = false;
+            if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
+             {
+                 soundjump.Play();
+             }
 
+            scene.Update(gameTime);
             base.Update(gameTime);
         }
 

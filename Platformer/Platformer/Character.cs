@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,8 +14,13 @@ namespace Platformer
     class Character : Sprite
     {
 
+       
+
+
+
         float jumptime = 0f;
         int jumpflag = 0;
+
 
 
         public Character(ContentManager content) : base(content,"imageplaceholderchar")
@@ -57,11 +63,13 @@ namespace Platformer
             //saltar começo
             if (jumpflag == 0)
             {
-                if (state.IsKeyDown(Keys.Up))
+                if (state.IsKeyDown(Keys.Z))
                 {
-
                     jumptime = 0f;
-                    this.position.Y += 0.2f;
+                    do
+                    {
+                        this.position.Y += 0.0001f;
+                    } while (position.Y < 0.2f);
                     jumpflag = 1;
                 }
             }
@@ -70,7 +78,9 @@ namespace Platformer
             {
                 if (jumptime > 0.2f)
                 {
-                    this.position.Y -= 0.2f;
+                    do{
+                    this.position.Y -= 0.001f;
+                    }while(position.Y > 0f);
                     jumpflag--;
                 }
             }
