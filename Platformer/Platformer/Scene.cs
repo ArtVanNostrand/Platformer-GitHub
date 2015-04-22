@@ -19,7 +19,6 @@ namespace Platformer
             this.spriteBatch = sb;
             this.sprites = new List<Sprite>();
 
-
         }
 
         public void AddSprite(Sprite s)
@@ -58,19 +57,7 @@ namespace Platformer
                 sprite.Dispose();
             }
         }
-      
-
-
-
-
-
-
-
-
-
-
-
-
+     
 
     }
 }

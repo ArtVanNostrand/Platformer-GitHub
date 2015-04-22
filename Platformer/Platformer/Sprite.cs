@@ -11,8 +11,6 @@ namespace Platformer
     class Sprite
     {
 
-
-
         public bool HasCollisions { protected set; get; }
 
         protected Texture2D image;
@@ -166,10 +164,6 @@ namespace Platformer
             return new Vector2(position.X + x - (size.X * 0.5f), position.Y - y + (size.Y * 0.5f));
 
         }
-
-
-
-
 
 
     }

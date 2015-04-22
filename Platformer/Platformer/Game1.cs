@@ -13,16 +13,13 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Platformer
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
         Song musiclevel1;
-        SoundEffect soundjump;
         bool ZPressed = false;
 
         public Game1()
@@ -32,16 +29,10 @@ namespace Platformer
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+
         protected override void Initialize()
         {
-
-
+            //1200x600
             graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
@@ -53,22 +44,15 @@ namespace Platformer
             base.Initialize();
 
             MediaPlayer.Play(musiclevel1);
-
-
-            
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
 
 
+            //Images:
             scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholder1200x600").Scl((float)Camera.worldWidth * 1.3f)
      .At(new Vector2(0f, 46 * Camera.worldWidth / 600)));
 
@@ -76,8 +60,11 @@ namespace Platformer
             .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
 
 
-            soundjump = Content.Load<SoundEffect>("soundeffectjump");
+            //Sound Effects:
+         
 
+
+            //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
 
            
@@ -87,21 +74,13 @@ namespace Platformer
             // TODO: use this.Content to load your game content here
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+
         protected override void UnloadContent()
         {
           musiclevel1.Dispose();
-            // TODO: Unload any non ContentManager content here
+
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -111,22 +90,24 @@ namespace Platformer
             if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
              {
                  ZPressed = true;
-                 soundjump.Play();
+
              }
 
             scene.Update(gameTime);
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
             scene.Draw(gameTime);
             base.Draw(gameTime);
         }
+
+
+
+
+
     }
 }
