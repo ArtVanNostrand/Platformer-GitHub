@@ -19,10 +19,10 @@ namespace Platformer
         SoundEffect soundjump, soundslam;
 
 
-        public Character(ContentManager content) : base(content,"imageplaceholderchar")
+        public Character(ContentManager content) : base(content,"charv1")
         {
 
-            this.Scl(0.8f);
+            this.Scl(0.6f);
 
             //Sound Effects:
             soundjump = content.Load<SoundEffect>("soundeffectjump");
@@ -87,6 +87,14 @@ namespace Platformer
                     movtimer = 0f;
                 }
                 directionfaced = 1;
+                if (jumpflag == 0)
+                {
+                    ReplaceImage("charv1");
+                }
+                else
+                {
+                    ReplaceImage("charv1j2");
+                }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
                 {
@@ -121,6 +129,14 @@ namespace Platformer
                     movtimer = 0f;
                 }
                 directionfaced = 2;
+                if (jumpflag == 0)
+                {
+                    ReplaceImage("charv1inv");
+                }
+                else
+                {
+                    ReplaceImage("charv1j2inv");
+                }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
                 {
@@ -160,7 +176,15 @@ namespace Platformer
                 if (Keyboard.GetState().IsKeyUp(Keys.Z)) ZPressed = false;
                 if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
-                    ReplaceImage("placeholderjumping");
+
+                    if (directionfaced == 1)
+                    {
+                        ReplaceImage("charv1j2");
+                    }
+                    else
+                    {
+                        ReplaceImage("charv1j2inv");
+                    }
                     soundjump.Play();
                     ZPressed = true;
                     jumptime = 0f;
@@ -212,7 +236,14 @@ namespace Platformer
                     {
                         this.position.Y = 0f;
                     }
-                    ReplaceImage("imageplaceholderchar");
+                    if (directionfaced == 1)
+                    {
+                        ReplaceImage("charv1");
+                    }
+                    else
+                    {
+                        ReplaceImage("charv1inv");
+                    }
                     jumptime = 0f;
                     jumpflag = 0;
                 }
@@ -230,12 +261,12 @@ namespace Platformer
                     soundslam.Play();
                     slamflag = 1;
                 }
-                ReplaceImage("placeholderjumping");
+                ReplaceImage("charv1j2");
                 this.position.Y -= 0.14f;
                 if (this.position.Y < 0f)
                 {
                     this.position.Y = 0f;
-                    ReplaceImage("imageplaceholderchar");
+                    ReplaceImage("charv1");
                     slamflag = 0;
                 }
             }

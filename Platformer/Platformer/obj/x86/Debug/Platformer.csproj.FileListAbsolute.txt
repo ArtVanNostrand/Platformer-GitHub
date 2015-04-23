@@ -92,3 +92,7 @@ C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Co
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\placeholderpickup.png
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundslam.xnb
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\block 30x30 v2.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\charv1.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\charv1j2.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\charv1inv.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\charv1j2inv.png

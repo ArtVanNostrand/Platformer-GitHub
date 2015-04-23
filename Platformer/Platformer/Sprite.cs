@@ -173,7 +173,7 @@ namespace Platformer
             //this.position = Vector2.Zero;
             this.image = cmanager.Load<Texture2D>(assetName);
             this.pixelsize = new Vector2(image.Width, image.Height);
-            this.size = new Vector2(1f, 1f*((float)image.Height / (float)image.Width));
+            this.size = new Vector2(0.6f, 0.6f*((float)image.Height / (float)image.Width));
             if(this.HasCollisions){
                 this.EnableCollisions();
             }

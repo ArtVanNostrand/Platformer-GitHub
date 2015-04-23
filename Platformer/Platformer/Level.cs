@@ -8,17 +8,17 @@ using System.Text;
 
 namespace Platformer
 {
-    class Level
+    class Level : Sprite
     {
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Scene scene;
 
-        public Level(ContentManager Content)
+        public Level(ContentManager Content): base(Content, "bloco 30x30 v2")
         {
 
-            //this.EnableCollisions();
+            this.EnableCollisions();
 
             scene.AddSprite(new Sprite(Content, "block 30x30 v2").Scl((float)Camera.worldWidth * 0.07f)
  .At(new Vector2(4f, 0f)));
