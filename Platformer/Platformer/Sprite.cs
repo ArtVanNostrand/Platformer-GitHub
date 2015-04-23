@@ -21,6 +21,7 @@ namespace Platformer
         protected Vector2 pixelsize;
         protected Rectangle? source = null;
         protected Color[] pixels;
+        protected ContentManager cmanager;
 
 
         public Sprite(ContentManager contents, String assetName)
@@ -31,6 +32,7 @@ namespace Platformer
             this.image = contents.Load<Texture2D>(assetName);
             this.pixelsize = new Vector2(image.Width, image.Height);
             this.size = new Vector2(1f, (float)image.Height / (float)image.Width);
+            cmanager = contents;
 
         }
 
@@ -164,6 +166,19 @@ namespace Platformer
             return new Vector2(position.X + x - (size.X * 0.5f), position.Y - y + (size.Y * 0.5f));
 
         }
+
+        public void ReplaceImage(string assetName)
+        {
+            this.rotation = 0f;
+            //this.position = Vector2.Zero;
+            this.image = cmanager.Load<Texture2D>(assetName);
+            this.pixelsize = new Vector2(image.Width, image.Height);
+            this.size = new Vector2(1f, 1f*((float)image.Height / (float)image.Width));
+            if(this.HasCollisions){
+                this.EnableCollisions();
+            }
+        }
+        
 
 
     }

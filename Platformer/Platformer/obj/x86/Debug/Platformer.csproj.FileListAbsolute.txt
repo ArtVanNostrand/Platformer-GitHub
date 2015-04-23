@@ -91,3 +91,4 @@ C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Co
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundeffectjump.xnb
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\placeholderpickup.png
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundslam.xnb
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\block 30x30 v2.png
