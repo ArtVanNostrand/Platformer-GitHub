@@ -60,11 +60,9 @@ namespace Platformer
             .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
 
 
-            scene.AddSprite(new Sprite(Content, "block 30x30 v2").Scl((float)Camera.worldWidth * 0.07f)
- .At(new Vector2(4f, 0f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(4, 0)));
 
-            scene.AddSprite(new Sprite(Content, "block 30x30 v2").Scl((float)Camera.worldWidth * 0.07f)
-.At(new Vector2(5f, 1f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(5,1)));
 
             //Sound Effects:
          

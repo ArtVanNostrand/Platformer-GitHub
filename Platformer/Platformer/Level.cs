@@ -8,30 +8,24 @@ using System.Text;
 
 namespace Platformer
 {
-    class Level : Sprite
+    class Level : AnimatedSprite
     {
 
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        Scene scene;
-
-        public Level(ContentManager Content): base(Content, "bloco 30x30 v2")
+        //GraphicsDeviceManager graphics;
+        //SpriteBatch spriteBatch;
+        //Scene scene;
+        //private List<Sprite> sprites;
+    
+        public Level(ContentManager Content): base(Content, "block 30x30 v2",1,1)
         {
-
             this.EnableCollisions();
 
-            scene.AddSprite(new Sprite(Content, "block 30x30 v2").Scl((float)Camera.worldWidth * 0.07f)
- .At(new Vector2(4f, 0f)));
+            this.Scl(0.4f);
 
-            scene.AddSprite(new Sprite(Content, "block 30x30 v2").Scl((float)Camera.worldWidth * 0.07f)
-.At(new Vector2(5f, 1f)));
+
 
 
         }
-
-
-
-
 
 
     }

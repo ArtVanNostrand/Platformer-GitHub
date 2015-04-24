@@ -13,15 +13,15 @@ namespace Platformer
     {
 
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced=1;
-        float jumptime = 0f, dashcooldown=5, movtimer=0;
-        bool ZPressed = false;
+        float jumptime = 0f, dashcooldown = 5, movtimer = 0, auxmov = 0f, auxsalto=0f;
+        bool ZPressed = false, canjump=false;
 
         SoundEffect soundjump, soundslam;
 
 
-        public Character(ContentManager content) : base(content,"charv1")
+        public Character(ContentManager content) : base(content,"char90v2")
         {
-
+            this.EnableCollisions();
             this.Scl(0.6f);
 
             //Sound Effects:
@@ -89,11 +89,11 @@ namespace Platformer
                 directionfaced = 1;
                 if (jumpflag == 0)
                 {
-                    ReplaceImage("charv1");
+                    ReplaceImage("char90v2");
                 }
                 else
                 {
-                    ReplaceImage("charv1j2");
+                    ReplaceImage("char90v2saltar");
                 }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
@@ -103,22 +103,33 @@ namespace Platformer
                 if (movtimer > 0f && movtimer < 0.5f)
                 {
                     this.position.X += 0.05f;
+                    auxmov = 0.05f;
                 }
                 if (movtimer > 0.5f && movtimer < 1f)
                 {
                     this.position.X += 0.062f;
+                    auxmov = 0.062f;
                 }
                 if (movtimer > 1f && movtimer < 1.5f)
                 {
                     this.position.X += 0.074f;
+                    auxmov = 0.074f;
                 }
                 if (movtimer > 1.5f && movtimer < 2f)
                 {
                     this.position.X += 0.082f;
+                    auxmov = 0.082f;
                 }
                 if (movtimer == 2)
                 {
                     this.position.X += 0.09f;
+                    auxmov = 0.09f;
+                }
+                Sprite other;
+                Vector2 colPosition;
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    this.position.X -= auxmov;
                 }
 
             }
@@ -131,11 +142,11 @@ namespace Platformer
                 directionfaced = 2;
                 if (jumpflag == 0)
                 {
-                    ReplaceImage("charv1inv");
+                    ReplaceImage("char90v2inv");
                 }
                 else
                 {
-                    ReplaceImage("charv1j2inv");
+                    ReplaceImage("char90v2saltarinv");
                 }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
@@ -145,23 +156,37 @@ namespace Platformer
                 if (movtimer > 0f && movtimer < 0.5f)
                 {
                     this.position.X -= 0.05f;
+                    auxmov = 0.05f;
                 }
                 if (movtimer > 0.5f && movtimer < 1f)
                 {
                     this.position.X -= 0.062f;
+                    auxmov = 0.062f;
                 }
                 if (movtimer > 1f && movtimer < 1.5f)
                 {
                     this.position.X -= 0.074f;
+                    auxmov = 0.074f;
                 }
                 if (movtimer > 1.5f && movtimer < 2f)
                 {
                     this.position.X -= 0.082f;
+                    auxmov = 0.082f;
                 }
                 if (movtimer == 2)
                 {
                     this.position.X -= 0.09f;
+                    auxmov = 0.09f;
                 }
+                Sprite other;
+                Vector2 colPosition;
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    this.position.X += auxmov;
+                }
+             
+
+
             }
 
 
@@ -179,11 +204,11 @@ namespace Platformer
 
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("charv1j2");
+                        ReplaceImage("char90v2saltar");
                     }
                     else
                     {
-                        ReplaceImage("charv1j2inv");
+                        ReplaceImage("char90v2saltarinv");
                     }
                     soundjump.Play();
                     ZPressed = true;
@@ -215,14 +240,23 @@ namespace Platformer
                 if (jumptime > 0.50f && jumptime <0.62f)
                 {
                     this.position.Y -= 0.03f;
+                    auxsalto = 0.03f;
                 }
                 if (jumptime > 0.62f && jumptime < 0.75f)
                 {
                     this.position.Y -= 0.04f;
+                    auxsalto = 0.04f;
                 }
                 if (jumptime > 0.75f)
                 {
                     this.position.Y -= 0.055f;
+                    auxsalto = 0.055f;
+                }
+                Sprite other;
+                Vector2 colPosition;
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    this.position.Y += auxsalto;
                 }
             }
             //descender
@@ -238,11 +272,11 @@ namespace Platformer
                     }
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("charv1");
+                        ReplaceImage("char90v2");
                     }
                     else
                     {
-                        ReplaceImage("charv1inv");
+                        ReplaceImage("char90v2inv");
                     }
                     jumptime = 0f;
                     jumpflag = 0;
@@ -261,12 +295,12 @@ namespace Platformer
                     soundslam.Play();
                     slamflag = 1;
                 }
-                ReplaceImage("charv1j2");
+                //ReplaceImage("charv1j2");
                 this.position.Y -= 0.14f;
                 if (this.position.Y < 0f)
                 {
                     this.position.Y = 0f;
-                    ReplaceImage("charv1");
+                    //ReplaceImage("charv1");
                     slamflag = 0;
                 }
             }

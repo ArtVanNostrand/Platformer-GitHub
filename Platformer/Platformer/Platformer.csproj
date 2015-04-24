@@ -62,16 +62,16 @@
     <Content Include="Content\block 30x30 v2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\charv1.png">
+    <Content Include="Content\char90v2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\charv1inv.png">
+    <Content Include="Content\char90v2inv.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\charv1j2.png">
+    <Content Include="Content\char90v2saltar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\charv1j2inv.png">
+    <Content Include="Content\char90v2saltarinv.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\imagebeachbackground1200x600.png">

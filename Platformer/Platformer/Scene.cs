@@ -27,6 +27,24 @@ namespace Platformer
             s.SetScene(this);
         }
 
+        public bool Collides(Sprite s, out Sprite collided, out Vector2 collisionPoint)
+        {
+            bool collisionExists = false;
+            collided = s;
+            collisionPoint = Vector2.Zero;
+            foreach (var sprite in sprites)
+            {
+                if (s == sprite) continue;
+                if (s.CollidesWith(sprite, out collisionPoint))
+                {
+                    collisionExists = true;
+                    collided = sprite;
+                    break;
+                }
+            }
+            return collisionExists;
+        }
+
         public void Update(GameTime gameTime)
         {
             foreach (var sprite in sprites)

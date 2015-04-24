@@ -12,6 +12,8 @@ namespace Platformer
     {
 
         public bool HasCollisions { protected set; get; }
+        
+        public string name;
 
         protected Texture2D image;
         protected Vector2 position;
@@ -26,6 +28,7 @@ namespace Platformer
 
         public Sprite(ContentManager contents, String assetName)
         {
+            this.name = assetName;
             this.HasCollisions = false;
             this.rotation = 0f;
             this.position = Vector2.Zero;
@@ -42,6 +45,20 @@ namespace Platformer
 
 
 
+        }
+
+        public bool CollidesWith(Sprite other, out Vector2 collisionPoint)
+        {
+            collisionPoint = position; // calar o compilador
+
+            if (!this.HasCollisions) return false;
+            if (!other.HasCollisions) return false;
+
+            float distance = (this.position - other.position).Length();
+
+            //if (distance > this.radius + other.radius) return false;
+
+            return this.PixelTouches(other, out collisionPoint);
         }
 
         public Sprite Scl(float scale)
@@ -140,8 +157,8 @@ namespace Platformer
                     {
                         Vector2 CollidePoint = ImagePixelToVirtualWorld(i, j);
                         Vector2 otherPixel = other.VirtualWorldPointToImagePixel(CollidePoint);
-                        if (otherPixel.X >= 0 && otherPixel.Y >= 0 && otherPixel.X < other.size.X &&
-                            otherPixel.Y < other.size.Y)
+                        if (otherPixel.X >= 0 && otherPixel.Y >= 0 && otherPixel.X < other.pixelsize.X &&
+                            otherPixel.Y < other.pixelsize.Y)
                         {
                             if (other.GetColorAt((int)otherPixel.X, (int)otherPixel.Y).A > 0)
                             {
