@@ -261,23 +261,23 @@ namespace Platformer
                 }
                 Sprite other;
                 Vector2 colPosition;
-                //collidir
+                //colidir
                 if (scene.Collides(this, out other, out colPosition))
                 {
+                    this.position.Y += auxsalto;
                     if (other.name == "imagewaterdrop2")
                     {
-                       other.Destroy();
-                    }
-                    this.position.Y += auxsalto;
-                    if (directionfaced == 1)
-                    {
-                        ReplaceImage("char90v2");
+                        other.Destroy();
                     }
                     else
                     {
-                        ReplaceImage("char90v2inv");
+                        if (other.position.Y > this.position.Y)
+                        {
+                            this.position.Y -= auxsalto;
+                            jumptime = 0.51f;
+                        }
+                        else canjump = true;
                     }
-                    canjump = true;
                 }
             }
             //descender

@@ -16,7 +16,7 @@ namespace Platformer
         public string name;
 
         protected Texture2D image;
-        protected Vector2 position;
+        public Vector2 position;
         protected Vector2 size;
         private float rotation;
         protected Scene scene;
