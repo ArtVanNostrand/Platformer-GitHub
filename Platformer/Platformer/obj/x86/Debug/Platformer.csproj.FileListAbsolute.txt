@@ -140,3 +140,4 @@ C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\background1200x600.jpg
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\oceano.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\nuvens.png

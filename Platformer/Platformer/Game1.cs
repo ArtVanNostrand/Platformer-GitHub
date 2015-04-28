@@ -61,8 +61,18 @@ namespace Platformer
 
             scene.AddSprite(new Level(Content).At(new Vector2(5,1)));
 
-            scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth*5f)
-            .At(new Vector2(0f, -2 * Camera.worldWidth/10000)));
+            for (float i = -100; i < 100;  i+= 16)
+            {
+                scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth * 3.2f)
+            .At(new Vector2(i, -0.785f)));   // de 16 em 16(x)
+            }
+
+            for (float i = -100; i < 100; i += 16)
+            {
+                scene.AddSprite(new Sprite(Content, "nuvens").Scl((float)Camera.worldWidth * 3.2f)
+            .At(new Vector2(i, 3.2f)));   // de 16 em 16(x)
+            }
+            
 
 
             //Sound Effects:
