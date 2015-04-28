@@ -53,16 +53,17 @@ namespace Platformer
 
 
             //Images:
-            scene.AddSprite(new Sprite(Content, "backgroundbeachplaceholder1200x600").Scl((float)Camera.worldWidth * 1.3f)
-     .At(new Vector2(0f, 46 * Camera.worldWidth / 600)));
 
-            scene.AddSprite(new Sprite(Content, "imagebeachbackground1200x600").Scl((float)Camera.worldWidth*1.3f)
-            .At(new Vector2(0f, 160 * Camera.worldWidth/600)));
-
+            SlidingBackground fundo = new SlidingBackground(Content, "oceano");
+            scene.AddBackground(fundo);
 
             scene.AddSprite(new Level(Content).At(new Vector2(4, 0)));
 
             scene.AddSprite(new Level(Content).At(new Vector2(5,1)));
+
+            scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth*5f)
+            .At(new Vector2(0f, -2 * Camera.worldWidth/10000)));
+
 
             //Sound Effects:
          

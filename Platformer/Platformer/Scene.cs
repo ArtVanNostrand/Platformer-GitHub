@@ -12,19 +12,25 @@ namespace Platformer
 
         public SpriteBatch spriteBatch { get; private set; }
         private List<Sprite> sprites;
-
+        private List<SlidingBackground> backgrounds;
 
         public Scene(SpriteBatch sb)
         {
             this.spriteBatch = sb;
             this.sprites = new List<Sprite>();
-
+            this.backgrounds = new List<SlidingBackground>();
         }
 
         public void AddSprite(Sprite s)
         {
             this.sprites.Add(s);
             s.SetScene(this);
+        }
+
+        public void AddBackground(SlidingBackground b)
+        {
+            this.backgrounds.Add(b);
+            b.SetScene(this);
         }
 
         public bool Collides(Sprite s, out Sprite collided, out Vector2 collisionPoint)
@@ -56,9 +62,12 @@ namespace Platformer
 
         public void Draw(GameTime gameTime)
         {
-            if (sprites.Count > 0)
+            if (sprites.Count > 0 || backgrounds.Count > 0)
             {
                 this.spriteBatch.Begin();
+
+                foreach (var background in backgrounds) background.Draw(gameTime);
+
                 foreach (var sprite in sprites)
                 {
                     sprite.Draw(gameTime);

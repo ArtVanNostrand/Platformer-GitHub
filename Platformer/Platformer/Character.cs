@@ -15,7 +15,7 @@ namespace Platformer
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced=1;
         float jumptime = 0f, dashcooldown = 5, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
-        public bool canjump = true;
+        public bool canjump = false;
 
         SoundEffect soundjump, soundslam;
 
@@ -216,7 +216,7 @@ namespace Platformer
                     {
                         ReplaceImage("char90v2saltarinv");
                     }
-                    //canjump = false;
+                    canjump = false;
                     soundjump.Play();
                     ZPressed = true;
                     jumptime = 0f;
@@ -264,6 +264,15 @@ namespace Platformer
                 if (scene.Collides(this, out other, out colPosition))
                 {
                     this.position.Y += auxsalto;
+                    if (directionfaced == 1)
+                    {
+                        ReplaceImage("char90v2");
+                    }
+                    else
+                    {
+                        ReplaceImage("char90v2inv");
+                    }
+                    canjump = true;
                 }
             }
             //descender

@@ -9,7 +9,7 @@ namespace Platformer
     class Camera
     {
 
-        private static GraphicsDeviceManager gDevManager;
+        public static GraphicsDeviceManager gDevManager;
         public static float worldWidth { private set; get; }
         public static float ratio { private set; get; }
         private static Vector2 target;
@@ -81,6 +81,7 @@ namespace Platformer
             return new Rectangle((int)pixelPos.X, (int)pixelPos.Y, pixelWidth, pixelHeight);
         }
 
+        public static Vector2 GetTarget() { return Camera.target; }
 
 
     }
