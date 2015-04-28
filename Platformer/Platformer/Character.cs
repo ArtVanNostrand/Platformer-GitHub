@@ -14,7 +14,8 @@ namespace Platformer
 
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced=1;
         float jumptime = 0f, dashcooldown = 5, movtimer = 0, auxmov = 0f, auxsalto=0f;
-        bool ZPressed = false, canjump=false;
+        bool ZPressed = false;
+        public bool canjump = true;
 
         SoundEffect soundjump, soundslam;
 
@@ -72,6 +73,11 @@ namespace Platformer
         void movimento(GameTime gameTime)
         {
             KeyboardState state = Keyboard.GetState();
+
+            if (position.Y == 0)
+            {
+                canjump=true;
+            }
 
             //apenas para testing
             if (state.IsKeyDown(Keys.T))
@@ -196,9 +202,9 @@ namespace Platformer
         void jump()
         {
             //clicar saltar
-            if (jumpflag == 0)
+            if (canjump==true)
             {
-                if (Keyboard.GetState().IsKeyUp(Keys.Z)) ZPressed = false;
+                if (Keyboard.GetState().IsKeyUp(Keys.Z) && canjump==true) ZPressed = false;
                 if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
 
@@ -210,6 +216,7 @@ namespace Platformer
                     {
                         ReplaceImage("char90v2saltarinv");
                     }
+                    //canjump = false;
                     soundjump.Play();
                     ZPressed = true;
                     jumptime = 0f;
@@ -279,6 +286,7 @@ namespace Platformer
                         ReplaceImage("char90v2inv");
                     }
                     jumptime = 0f;
+                    canjump = true;
                     jumpflag = 0;
                 }
             }

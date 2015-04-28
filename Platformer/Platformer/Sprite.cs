@@ -119,6 +119,13 @@ namespace Platformer
 
         }
 
+        //public virtual void EnableJumping()
+        //{
+        //    Character.canjump = true;
+
+        //}
+
+
         public Color GetColorAt(int x, int y)
         {
             // Se não houver collider, da erro!

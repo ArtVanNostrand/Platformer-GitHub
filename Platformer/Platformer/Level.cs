@@ -19,13 +19,13 @@ namespace Platformer
         public Level(ContentManager Content): base(Content, "block 30x30 v2",1,1)
         {
             this.EnableCollisions();
-
             this.Scl(0.4f);
 
-
-
-
         }
+
+
+
+
 
 
     }
