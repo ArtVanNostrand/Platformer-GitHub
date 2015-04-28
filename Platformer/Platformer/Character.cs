@@ -261,8 +261,13 @@ namespace Platformer
                 }
                 Sprite other;
                 Vector2 colPosition;
+                //collidir
                 if (scene.Collides(this, out other, out colPosition))
                 {
+                    if (other.name == "imagewaterdrop2")
+                    {
+                       other.Destroy();
+                    }
                     this.position.Y += auxsalto;
                     if (directionfaced == 1)
                     {

@@ -53,7 +53,7 @@ namespace Platformer
 
         public void Update(GameTime gameTime)
         {
-            foreach (var sprite in sprites)
+            foreach (var sprite in sprites.ToList())
             {
                 sprite.Update(gameTime);
             }
@@ -74,6 +74,12 @@ namespace Platformer
                 }
                 this.spriteBatch.End();
             }
+
+        }
+
+        public void RemoveSprite(Sprite s)
+        {
+            this.sprites.Remove(s);
 
         }
 

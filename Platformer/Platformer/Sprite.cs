@@ -119,6 +119,13 @@ namespace Platformer
 
         }
 
+
+        public virtual void Destroy()
+        {
+            this.scene.RemoveSprite(this);
+
+        }
+
         //public virtual void EnableJumping()
         //{
         //    Character.canjump = true;

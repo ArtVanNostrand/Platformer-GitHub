@@ -72,6 +72,8 @@ namespace Platformer
                 scene.AddSprite(new Sprite(Content, "nuvens").Scl((float)Camera.worldWidth * 3.2f)
             .At(new Vector2(i, 3.2f)));   // de 16 em 16(x)
             }
+
+            scene.AddSprite(new Pickups(Content).At(new Vector2(1, 1)));
             
 
 

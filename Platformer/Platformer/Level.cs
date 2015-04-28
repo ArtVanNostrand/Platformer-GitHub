@@ -11,10 +11,7 @@ namespace Platformer
     class Level : AnimatedSprite
     {
 
-        //GraphicsDeviceManager graphics;
-        //SpriteBatch spriteBatch;
-        //Scene scene;
-        //private List<Sprite> sprites;
+
     
         public Level(ContentManager Content): base(Content, "block 30x30 v2",1,1)
         {
@@ -22,11 +19,6 @@ namespace Platformer
             this.Scl(0.4f);
 
         }
-
-
-
-
-
 
     }
 }
