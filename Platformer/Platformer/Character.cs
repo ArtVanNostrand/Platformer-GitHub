@@ -13,7 +13,7 @@ namespace Platformer
     {
 
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced=1;
-        float jumptime = 0f, dashcooldown = 5, movtimer = 0, auxmov = 0f, auxsalto=0f;
+        float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
         public bool canjump = false;
 
@@ -51,6 +51,7 @@ namespace Platformer
            //timers
            jumptime += (float)gameTime.ElapsedGameTime.TotalSeconds;
            dashcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+           bluestarcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
@@ -264,22 +265,30 @@ namespace Platformer
                 }
                 Sprite other;
                 Vector2 colPosition;
-                //colidir
+                //collidir
                 if (scene.Collides(this, out other, out colPosition))
                 {
-                    if (other.name == "block 30x30 v2" && this.position.Y > other.position.Y + 0.38f &&
+                    if (other.name == "platform1" && this.position.Y > other.position.Y + 0.38f &&
                         (this.position.X - other.position.X) <= 0.3f)
                     {
                         this.position.Y += auxsalto;
                         canjump = true;
                     }
-                    if (other.name == "imagewaterdrop2") other.Destroy();
+                    if (other.name == "imagewaterdrop2")
+                    {
+                        other.Destroy();
+                        Sprite bluestars;
+                        bluestars = new Sprite(cmanager, "bluesparks");
+                        scene.AddSprite(bluestars);
+                        bluestars.SetPosition(this.position);
+                        bluestars.Scale(0.2f);
+                    }
                     else
                     {
                         if (other.position.Y > this.position.Y)
                         {
-                             this.position.Y -= auxsalto;
-                             jumptime = 0.51f;
+                            this.position.Y -= auxsalto;
+                            jumptime = 0.51f;
                         }
                     }
                 }
