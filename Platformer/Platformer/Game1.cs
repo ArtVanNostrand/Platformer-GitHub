@@ -58,13 +58,18 @@ namespace Platformer
             scene.AddBackground(fundo);
 
             scene.AddSprite(new Level(Content).At(new Vector2(4, 0)));
-
             scene.AddSprite(new Level(Content).At(new Vector2(5,1)));
+
+            scene.AddSprite(new Level(Content).At(new Vector2(-4, -0.1f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(-4, 0.3f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(-4, 0.7f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(-4, 1.1f)));
+            scene.AddSprite(new Level(Content).At(new Vector2(-4, 1.5f)));
 
             for (float i = -100; i < 100;  i+= 16)
             {
                 scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth * 3.2f)
-            .At(new Vector2(i, -0.785f)));   // de 16 em 16(x)
+            .At(new Vector2(i, -0.740f)));   // de 16 em 16(x)
             }
 
             for (float i = -100; i < 100; i += 16)
@@ -74,7 +79,9 @@ namespace Platformer
             }
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(1, 1)));
-            
+            scene.AddSprite(new Pickups(Content).At(new Vector2(4, 1)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(5, 2)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(10, 2)));
 
 
             //Sound Effects:

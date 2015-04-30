@@ -60,8 +60,8 @@ namespace Platformer
         }
 
 
-        public AnimatedSprite(ContentManager content, string soldado, int nrows, int ncols) :
-            base(content, soldado)
+        public AnimatedSprite(ContentManager content, string filename, int nrows, int ncols) :
+            base(content, filename)
         {
             this.ncols = ncols;
             this.nrows = nrows;

@@ -24,12 +24,15 @@ namespace Platformer
         {
             this.EnableCollisions();
             this.Scl(0.4f);
-
+            //AnimatedSprite animated = new AnimatedSprite(content, "SonicCorrerInicio", 1, 4);
+            //animated.Scl(0.4f);
+            //animated.EnableCollisions();
             //Sound Effects:
             soundjump = content.Load<SoundEffect>("soundeffectjump");
             soundslam = content.Load<SoundEffect>("soundslam");
         }
 
+        
 
         public override void Draw(GameTime gameTime){
 
@@ -95,11 +98,11 @@ namespace Platformer
                 directionfaced = 1;
                 if (jumpflag == 0)
                 {
-                    ReplaceImage("char90v2");
+                    ReplaceImage("sonicstill");
                 }
                 else
                 {
-                    ReplaceImage("char90v2saltar");
+                    ReplaceImage("sonicstill");
                 }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
@@ -148,11 +151,11 @@ namespace Platformer
                 directionfaced = 2;
                 if (jumpflag == 0)
                 {
-                    ReplaceImage("char90v2inv");
+                    ReplaceImage("sonicstillR");
                 }
                 else
                 {
-                    ReplaceImage("char90v2saltarinv");
+                    ReplaceImage("sonicstillR");
                 }
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
@@ -210,11 +213,11 @@ namespace Platformer
 
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("char90v2saltar");
+                        ReplaceImage("sonicstill");
                     }
                     else
                     {
-                        ReplaceImage("char90v2saltarinv");
+                        ReplaceImage("sonicstillR");
                     }
                     canjump = false;
                     soundjump.Play();
@@ -261,24 +264,27 @@ namespace Platformer
                 }
                 Sprite other;
                 Vector2 colPosition;
-                //collidir
+                //colidir
                 if (scene.Collides(this, out other, out colPosition))
                 {
-                    if (other.name == "imagewaterdrop2")
+                    if (other.name == "block 30x30 v2" && this.position.Y > other.position.Y + 0.38f &&
+                        (this.position.X - other.position.X) <= 0.3f)
                     {
-                       other.Destroy();
+                        this.position.Y += auxsalto;
+                        canjump = true;
                     }
-                    this.position.Y += auxsalto;
-                    if (directionfaced == 1)
-                    {
-                        ReplaceImage("char90v2");
-                    }
+                    if (other.name == "imagewaterdrop2") other.Destroy();
                     else
                     {
-                        ReplaceImage("char90v2inv");
+                        if (other.position.Y > this.position.Y)
+                        {
+                             this.position.Y -= auxsalto;
+                             jumptime = 0.51f;
+                        }
                     }
-                    canjump = true;
                 }
+                //colidir
+
             }
             //descender
 
@@ -293,11 +299,11 @@ namespace Platformer
                     }
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("char90v2");
+                        ReplaceImage("sonicstill");
                     }
                     else
                     {
-                        ReplaceImage("char90v2inv");
+                        ReplaceImage("sonicstillR");
                     }
                     jumptime = 0f;
                     canjump = true;

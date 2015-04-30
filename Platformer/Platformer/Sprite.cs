@@ -16,7 +16,7 @@ namespace Platformer
         public string name;
 
         protected Texture2D image;
-        protected Vector2 position;
+        public Vector2 position;
         protected Vector2 size;
         private float rotation;
         protected Scene scene;
@@ -204,7 +204,7 @@ namespace Platformer
             //this.position = Vector2.Zero;
             this.image = cmanager.Load<Texture2D>(assetName);
             this.pixelsize = new Vector2(image.Width, image.Height);
-            this.size = new Vector2(0.6f, 0.6f*((float)image.Height / (float)image.Width));
+            this.size = new Vector2(0.4f, 0.4f*((float)image.Height / (float)image.Width));
             if(this.HasCollisions){
                 this.EnableCollisions();
             }
