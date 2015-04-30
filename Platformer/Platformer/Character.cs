@@ -20,10 +20,10 @@ namespace Platformer
         SoundEffect soundjump, soundslam;
 
 
-        public Character(ContentManager content) : base(content,"char90v2")
+        public Character(ContentManager content) : base(content,"sonicstill")
         {
             this.EnableCollisions();
-            this.Scl(0.6f);
+            this.Scl(0.4f);
 
             //Sound Effects:
             soundjump = content.Load<SoundEffect>("soundeffectjump");
@@ -261,23 +261,23 @@ namespace Platformer
                 }
                 Sprite other;
                 Vector2 colPosition;
-                //colidir
+                //collidir
                 if (scene.Collides(this, out other, out colPosition))
                 {
-                    this.position.Y += auxsalto;
                     if (other.name == "imagewaterdrop2")
                     {
-                        other.Destroy();
+                       other.Destroy();
+                    }
+                    this.position.Y += auxsalto;
+                    if (directionfaced == 1)
+                    {
+                        ReplaceImage("char90v2");
                     }
                     else
                     {
-                        if (other.position.Y > this.position.Y)
-                        {
-                            this.position.Y -= auxsalto;
-                            jumptime = 0.51f;
-                        }
-                        else canjump = true;
+                        ReplaceImage("char90v2inv");
                     }
+                    canjump = true;
                 }
             }
             //descender

@@ -189,4 +189,8 @@ C:\Users\Asus\Desktop\Platformer Gam\Platformer\Platformer\bin\Windows\Debug\Sha
 C:\Users\Asus\Desktop\Platformer Gam\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Asus\Desktop\Platformer Gam\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Asus\Desktop\Platformer Gam\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
-C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\imagewaterdrop2.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\background1200x600.jpg
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\imagewaterdrop2.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\nuvens.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\oceano.png
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\sonicstill.png
