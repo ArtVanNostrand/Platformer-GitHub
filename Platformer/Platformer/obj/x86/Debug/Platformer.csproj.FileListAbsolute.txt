@@ -202,3 +202,9 @@ C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Co
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\sonicstillR.png
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\bluesparks.png
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\platform1.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\bluesparks.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\platform1.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\lifes.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonic_icon.jpg
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicIcon.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\crab.png

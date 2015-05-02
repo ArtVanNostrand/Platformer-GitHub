@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,11 @@ namespace Platformer
 {
     class Character : Sprite
     {
-
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced=1;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
         public bool canjump = false;
+
 
         SoundEffect soundjump, soundslam;
 
@@ -34,10 +35,9 @@ namespace Platformer
 
         
 
-        public override void Draw(GameTime gameTime){
-
+        public override void Draw(GameTime gameTime)
+        {
             base.Draw(gameTime);
-
         }
 
         public override void SetScene(Scene s)
@@ -274,6 +274,7 @@ namespace Platformer
                         this.position.Y += auxsalto;
                         canjump = true;
                     }
+                    if (other.name == "crab") vidas--;
                     if (other.name == "imagewaterdrop2")
                     {
                         other.Destroy();

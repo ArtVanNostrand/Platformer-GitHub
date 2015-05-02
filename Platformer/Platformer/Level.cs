@@ -13,7 +13,7 @@ namespace Platformer
 
 
     
-        public Level(ContentManager Content): base(Content, "platform1",1,1)
+        public Level(ContentManager Content, string assetName): base(Content, assetName,1,1)
         {
             this.EnableCollisions();
             this.Scl(0.4f);

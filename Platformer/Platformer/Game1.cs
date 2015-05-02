@@ -17,11 +17,13 @@ namespace Platformer
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
+        Texture2D life, icon;
         SpriteBatch spriteBatch;
         Scene scene;
+        Character sonic;
         Song musiclevel1;
         bool ZPressed = false;
-
+        
         public Game1()
             : base()
         {
@@ -51,20 +53,24 @@ namespace Platformer
             spriteBatch = new SpriteBatch(GraphicsDevice);
             scene = new Scene(spriteBatch);
 
-
             //Images:
+            sonic.vi
+            life = Content.Load<Texture2D>("lifes");
+            icon = Content.Load<Texture2D>("sonicIcon");
 
             SlidingBackground fundo = new SlidingBackground(Content, "oceano");
             scene.AddBackground(fundo);
 
-            scene.AddSprite(new Level(Content).At(new Vector2(4, 0)));
-            scene.AddSprite(new Level(Content).At(new Vector2(5,1)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(4, 0)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(5, 1)));
 
-            scene.AddSprite(new Level(Content).At(new Vector2(-4, -0.1f)));
-            scene.AddSprite(new Level(Content).At(new Vector2(-4, 0.3f)));
-            scene.AddSprite(new Level(Content).At(new Vector2(-4, 0.7f)));
-            scene.AddSprite(new Level(Content).At(new Vector2(-4, 1.1f)));
-            scene.AddSprite(new Level(Content).At(new Vector2(-4, 1.5f)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, -0.1f)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 0.3f)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 0.7f)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 1.1f)));
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 1.5f)));
+
+            scene.AddSprite(new Level(Content, "crab").At(new Vector2(6, -0.1f)));
 
             for (float i = -100; i < 100;  i+= 16)
             {
@@ -82,7 +88,6 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(4, 1)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(5, 2)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(10, 2)));
-
 
             //Sound Effects:
          
@@ -126,6 +131,12 @@ namespace Platformer
         {
             GraphicsDevice.Clear(Color.Black);
             scene.Draw(gameTime);
+            spriteBatch.Begin();
+            spriteBatch.Draw(icon, new Vector2(30, 30));
+            spriteBatch.Draw(life, new Vector2(60, 30));
+            spriteBatch.Draw(life, new Vector2(90, 30));
+            spriteBatch.Draw(life, new Vector2(120, 30));
+            spriteBatch.End();
             base.Draw(gameTime);
         }
 

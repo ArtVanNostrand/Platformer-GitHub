@@ -42,9 +42,6 @@ namespace Platformer
         public virtual void Scale(float scale)
         {
             this.size *= scale;
-
-
-
         }
 
         public bool CollidesWith(Sprite other, out Vector2 collisionPoint)
