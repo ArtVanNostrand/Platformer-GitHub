@@ -62,6 +62,7 @@ namespace Platformer
 
         public void Draw(GameTime gameTime)
         {
+            
             if (sprites.Count > 0 || backgrounds.Count > 0)
             {
                 this.spriteBatch.Begin();

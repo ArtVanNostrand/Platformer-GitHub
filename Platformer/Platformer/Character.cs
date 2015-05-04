@@ -12,13 +12,13 @@ namespace Platformer
 {
     class Character : Sprite
     {
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1, health=3, score=0;
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
         public bool canjump = false;
 
-
-        SoundEffect soundjump, soundslam;
+        Texture2D hearts;
+        SoundEffect soundjump, soundslam, soundboom, soundwaterget;
 
 
         public Character(ContentManager content) : base(content,"sonicstill")
@@ -28,16 +28,27 @@ namespace Platformer
             //AnimatedSprite animated = new AnimatedSprite(content, "SonicCorrerInicio", 1, 4);
             //animated.Scl(0.4f);
             //animated.EnableCollisions();
+
+
             //Sound Effects:
             soundjump = content.Load<SoundEffect>("soundeffectjump");
             soundslam = content.Load<SoundEffect>("soundslam");
+            soundboom = content.Load<SoundEffect>("soundboom");
+            soundwaterget = content.Load<SoundEffect>("soundgetdrop");
+
+
+            //Assets:
+            hearts = content.Load<Texture2D>("lifes");
         }
 
-        
 
-        public override void Draw(GameTime gameTime)
+
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            base.Draw(gameTime);
+            spriteBatch.Begin();
+            spriteBatch.Draw(hearts, new Vector2(30f, 30f));
+            spriteBatch.End();
+
         }
 
         public override void SetScene(Scene s)
@@ -61,6 +72,8 @@ namespace Platformer
             //turret.SetRotation(rot+(float)Math.PI/2f);
 
             movimento(gameTime);
+
+            //Draw(gameTime, spriteBatch);
 
             //habilidades
             jump();
@@ -267,17 +280,36 @@ namespace Platformer
                 Vector2 colPosition;
                 //collidir
                 if (scene.Collides(this, out other, out colPosition))
-                {
-                    if (other.name == "platform1" && this.position.Y > other.position.Y + 0.38f &&
+                { 
+                    if ((other.name == "platform1" || other.name == "platform2") && this.position.Y > other.position.Y + 0.38f &&
                         (this.position.X - other.position.X) <= 0.3f)
                     {
                         this.position.Y += auxsalto;
                         canjump = true;
                     }
-                    //if (other.name == "crab") vidas--;
+                    if (other.name == "crab")
+                    {
+                        if (jumpflag == 0)
+                        {
+                            health = health - 1;
+                        }
+                        if (jumpflag == 1)
+                        {
+                            other.Destroy();
+                            Sprite explosion;
+                            explosion = new Sprite(cmanager, "explosao30x30");
+                            scene.AddSprite(explosion);
+                            explosion.SetPosition(this.position);
+                            explosion.Scale(0.2f);
+
+                            score = score + 10;
+                            soundboom.Play();
+                        }
+                    }
                     if (other.name == "imagewaterdrop2")
                     {
                         other.Destroy();
+                        soundwaterget.Play();
                         Sprite bluestars;
                         bluestars = new Sprite(cmanager, "bluesparks");
                         scene.AddSprite(bluestars);
