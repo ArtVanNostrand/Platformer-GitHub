@@ -54,7 +54,7 @@ namespace Platformer
             scene = new Scene(spriteBatch);
 
             //Images:
-            sonic.vi
+            //sonic.vi
             life = Content.Load<Texture2D>("lifes");
             icon = Content.Load<Texture2D>("sonicIcon");
 

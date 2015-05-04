@@ -274,7 +274,7 @@ namespace Platformer
                         this.position.Y += auxsalto;
                         canjump = true;
                     }
-                    if (other.name == "crab") vidas--;
+                    //if (other.name == "crab") vidas--;
                     if (other.name == "imagewaterdrop2")
                     {
                         other.Destroy();
