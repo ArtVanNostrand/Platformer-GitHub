@@ -39,8 +39,6 @@ namespace Platformer
 
         }
 
-        //Rectangle.intersect
-
         public virtual void Scale(float scale)
         {
             this.size *= scale;
