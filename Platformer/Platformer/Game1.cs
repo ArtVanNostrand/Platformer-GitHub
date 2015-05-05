@@ -61,6 +61,7 @@ namespace Platformer
             SlidingBackground fundo = new SlidingBackground(Content, "oceano");
             scene.AddBackground(fundo);
 
+            //platforms:
             scene.AddSprite(new Level(Content, "platform1").At(new Vector2(4, 0)));
             scene.AddSprite(new Level(Content, "platform1").At(new Vector2(5, 1)));
 
@@ -71,6 +72,25 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 0.7f)));
             scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 1.1f)));
             scene.AddSprite(new Level(Content, "platform1").At(new Vector2(-4, 1.5f)));
+
+            scene.AddSprite(new Level(Content, "platform1").At(new Vector2(13.80f, 0.6f)));
+
+            //obstacles:
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(13f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(13.20f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(13.40f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(13.60f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(13.80f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(14.00f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(14.20f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(14.40f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(14.60f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(14.80f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(15.00f, -0.15f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.5f).At(new Vector2(15.20f, -0.15f)));
+
+
+
 
             //enemies:
             scene.AddSprite(new Level(Content, "crab").At(new Vector2(6, -0.1f)));

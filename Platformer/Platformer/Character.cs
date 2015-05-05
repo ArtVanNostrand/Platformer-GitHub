@@ -19,7 +19,8 @@ namespace Platformer
 
         Texture2D hearts;
         SoundEffect soundjump, soundslam, soundboom, soundwaterget;
-
+        SpriteFont fontquartz;
+        SpriteBatch spriteBatch;
 
         public Character(ContentManager content) : base(content,"sonicstill")
         {
@@ -39,17 +40,15 @@ namespace Platformer
 
             //Assets:
             hearts = content.Load<Texture2D>("lifes");
-        }
 
 
-
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(hearts, new Vector2(30f, 30f));
-            spriteBatch.End();
+            //Fonts:
+            fontquartz = content.Load<SpriteFont>("fontquartz");
 
         }
+
+
+
 
         public override void SetScene(Scene s)
         {
@@ -66,6 +65,7 @@ namespace Platformer
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
+
             //float a = (float)mpos.Y - tpos.Y;
             //float l = (float)mpos.X - tpos.X;
             //float rot = (float)Math.Atan2(a, l);
@@ -73,7 +73,7 @@ namespace Platformer
 
             movimento(gameTime);
 
-            //Draw(gameTime, spriteBatch);
+            //Draw(gameTime);
 
             //habilidades
             jump();
@@ -86,6 +86,28 @@ namespace Platformer
             base.Update(gameTime);
 
         }
+
+
+        //public override void Draw(GameTime gameTime)
+        //{
+        //    spriteBatch.Begin();
+
+        //    spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(10f, 10f), Color.Black);
+
+        //    if (health > 0){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 30f));
+        //    }
+        //    if (health > 1){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 60f));
+        //    }
+        //    if (health > 2){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 90f));
+        //    }
+
+        //    spriteBatch.End();
+        //    base.Draw(gameTime);
+        //}
+
 
         void movimento(GameTime gameTime)
         {
@@ -299,12 +321,17 @@ namespace Platformer
                             Sprite explosion;
                             explosion = new Sprite(cmanager, "explosao30x30");
                             scene.AddSprite(explosion);
-                            explosion.SetPosition(this.position);
+                            explosion.SetPosition(other.position);
                             explosion.Scale(0.2f);
 
                             score = score + 10;
                             soundboom.Play();
                         }
+                    }
+                    if (other.name == "3spikes")
+                    {
+                        health = health - 1;
+                        //soundgethit().Play();
                     }
                     if (other.name == "imagewaterdrop2")
                     {
@@ -313,7 +340,7 @@ namespace Platformer
                         Sprite bluestars;
                         bluestars = new Sprite(cmanager, "bluesparks");
                         scene.AddSprite(bluestars);
-                        bluestars.SetPosition(this.position);
+                        bluestars.SetPosition(other.position);
                         bluestars.Scale(0.2f);
                     }
                     else

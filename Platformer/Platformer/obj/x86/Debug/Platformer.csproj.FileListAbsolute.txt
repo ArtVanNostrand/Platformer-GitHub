@@ -221,3 +221,5 @@ C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Co
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\explosao30x30.png
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundboom.xnb
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundgetdrop.xnb
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\fontquartz.xnb
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\fontstandard.xnb
