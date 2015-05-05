@@ -126,7 +126,7 @@ namespace Platformer
 
            
 
-            scene.AddSprite(new Character(Content));
+            scene.AddSprite(new Character(Content, spriteBatch));
 
             // TODO: use this.Content to load your game content here
         }
@@ -161,7 +161,7 @@ namespace Platformer
             scene.Draw(gameTime);
           
             spriteBatch.Begin();
-            spriteBatch.Draw(icon, new Vector2(30, 30));
+            spriteBatch.Draw(icon, new Rectangle(30, 30,60,60), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
