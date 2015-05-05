@@ -99,8 +99,8 @@ namespace Platformer
 
             for (float i = -100; i < 100;  i+= 16)
             {
-                scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth * 3.2f)
-            .At(new Vector2(i, -0.740f)));   // de 16 em 16(x)
+                scene.AddSprite(new Sprite(Content, "sand").Scl((float)Camera.worldWidth * 3.9f)
+            .At(new Vector2(i, -0.790f))); //-0.740f  // de 16 em 16(x)
             }
 
             for (float i = -100; i < 100; i += 16)

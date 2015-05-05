@@ -16,6 +16,7 @@ namespace Platformer
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
         public bool canjump = false;
+        float[] distPlatforms = new float[3];
 
         Texture2D hearts;
         SoundEffect soundjump, soundslam, soundboom, soundwaterget;
@@ -25,7 +26,7 @@ namespace Platformer
         public Character(ContentManager content) : base(content,"sonicstill")
         {
             this.EnableCollisions();
-            this.Scl(0.4f);
+            this.Scl(0.3f);
             //AnimatedSprite animated = new AnimatedSprite(content, "SonicCorrerInicio", 1, 4);
             //animated.Scl(0.4f);
             //animated.EnableCollisions();
@@ -280,6 +281,9 @@ namespace Platformer
             }
             //ascender
 
+            distPlatforms[1] = 0.3f;
+            distPlatforms[2] = 0.55f;
+
             //descender
             if (jumpflag > 0)
             {
@@ -303,11 +307,14 @@ namespace Platformer
                 //collidir
                 if (scene.Collides(this, out other, out colPosition))
                 { 
-                    if ((other.name == "platform1" || other.name == "platform2") && this.position.Y > other.position.Y + 0.38f &&
-                        (this.position.X - other.position.X) <= 0.3f)
+                    if (this.position.Y > other.position.Y)
                     {
-                        this.position.Y += auxsalto;
-                        canjump = true;
+                        if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
+                            other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2])
+                        {
+                            this.position.Y += auxsalto;
+                            canjump = true;
+                        }
                     }
                     if (other.name == "crab")
                     {
@@ -347,7 +354,7 @@ namespace Platformer
                     {
                         if (other.position.Y > this.position.Y)
                         {
-                            this.position.Y -= auxsalto;
+                            if (other.name != "platform2") this.position.Y -= auxsalto;
                             jumptime = 0.51f;
                         }
                     }
