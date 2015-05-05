@@ -16,16 +16,14 @@ namespace Platformer
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         bool ZPressed = false;
         public bool canjump = false;
-        //public int hearts;
 
         Texture2D hearts;
         SoundEffect soundjump, soundslam, soundboom, soundwaterget;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
 
-        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content,"sonicstill")
+        public Character(ContentManager content) : base(content,"sonicstill")
         {
-            this.spriteBatch = spriteBatch;
             this.EnableCollisions();
             this.Scl(0.4f);
             //AnimatedSprite animated = new AnimatedSprite(content, "SonicCorrerInicio", 1, 4);
@@ -90,28 +88,25 @@ namespace Platformer
         }
 
 
-        public override void Draw(GameTime gameTime)
-        {
-           
+        //public override void Draw(GameTime gameTime)
+        //{
+        //    spriteBatch.Begin();
 
-            spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(10f, 10f), Color.Black);
+        //    spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(10f, 10f), Color.Black);
 
-            if (health > 0)
-            {
-                spriteBatch.Draw(hearts, new Vector2(30f, 30f));
-            }
-            if (health > 1)
-            {
-                spriteBatch.Draw(hearts, new Vector2(40f, 30f));
-            }
-            if (health > 2)
-            {
-                spriteBatch.Draw(hearts, new Vector2(50f, 30f));
-            }
+        //    if (health > 0){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 30f));
+        //    }
+        //    if (health > 1){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 60f));
+        //    }
+        //    if (health > 2){
+        //        spriteBatch.Draw(hearts, new Vector2(30f, 90f));
+        //    }
 
-
-            base.Draw(gameTime);
-        }
+        //    spriteBatch.End();
+        //    base.Draw(gameTime);
+        //}
 
 
         void movimento(GameTime gameTime)
