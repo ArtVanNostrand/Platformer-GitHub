@@ -233,3 +233,4 @@ C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundboom.xnb
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgetdrop.xnb
 C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundgethit.xnb
+C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover.xnb

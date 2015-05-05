@@ -21,7 +21,7 @@ namespace Platformer
         float[] distPlatforms = new float[3];
 
         Texture2D hearts;
-        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit;
+        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
 
@@ -50,6 +50,7 @@ namespace Platformer
             soundboom = content.Load<SoundEffect>("soundboom");
             soundwaterget = content.Load<SoundEffect>("soundgetdrop");
             soundgethit = content.Load<SoundEffect>("soundgethit");
+            soundgameover = content.Load<SoundEffect>("soundgameover");
 
         }
 
@@ -81,12 +82,15 @@ namespace Platformer
                 score = score - 100;
                 invincibilityflashtime = 0f;
                 soundgethit.Play();
+
+                if (health < 1)
+                {
+                    //gameover
+                    soundgameover.Play();
+                }
             }
 
-            if (health < 1)
-            {
-                //gameover
-            }
+            
 
         }
 
@@ -352,11 +356,11 @@ namespace Platformer
                     }
                     if (other.name == "crab")
                     {
-                        if (jumpflag == 0)
+                        if (jumpflag == 0 && dashflag==0 && slamflag==0)
                         {
                             gettinghit();
                         }
-                        if (jumpflag == 1)
+                        if (jumpflag == 1 || dashflag==1 || slamflag==1)
                         {
                             other.Destroy();
                             Sprite explosion;
@@ -449,7 +453,7 @@ namespace Platformer
         void dash()
         {
 
-            if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag==0 && dashcooldown>5f)
+            if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag==0 && dashcooldown>2f)
             {
                 dashflag = 1;
                 soundslam.Play();
@@ -459,11 +463,37 @@ namespace Platformer
             {
                 if (directionfaced == 1)
                 {
+                    
                     this.position.X += 0.25f;
+                    Sprite other;
+                    Vector2 colPosition;
+                    
+                    //para nao deixar passar a frente de obstaculos/objetos
+                    if (scene.Collides(this, out other, out colPosition))
+                    {
+                        do{
+                        this.position.X -= 0.01f;
+                        } while (scene.Collides(this, out other, out colPosition));
+
+                        dashflag = 0;
+                    }
+                    //
                 }
                 if (directionfaced == 2)
                 {
+                
                     this.position.X -= 0.25f;
+                    Sprite other;
+                    Vector2 colPosition;
+
+                    if (scene.Collides(this, out other, out colPosition))
+                    {
+                        do
+                        {
+                            this.position.X += 0.01f;
+                        } while (scene.Collides(this, out other, out colPosition));
+                        dashflag = 0;
+                    }
                 }
                 contdash++;
                 if (contdash == 5)
