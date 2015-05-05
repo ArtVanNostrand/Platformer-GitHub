@@ -12,16 +12,19 @@ namespace Platformer
 {
     class Character : Sprite
     {
+
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1, health=3, score=0;
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
+        float invincibilityflashtime = 3f, totaltime=0f;
         bool ZPressed = false;
         public bool canjump = false;
         float[] distPlatforms = new float[3];
 
         Texture2D hearts;
-        SoundEffect soundjump, soundslam, soundboom, soundwaterget;
+        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
+
 
         public Character(ContentManager content, SpriteBatch spriteBatch) : base(content,"sonicstill")
         {
@@ -33,19 +36,20 @@ namespace Platformer
             //animated.EnableCollisions();
 
 
-            //Sound Effects:
-            soundjump = content.Load<SoundEffect>("soundeffectjump");
-            soundslam = content.Load<SoundEffect>("soundslam");
-            soundboom = content.Load<SoundEffect>("soundboom");
-            soundwaterget = content.Load<SoundEffect>("soundgetdrop");
-
-
-            //Assets:
+            //Images:
             hearts = content.Load<Texture2D>("lifes");
 
 
             //Fonts:
             fontquartz = content.Load<SpriteFont>("fontquartz");
+
+
+            //Sound Effects:
+            soundjump = content.Load<SoundEffect>("soundeffectjump");
+            soundslam = content.Load<SoundEffect>("soundslam");
+            soundboom = content.Load<SoundEffect>("soundboom");
+            soundwaterget = content.Load<SoundEffect>("soundgetdrop");
+            soundgethit = content.Load<SoundEffect>("soundgethit");
 
         }
 
@@ -58,42 +62,39 @@ namespace Platformer
          
         }
 
-        public override void Update(GameTime gameTime){
-
-           //timers
-           jumptime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-           dashcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
-           bluestarcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            Vector2 tpos = Camera.WorldPoint2Pixels(position);
-
-
-            //float a = (float)mpos.Y - tpos.Y;
-            //float l = (float)mpos.X - tpos.X;
-            //float rot = (float)Math.Atan2(a, l);
-            //turret.SetRotation(rot+(float)Math.PI/2f);
-
-            movimento(gameTime);
-
-            //Draw(gameTime);
-
-            //habilidades
-            jump();
-            slam();
-            dash();
-
-
-            Camera.SetTarget(this.position);
-
-            base.Update(gameTime);
+        void timers(GameTime gameTime)
+        {
+            totaltime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            jumptime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            dashcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            bluestarcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            invincibilityflashtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
 
-
-        public override void Draw(GameTime gameTime)
+        void gettinghit()
         {
 
-            spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(25f, 10f), Color.Black);
+            if (invincibilityflashtime > 3f)
+            {
+                health = health - 1;
+                score = score - 100;
+                invincibilityflashtime = 0f;
+                soundgethit.Play();
+            }
+
+            if (health < 1)
+            {
+                //gameover
+            }
+
+        }
+
+        void HUD(GameTime gameTime)
+        {
+
+            spriteBatch.DrawString(fontquartz, "Time:" + totaltime, new Vector2(21f, 0f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(25f, 15f), Color.Black);
 
             if (health > 0)
             {
@@ -108,6 +109,37 @@ namespace Platformer
                 spriteBatch.Draw(hearts, new Vector2(75f, 90f));
             }
 
+
+        }
+
+        public override void Update(GameTime gameTime){
+
+            Vector2 tpos = Camera.WorldPoint2Pixels(position);
+
+            //float a = (float)mpos.Y - tpos.Y;
+            //float l = (float)mpos.X - tpos.X;
+            //float rot = (float)Math.Atan2(a, l);
+            //turret.SetRotation(rot+(float)Math.PI/2f);
+
+            timers(gameTime);
+            movimento(gameTime);
+
+            //habilidades
+            jump();
+            slam();
+            dash();
+
+
+            Camera.SetTarget(this.position);
+
+            base.Update(gameTime);
+        }
+
+
+        public override void Draw(GameTime gameTime)
+        {
+            HUD(gameTime);
+         
             base.Draw(gameTime);
         }
 
@@ -322,7 +354,7 @@ namespace Platformer
                     {
                         if (jumpflag == 0)
                         {
-                            health = health - 1;
+                            gettinghit();
                         }
                         if (jumpflag == 1)
                         {
@@ -339,8 +371,7 @@ namespace Platformer
                     }
                     if (other.name == "3spikes")
                     {
-                        health = health - 1;
-                        //soundgethit().Play();
+                        gettinghit();
                     }
                     if (other.name == "imagewaterdrop2")
                     {
@@ -351,6 +382,8 @@ namespace Platformer
                         scene.AddSprite(bluestars);
                         bluestars.SetPosition(other.position);
                         bluestars.Scale(0.2f);
+
+                        score = score + 1;
                     }
                     else
                     {
