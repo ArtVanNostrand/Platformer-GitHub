@@ -13,7 +13,8 @@ namespace Platformer
     class Character : Sprite
     {
 
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1, health=3, score=0;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
+        int health=3, score=0, magic=0;
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, totaltime=0f;
         bool ZPressed = false;
@@ -97,20 +98,21 @@ namespace Platformer
         void HUD(GameTime gameTime)
         {
 
-            spriteBatch.DrawString(fontquartz, "Time:" + totaltime, new Vector2(21f, 0f), Color.Black);
-            spriteBatch.DrawString(fontquartz, "Score:" + score, new Vector2(25f, 15f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Time: " + totaltime, new Vector2(8f, 5f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Score: " + score, new Vector2(10f, 25f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Magic: " + magic, new Vector2(10f, 45f), Color.Black);
 
             if (health > 0)
             {
-                spriteBatch.Draw(hearts, new Vector2(15f, 90f));
+                spriteBatch.Draw(hearts, new Vector2(50f,560f));
             }
             if (health > 1)
             {
-                spriteBatch.Draw(hearts, new Vector2(45f, 90f));
+                spriteBatch.Draw(hearts, new Vector2(65f, 560f));
             }
             if (health > 2)
             {
-                spriteBatch.Draw(hearts, new Vector2(75f, 90f));
+                spriteBatch.Draw(hearts, new Vector2(80f, 560f));
             }
 
 
@@ -160,7 +162,7 @@ namespace Platformer
             //apenas para testing
             if (state.IsKeyDown(Keys.T))
             {
-                this.position.Y += 0.08f;
+                this.position.Y += 0.1f;
             }
 
             //movimento basico
@@ -387,7 +389,8 @@ namespace Platformer
                         bluestars.SetPosition(other.position);
                         bluestars.Scale(0.2f);
 
-                        score = score + 1;
+                        score = score + 2;
+                        magic = magic + 1;
                     }
                     else
                     {
@@ -438,12 +441,19 @@ namespace Platformer
                     soundslam.Play();
                     slamflag = 1;
                 }
-                //ReplaceImage("charv1j2");
-                this.position.Y -= 0.14f;
+                ReplaceImage("sonicball");
+                this.position.Y -= 0.16f;
+                Sprite other;
+                Vector2 colPosition;
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    this.position.Y += 0.16f;
+                    slamflag = 0;
+                }
                 if (this.position.Y < 0f)
                 {
                     this.position.Y = 0f;
-                    //ReplaceImage("charv1");
+                    ReplaceImage("sonicstill");
                     slamflag = 0;
                 }
             }
@@ -463,7 +473,13 @@ namespace Platformer
             {
                 if (directionfaced == 1)
                 {
-                    
+
+                    Sprite afterimage;
+                    afterimage = new Sprite(cmanager, "sonicstillA");
+                    scene.AddSprite(afterimage);
+                    afterimage.SetPosition(this.position);
+                    afterimage.Scl(0.3f);
+
                     this.position.X += 0.25f;
                     Sprite other;
                     Vector2 colPosition;

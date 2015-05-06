@@ -161,7 +161,7 @@ namespace Platformer
             scene.Draw(gameTime);
           
             spriteBatch.Begin();
-            spriteBatch.Draw(icon, new Rectangle(30, 30, 60, 60), Color.White);
+            spriteBatch.Draw(icon, new Rectangle(4, 550, 50, 50), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
