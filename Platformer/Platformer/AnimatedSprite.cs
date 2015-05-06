@@ -10,9 +10,9 @@ namespace Platformer
     class AnimatedSprite : Sprite
     {
 
-        protected int ncols, nrows;
-        protected Point currentFrame;
-        private float animationInterval = 1f / 5f;
+        private int ncols, nrows;
+        private Point currentFrame;
+        private float animationInterval = 1f / 20f;
         private float animationTimer = 0f;
 
         public override void Update(GameTime gameTime)
@@ -37,7 +37,7 @@ namespace Platformer
 
         }
 
-        protected virtual void nextframe()
+        private void nextframe()
         {
             if (currentFrame.X < ncols - 1)
             {
@@ -52,6 +52,11 @@ namespace Platformer
             {
                 currentFrame = Point.Zero;
             }
+            else
+            {
+                //Destroy();
+            }
+
         }
 
 

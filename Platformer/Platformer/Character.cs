@@ -10,25 +10,27 @@ using System.Text;
 
 namespace Platformer
 {
-    class Character : AnimatedSprite
+    class Character : Sprite
     {
 
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
-        int health=3, score=0, magic=0;
+        int health=3, score=0, magic=0, totalmagic=0, explosioncont=0;
+        int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
-        float invincibilityflashtime = 3f, totaltime=0f;
+        float invincibilityflashtime = 3f, totaltime=0f, stunlock=0f;
+        float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
+        float[] distPlatforms = new float[3];
         bool ZPressed = false;
         public bool canjump = false;
-        float[] distPlatforms = new float[3];
-        public int _isMoving = 0;
 
         Texture2D hearts;
         SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
+        Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999];
 
 
-        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content, "SonicCorrerDireita", 1, 4)
+        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content,"sonicstill")
         {
             this.spriteBatch = spriteBatch;
             this.EnableCollisions();
@@ -57,32 +59,7 @@ namespace Platformer
         }
 
 
-        protected override void nextframe()
-        {
-            if (_isMoving == 1)
-            {
-                //ReplaceImage("SonicCorrerDireita");
-                //this.Scl(10f);
-                if (currentFrame.X < ncols - 1)
-                {
-                    currentFrame.X++;
-                }
-                else if (currentFrame.Y < nrows - 1)
-                {
-                    currentFrame.X = 0;
-                    currentFrame.Y++;
-                }
-                else if (Loop)
-                {
-                    currentFrame = Point.Zero;
-                }
-            }
-            else
-            {
-                //ReplaceImage("sonicstill");
-                //this.Scl(0.3f);
-            }
-        }
+
 
         public override void SetScene(Scene s)
         {
@@ -97,6 +74,31 @@ namespace Platformer
             dashcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
             bluestarcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
             invincibilityflashtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            stunlock += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            for (int x = 0; x < 999; x++)
+            {
+                if (bluestarstimerflag[x] == 1)
+                {
+                    bluestarstimer[x]++;
+                }
+                if (bluestarstimer[x] >7)
+                {
+                    bluestars[x].Destroy();
+                }
+            }
+
+            for (int x = 0; x < 999; x++)
+            {
+                if (explosiontimerflag[x] == 1)
+                {
+                    explosiontimer[x]++;
+                }
+                if (explosiontimer[x] >7)
+                {
+                    explosion[x].Destroy();
+                }
+            }
 
         }
 
@@ -108,6 +110,7 @@ namespace Platformer
                 health = health - 1;
                 score = score - 100;
                 invincibilityflashtime = 0f;
+                stunlock = 0f;
                 soundgethit.Play();
 
                 if (health < 1)
@@ -155,6 +158,7 @@ namespace Platformer
 
             timers(gameTime);
             movimento(gameTime);
+            colisao2();
 
             //habilidades
             jump();
@@ -178,134 +182,240 @@ namespace Platformer
 
         void movimento(GameTime gameTime)
         {
-            KeyboardState state = Keyboard.GetState();
-
-            if (position.Y == 0)
+            if (stunlock > 0.2f)
             {
-                canjump=true;
+                KeyboardState state = Keyboard.GetState();
+
+                if (position.Y == 0)
+                {
+                    canjump = true;
+                }
+
+                //apenas para testing
+                if (state.IsKeyDown(Keys.T))
+                {
+                    this.position.Y += 0.1f;
+                }
+
+                //movimento basico
+                if (state.IsKeyDown(Keys.Right))
+                {
+                    if (directionfaced == 2)
+                    {
+                        movtimer = 0f;
+                    }
+                    directionfaced = 1;
+                    if (jumpflag == 0)
+                    {
+                        ReplaceImage("sonicstill");
+                    }
+                    else
+                    {
+                        ReplaceImage("sonicstill");
+                    }
+                    movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (movtimer > 2f)
+                    {
+                        movtimer = 2f;
+                    }
+                    if (movtimer > 0f && movtimer < 0.5f)
+                    {
+                        this.position.X += 0.05f;
+                        auxmov = 0.05f;
+                    }
+                    if (movtimer > 0.5f && movtimer < 1f)
+                    {
+                        this.position.X += 0.062f;
+                        auxmov = 0.062f;
+                    }
+                    if (movtimer > 1f && movtimer < 1.5f)
+                    {
+                        this.position.X += 0.074f;
+                        auxmov = 0.074f;
+                    }
+                    if (movtimer > 1.5f && movtimer < 2f)
+                    {
+                        this.position.X += 0.082f;
+                        auxmov = 0.082f;
+                    }
+                    if (movtimer == 2)
+                    {
+                        this.position.X += 0.09f;
+                        auxmov = 0.09f;
+                    }
+                    Sprite other;
+                    Vector2 colPosition;
+                    if (scene.Collides(this, out other, out colPosition))
+                    {
+                        if (other.name != "imagewaterdrop2" && other.name != "crab")
+                        {
+                            this.position.X -= auxmov;
+                        }
+
+                    }
+
+                }
+                if (state.IsKeyDown(Keys.Left))
+                {
+                    if (directionfaced == 1)
+                    {
+                        movtimer = 0f;
+                    }
+                    directionfaced = 2;
+                    if (jumpflag == 0)
+                    {
+                        ReplaceImage("sonicstillR");
+                    }
+                    else
+                    {
+                        ReplaceImage("sonicstillR");
+                    }
+                    movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (movtimer > 2f)
+                    {
+                        movtimer = 2f;
+                    }
+                    if (movtimer > 0f && movtimer < 0.5f)
+                    {
+                        this.position.X -= 0.05f;
+                        auxmov = 0.05f;
+                    }
+                    if (movtimer > 0.5f && movtimer < 1f)
+                    {
+                        this.position.X -= 0.062f;
+                        auxmov = 0.062f;
+                    }
+                    if (movtimer > 1f && movtimer < 1.5f)
+                    {
+                        this.position.X -= 0.074f;
+                        auxmov = 0.074f;
+                    }
+                    if (movtimer > 1.5f && movtimer < 2f)
+                    {
+                        this.position.X -= 0.082f;
+                        auxmov = 0.082f;
+                    }
+                    if (movtimer == 2)
+                    {
+                        this.position.X -= 0.09f;
+                        auxmov = 0.09f;
+                    }
+                    Sprite other;
+                    Vector2 colPosition;
+                    if (scene.Collides(this, out other, out colPosition))
+                    {
+                        if (other.name != "imagewaterdrop2" && other.name != "crab")
+                        {
+                            this.position.X += auxmov;
+                        }
+                    }
+
+
+
+                }
+
+
             }
-
-            //apenas para testing
-            if (state.IsKeyDown(Keys.T))
-            {
-                this.position.Y += 0.1f;
-            }
-
-            //movimento basico
-            if (state.IsKeyDown(Keys.Right))
-            {
-                _isMoving = 1;
-                if (directionfaced == 2)
-                {
-                    movtimer = 0f;
-                }
-                directionfaced = 1;
-                //if (jumpflag == 0)
-                //{
-                //    ReplaceImage("sonicstill");
-                //}
-                //else
-                //{
-                //    ReplaceImage("sonicstill");
-                //}
-                movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (movtimer > 2f)
-                {
-                    movtimer = 2f;
-                }
-                if (movtimer > 0f && movtimer < 0.5f)
-                {
-                    this.position.X += 0.05f;
-                    auxmov = 0.05f;
-                }
-                if (movtimer > 0.5f && movtimer < 1f)
-                {
-                    this.position.X += 0.062f;
-                    auxmov = 0.062f;
-                }
-                if (movtimer > 1f && movtimer < 1.5f)
-                {
-                    this.position.X += 0.074f;
-                    auxmov = 0.074f;
-                }
-                if (movtimer > 1.5f && movtimer < 2f)
-                {
-                    this.position.X += 0.082f;
-                    auxmov = 0.082f;
-                }
-                if (movtimer == 2)
-                {
-                    this.position.X += 0.09f;
-                    auxmov = 0.09f;
-                }
-                Sprite other;
-                Vector2 colPosition;
-                if (scene.Collides(this, out other, out colPosition))
-                {
-                    this.position.X -= auxmov;
-                }
-
-            }
-            else if (state.IsKeyDown(Keys.Left))
-            {
-                _isMoving = 1;
-                if (directionfaced == 1)
-                {
-                    movtimer = 0f;
-                }
-                directionfaced = 2;
-                //if (jumpflag == 0)
-                //{
-                //    ReplaceImage("sonicstillR");
-                //}
-                //else
-                //{
-                //    ReplaceImage("sonicstillR");
-                //}
-                movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (movtimer > 2f)
-                {
-                    movtimer = 2f;
-                }
-                if (movtimer > 0f && movtimer < 0.5f)
-                {
-                    this.position.X -= 0.05f;
-                    auxmov = 0.05f;
-                }
-                if (movtimer > 0.5f && movtimer < 1f)
-                {
-                    this.position.X -= 0.062f;
-                    auxmov = 0.062f;
-                }
-                if (movtimer > 1f && movtimer < 1.5f)
-                {
-                    this.position.X -= 0.074f;
-                    auxmov = 0.074f;
-                }
-                if (movtimer > 1.5f && movtimer < 2f)
-                {
-                    this.position.X -= 0.082f;
-                    auxmov = 0.082f;
-                }
-                if (movtimer == 2)
-                {
-                    this.position.X -= 0.09f;
-                    auxmov = 0.09f;
-                }
-                Sprite other;
-                Vector2 colPosition;
-                if (scene.Collides(this, out other, out colPosition))
-                {
-                    this.position.X += auxmov;
-                }
-
-                
-            
-            }
-
-            else _isMoving = 0;
-
         }
+
+        void colisao1()
+        {
+
+            Sprite other;
+            Vector2 colPosition;
+            if (scene.Collides(this, out other, out colPosition))
+            {
+                if (this.position.Y > other.position.Y)
+                {
+
+                    if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
+                        other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2])
+                    {
+                        this.position.Y += auxsalto;
+                        canjump = true;
+                    }
+
+                }
+
+                if (other.name == "3spikes")
+                {
+                    gettinghit();
+                }
+
+                else
+                {
+                    if (other.position.Y > this.position.Y)
+                    {
+                        if (other.name != "platform2") this.position.Y -= auxsalto;
+                        jumptime = 0.51f;
+                    }
+                }
+            }
+         
+        }
+
+        void colisao2()
+        {
+           Sprite other;
+           Vector2 colPosition;
+
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    if (other.name == "imagewaterdrop2")
+                    {
+                        score = score + 2;
+                        magic = magic + 1;
+                        totalmagic = totalmagic + 1;
+
+                        other.Destroy();
+                        soundwaterget.Play();
+
+                        bluestars[totalmagic] = new Sprite(cmanager, "bluesparks");
+                        scene.AddSprite(bluestars[totalmagic]);
+                        bluestars[totalmagic].SetPosition(other.position);
+                        bluestarstimerflag[totalmagic] = 1;
+                        bluestars[totalmagic].Scale(0.12f);
+
+                    }
+
+                    if (other.name == "crab")
+                    {
+
+                        if (jumpflag == 1 || dashflag == 1 || slamflag == 1)
+                        {
+                            other.Destroy();
+                            explosioncont++;
+                            explosiontimerflag[explosioncont] = 1;
+                            explosion[explosioncont] = new Sprite(cmanager, "explosao30x30");
+                            scene.AddSprite(explosion[explosioncont]);
+                            explosion[explosioncont].SetPosition(other.position);
+                            explosion[explosioncont].Scale(0.2f);
+
+                            score = score + 10;
+                            soundboom.Play();
+                        }
+                        else
+                        {
+                            if (invincibilityflashtime > 3f)
+                            {
+                                gettinghit();
+                                if (directionfaced == 1)
+                                {
+                                    position.X -= 0.4f;
+                                }
+                                else
+                                {
+                                    position.X += 0.4f;
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+        }
+
+
 
         void jump()
         {
@@ -370,66 +480,9 @@ namespace Platformer
                     this.position.Y -= 0.055f;
                     auxsalto = 0.055f;
                 }
-                Sprite other;
-                Vector2 colPosition;
-                //collidir
-                if (scene.Collides(this, out other, out colPosition))
-                { 
-                    if (this.position.Y > other.position.Y)
-                    {
-                        if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
-                            other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2])
-                        {
-                            this.position.Y += auxsalto;
-                            canjump = true;
-                        }
-                    }
-                    if (other.name == "crab")
-                    {
-                        if (jumpflag == 0 && dashflag==0 && slamflag==0)
-                        {
-                            gettinghit();
-                        }
-                        if (jumpflag == 1 || dashflag==1 || slamflag==1)
-                        {
-                            other.Destroy();
-                            Sprite explosion;
-                            explosion = new Sprite(cmanager, "explosao30x30");
-                            scene.AddSprite(explosion);
-                            explosion.SetPosition(other.position);
-                            explosion.Scale(0.2f);
 
-                            score = score + 10;
-                            soundboom.Play();
-                        }
-                    }
-                    if (other.name == "3spikes")
-                    {
-                        gettinghit();
-                    }
-                    if (other.name == "imagewaterdrop2")
-                    {
-                        other.Destroy();
-                        soundwaterget.Play();
-                        Sprite bluestars;
-                        bluestars = new Sprite(cmanager, "bluesparks");
-                        scene.AddSprite(bluestars);
-                        bluestars.SetPosition(other.position);
-                        bluestars.Scale(0.2f);
 
-                        score = score + 2;
-                        magic = magic + 1;
-                    }
-                    else
-                    {
-                        if (other.position.Y > this.position.Y)
-                        {
-                            if (other.name != "platform2") this.position.Y -= auxsalto;
-                            jumptime = 0.51f;
-                        }
-                    }
-                }
-                //colidir
+                colisao1();
 
             }
             //descender

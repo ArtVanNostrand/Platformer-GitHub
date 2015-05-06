@@ -114,6 +114,10 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(5, 2)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(10, 2)));
 
+            scene.AddSprite(new Pickups(Content).At(new Vector2(20, 0)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(20.2f, 0)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(20.4f, 0)));
+
            // scene.AddSprite(new Sprite(Content, "lifecounter").Scl((float)Camera.worldWidth * 3.2f)
            //.At(new Vector2(3f,3f)));  
 

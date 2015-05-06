@@ -13,7 +13,7 @@ namespace Platformer
             : base(Content, "imagewaterdrop2", 1, 1)
         {
             this.EnableCollisions();
-            this.Scl(0.3f);
+            this.Scl(0.2f);
 
         }
 
