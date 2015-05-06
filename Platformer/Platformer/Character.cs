@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Platformer
 {
-    class Character : Sprite
+    class Character : AnimatedSprite
     {
 
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
@@ -20,6 +20,7 @@ namespace Platformer
         bool ZPressed = false;
         public bool canjump = false;
         float[] distPlatforms = new float[3];
+        public int _isMoving = 0;
 
         Texture2D hearts;
         SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover;
@@ -27,7 +28,7 @@ namespace Platformer
         SpriteBatch spriteBatch;
 
 
-        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content,"sonicstill")
+        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content, "SonicCorrerDireita", 1, 4)
         {
             this.spriteBatch = spriteBatch;
             this.EnableCollisions();
@@ -56,7 +57,32 @@ namespace Platformer
         }
 
 
-
+        protected override void nextframe()
+        {
+            if (_isMoving == 1)
+            {
+                //ReplaceImage("SonicCorrerDireita");
+                //this.Scl(10f);
+                if (currentFrame.X < ncols - 1)
+                {
+                    currentFrame.X++;
+                }
+                else if (currentFrame.Y < nrows - 1)
+                {
+                    currentFrame.X = 0;
+                    currentFrame.Y++;
+                }
+                else if (Loop)
+                {
+                    currentFrame = Point.Zero;
+                }
+            }
+            else
+            {
+                //ReplaceImage("sonicstill");
+                //this.Scl(0.3f);
+            }
+        }
 
         public override void SetScene(Scene s)
         {
@@ -168,19 +194,20 @@ namespace Platformer
             //movimento basico
             if (state.IsKeyDown(Keys.Right))
             {
+                _isMoving = 1;
                 if (directionfaced == 2)
                 {
                     movtimer = 0f;
                 }
                 directionfaced = 1;
-                if (jumpflag == 0)
-                {
-                    ReplaceImage("sonicstill");
-                }
-                else
-                {
-                    ReplaceImage("sonicstill");
-                }
+                //if (jumpflag == 0)
+                //{
+                //    ReplaceImage("sonicstill");
+                //}
+                //else
+                //{
+                //    ReplaceImage("sonicstill");
+                //}
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
                 {
@@ -219,21 +246,22 @@ namespace Platformer
                 }
 
             }
-            if (state.IsKeyDown(Keys.Left))
+            else if (state.IsKeyDown(Keys.Left))
             {
+                _isMoving = 1;
                 if (directionfaced == 1)
                 {
                     movtimer = 0f;
                 }
                 directionfaced = 2;
-                if (jumpflag == 0)
-                {
-                    ReplaceImage("sonicstillR");
-                }
-                else
-                {
-                    ReplaceImage("sonicstillR");
-                }
+                //if (jumpflag == 0)
+                //{
+                //    ReplaceImage("sonicstillR");
+                //}
+                //else
+                //{
+                //    ReplaceImage("sonicstillR");
+                //}
                 movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 if (movtimer > 2f)
                 {
@@ -270,12 +298,12 @@ namespace Platformer
                 {
                     this.position.X += auxmov;
                 }
-             
 
-
+                
+            
             }
 
-
+            else _isMoving = 0;
 
         }
 
