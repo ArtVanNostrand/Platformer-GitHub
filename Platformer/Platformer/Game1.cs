@@ -78,14 +78,28 @@ namespace Platformer
 
 
             scene.AddSprite(new Level(Content, "imagerock1").At(new Vector2(30f, -0.1f)));
-
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(31.35f, -0.10f)));
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(31.57f, -0.10f)));
-
             scene.AddSprite(new Level(Content, "imagerock2").Scl((float)1.15f).At(new Vector2(30.8f, 0f)));
-
             scene.AddSprite(new Level(Content, "imagerock3").Scl((float)1.3f).At(new Vector2(32f, 0.1f)));
 
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(40f, 0.1f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(41f, 1f)));
+
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(42.24f, 1.6f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(42.24f, 1.2f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(42.24f, 0.8f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(42.24f, 0.4f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(42.24f, 0f)));
+
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 1.6f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 1.2f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.8f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.5f)));
+
+
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(43f, 1.8f)));
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(44.5f, 1.8f)));
 
             //obstacles:
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(13.00f, -0.10f)));
@@ -111,6 +125,7 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(6, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(8, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(10, -0.06f)));
+            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(1.5f, 1.8f)));
 
             for (float i = -100; i < 100;  i+= 16)
             {
@@ -121,7 +136,7 @@ namespace Platformer
             for (float i = -100; i < 100; i += 16)
             {
                 scene.AddSprite(new Sprite(Content, "nuvens").Scl((float)Camera.worldWidth * 3.2f)
-            .At(new Vector2(i, 3.2f)));   // de 16 em 16(x)
+            .At(new Vector2(i, 4.2f)));   // de 16 em 16(x)
             }
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(1, 1)));
@@ -138,6 +153,11 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(21.2f, 0)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(21.4f, 0)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(21.6f, 0)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(-4f, 1.9f)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(15.20f, 0.4f)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(30f, 0.4f)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(30.8f, 0.5f)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(32f, 0.6f)));
 
            // scene.AddSprite(new Sprite(Content, "lifecounter").Scl((float)Camera.worldWidth * 3.2f)
            //.At(new Vector2(3f,3f)));  

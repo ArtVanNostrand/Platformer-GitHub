@@ -19,7 +19,7 @@ namespace Platformer
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, totaltime=0f, stunlock=0f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
-        float[] distPlatforms = new float[3];
+        float[] distPlatforms = new float[4];
         bool ZPressed = false;
         public bool canjump = false;
 
@@ -267,7 +267,7 @@ namespace Platformer
                     }
 
                 }
-                if (state.IsKeyDown(Keys.Left))
+                else if (state.IsKeyDown(Keys.Left))
                 {
                     if (directionfaced == 1)
                     {
@@ -333,20 +333,20 @@ namespace Platformer
 
                 }
 
-            }
+                else
+                {
+                    if (estado == 3)
+                    {
+                        ReplaceImage("sonicstill", 1, 1);
+                        estado = 1;
+                    }
+                    else if (estado == 4)
+                    {
+                        ReplaceImage("sonicstillR", 1, 1);
+                        estado = 2;
+                    }
+                }
 
-            else
-            {
-                if (estado == 3)
-                {
-                    ReplaceImage("sonicstill", 1, 1);
-                    estado = 1;
-                }
-                else if (estado == 4)
-                {
-                    ReplaceImage("sonicstillR", 1, 1);
-                    estado = 2;
-                }
             }
 
         }
@@ -360,9 +360,10 @@ namespace Platformer
             {
                 if (this.position.Y > other.position.Y)
                 {
-
                     if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
-                        other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2])
+                        other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2]||
+                        (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3") &&
+                        (this.position.X - other.position.X) <= distPlatforms[3])
                     {
                         this.position.Y += auxsalto;
                         canjump = true;
@@ -495,6 +496,7 @@ namespace Platformer
 
             distPlatforms[1] = 0.3f;
             distPlatforms[2] = 0.55f;
+            distPlatforms[3] = 0.35f;
 
             //descender
             if (jumpflag > 0)
