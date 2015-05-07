@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +93,25 @@ namespace Platformer
         }
 
 
+        public void ReplaceImage(string assetName, int nrows, int ncols)
+        {
+            this.currentFrame = Point.Zero;
+            this.rotation = 0f;
+            this.nrows = nrows;
+            this.ncols = ncols;
+            this.image = cmanager.Load<Texture2D>(assetName);
+            this.pixelsize = new Vector2(image.Width / ncols, image.Height / nrows);
+            this.size = new Vector2(0.3f, 0.3f * ((float)pixelsize.Y / (float)pixelsize.X));
+            if (this.HasCollisions)
+            {
+                this.EnableCollisions();
+            }
+        }
 
+        public void calcAnimInterval(float mov)
+        {
+            animationInterval = 1 / (mov * 2 + 5);
+        }
 
 
     }

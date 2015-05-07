@@ -10,11 +10,11 @@ using System.Text;
 
 namespace Platformer
 {
-    class Character : Sprite
+    class Character : AnimatedSprite
     {
 
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1;
-        int health=3, score=0, magic=0, totalmagic=0, explosioncont=0;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1, estado = 0;
+        int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, totaltime=0f, stunlock=0f;
@@ -30,7 +30,7 @@ namespace Platformer
         Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999];
 
 
-        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content,"sonicstill")
+        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content, "sonicstill", 1, 1)
         {
             this.spriteBatch = spriteBatch;
             this.EnableCollisions();
@@ -156,6 +156,8 @@ namespace Platformer
             //float rot = (float)Math.Atan2(a, l);
             //turret.SetRotation(rot+(float)Math.PI/2f);
 
+            calcAnimInterval(movtimer);
+
             timers(gameTime);
             movimento(gameTime);
             colisao2();
@@ -205,13 +207,23 @@ namespace Platformer
                         movtimer = 0f;
                     }
                     directionfaced = 1;
-                    if (jumpflag == 0)
+                    if (jumpflag == 0 || flagPlatf == 1)
                     {
-                        ReplaceImage("sonicstill");
+                        flagPlatf = 0;
+                        if (estado != 3)
+                        {
+                            ReplaceImage("SonicCorrerDireita", 1, 4);
+                            this.Scale(1.6f);
+                        }
+                        estado = 3;
                     }
                     else
                     {
-                        ReplaceImage("sonicstill");
+                        if (estado != 1)
+                        {
+                            ReplaceImage("sonicstill", 1, 1);
+                            estado = 1;
+                        }
                     }
                     movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     if (movtimer > 2f)
@@ -262,13 +274,20 @@ namespace Platformer
                         movtimer = 0f;
                     }
                     directionfaced = 2;
-                    if (jumpflag == 0)
+                    if (jumpflag == 0 || flagPlatf == 1)
                     {
-                        ReplaceImage("sonicstillR");
+                        flagPlatf = 0;
+                        if (estado != 4)
+                        {
+                            ReplaceImage("SonicCorrerEsquerda", 1, 4);
+                            this.Scale(1.6f);
+                        }
+                        estado = 4;
                     }
                     else
                     {
-                        ReplaceImage("sonicstillR");
+                        if (estado != 2) ReplaceImage("sonicstillR", 1, 1);
+                        estado = 2;
                     }
                     movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                     if (movtimer > 2f)
@@ -314,8 +333,22 @@ namespace Platformer
 
                 }
 
-
             }
+
+            else
+            {
+                if (estado == 3)
+                {
+                    ReplaceImage("sonicstill", 1, 1);
+                    estado = 1;
+                }
+                else if (estado == 4)
+                {
+                    ReplaceImage("sonicstillR", 1, 1);
+                    estado = 2;
+                }
+            }
+
         }
 
         void colisao1()
@@ -333,6 +366,7 @@ namespace Platformer
                     {
                         this.position.Y += auxsalto;
                         canjump = true;
+                        flagPlatf = 1;
                     }
 
                 }
@@ -428,11 +462,11 @@ namespace Platformer
 
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("sonicstill");
+                        ReplaceImage("sonicstill", 1, 1);
                     }
                     else
                     {
-                        ReplaceImage("sonicstillR");
+                        ReplaceImage("sonicstillR", 1, 1);
                     }
                     canjump = false;
                     soundjump.Play();
@@ -498,11 +532,11 @@ namespace Platformer
                     }
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("sonicstill");
+                        ReplaceImage("sonicstill", 1, 1);
                     }
                     else
                     {
-                        ReplaceImage("sonicstillR");
+                        ReplaceImage("sonicstillR", 1, 1);
                     }
                     jumptime = 0f;
                     canjump = true;
@@ -522,7 +556,7 @@ namespace Platformer
                     soundslam.Play();
                     slamflag = 1;
                 }
-                ReplaceImage("sonicball");
+                ReplaceImage("sonicball", 1, 1);
                 this.position.Y -= 0.16f;
                 Sprite other;
                 Vector2 colPosition;
@@ -534,7 +568,7 @@ namespace Platformer
                 if (this.position.Y < 0f)
                 {
                     this.position.Y = 0f;
-                    ReplaceImage("sonicstill");
+                    ReplaceImage("sonicstill", 1, 1);
                     slamflag = 0;
                 }
             }

@@ -18,7 +18,7 @@ namespace Platformer
         protected Texture2D image;
         public Vector2 position;
         protected Vector2 size;
-        private float rotation;
+        protected float rotation;
         protected Scene scene;
         protected Vector2 pixelsize;
         protected Rectangle? source = null;
@@ -193,18 +193,6 @@ namespace Platformer
             float y = j * size.Y / (float)pixelsize.Y;
             return new Vector2(position.X + x - (size.X * 0.5f), position.Y - y + (size.Y * 0.5f));
 
-        }
-
-        public void ReplaceImage(string assetName)
-        {
-            this.rotation = 0f;
-            //this.position = Vector2.Zero;
-            this.image = cmanager.Load<Texture2D>(assetName);
-            this.pixelsize = new Vector2(image.Width, image.Height);
-            this.size = new Vector2(0.3f, 0.3f*((float)image.Height / (float)image.Width));
-            if(this.HasCollisions){
-                this.EnableCollisions();
-            }
         }
         
 
