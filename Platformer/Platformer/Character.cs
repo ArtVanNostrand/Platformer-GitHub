@@ -13,7 +13,7 @@ namespace Platformer
     class Character : AnimatedSprite
     {
 
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd=0, directionfaced = 1, estado = 0;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
         int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
         int afterimageflag = 0;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
@@ -182,7 +182,8 @@ namespace Platformer
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
-            calcAnimInterval(holdtime);
+            if (flagSalto == 1) calcAnimInterval(3);
+            else calcAnimInterval(holdtime);
 
             timers(gameTime);
             movimento(gameTime);
@@ -256,7 +257,7 @@ namespace Platformer
                     }
                     else
                     {
-                        if (estado != 1)
+                        if (estado != 1 && jumpflag == 0)
                         {
                             ReplaceImage("sonicstill", 1, 1);
                             estado = 1;
@@ -326,7 +327,7 @@ namespace Platformer
                     }
                     else
                     {
-                        if (estado != 2) ReplaceImage("sonicstillR", 1, 1);
+                        if (estado != 2 && jumpflag == 0) ReplaceImage("sonicstillR", 1, 1);
                         estado = 2;
                     }
           
@@ -408,6 +409,7 @@ namespace Platformer
                         this.position.Y += auxsalto;
                         canjump = true;
                         flagPlatf = 1;
+                        flagSalto = 0;
                     }
 
                 }
@@ -507,15 +509,18 @@ namespace Platformer
                 if (Keyboard.GetState().IsKeyUp(Keys.Z) && canjump==true) ZPressed = false;
                 if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
-
+                    flagSalto = 1;
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("sonicstill", 1, 1);
+                        ReplaceImage("SaltarSonic", 1, 8);
+                        this.Scale(1.5f);
                     }
                     else
                     {
-                        ReplaceImage("sonicstillR", 1, 1);
+                        ReplaceImage("SaltarSonicEsquerda", 1, 8);
+                        this.Scale(1.5f);
                     }
+                    if (flagPlatf == 1) flagPlatf = 0;
                     canjump = false;
                     soundjump.Play();
                     ZPressed = true;
@@ -581,6 +586,7 @@ namespace Platformer
                         jumptime = 0f;
                         canjump = true;
                         jumpflag = 0;
+                        flagSalto = 0;
                     }
                 //para
             }

@@ -134,8 +134,6 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(8, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(10, -0.06f)));
 
-            //
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(1.5f, 1.8f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(42.75f, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.25f, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.75f, -0.06f)));

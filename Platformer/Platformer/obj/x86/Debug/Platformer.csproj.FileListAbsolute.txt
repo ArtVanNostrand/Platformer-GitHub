@@ -240,3 +240,5 @@ C:\Users\Asus\Desktop\Platformer Game\Platformer\Platformer\bin\Windows\Debug\Co
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimage.png
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimageR.png
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sound1up.xnb
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonic.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonicEsquerda.png
