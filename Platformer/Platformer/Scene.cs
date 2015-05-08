@@ -9,7 +9,6 @@ namespace Platformer
 {
     class Scene
     {
-
         public SpriteBatch spriteBatch { get; private set; }
         private List<Sprite> sprites;
         private List<SlidingBackground> backgrounds;
@@ -57,12 +56,10 @@ namespace Platformer
             {
                 sprite.Update(gameTime);
             }
-
         }
 
         public void Draw(GameTime gameTime)
         {
-            
             if (sprites.Count > 0 || backgrounds.Count > 0)
             {
                 this.spriteBatch.Begin();
@@ -81,7 +78,6 @@ namespace Platformer
         public void RemoveSprite(Sprite s)
         {
             this.sprites.Remove(s);
-
         }
 
         public void Dispose()
@@ -92,6 +88,5 @@ namespace Platformer
             }
         }
      
-
     }
 }

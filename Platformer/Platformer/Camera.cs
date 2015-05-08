@@ -8,20 +8,15 @@ namespace Platformer
 {
     class Camera
     {
-
         public static GraphicsDeviceManager gDevManager;
         public static float worldWidth { private set; get; }
         public static float ratio { private set; get; }
         private static Vector2 target;
         private static int lastSeenPixelWidth = 0;
 
-
-
         public static void SetGraphicsDeviceManager(GraphicsDeviceManager gdm)
         {
-
             Camera.gDevManager = gdm;
-
         }
 
         public static void SetWorldWidth(float w)
@@ -31,9 +26,7 @@ namespace Platformer
 
         public static void SetTarget(Vector2 target)
         {
-
             Camera.target = target;
-
         }
 
         private static void UpdateRatio()
@@ -62,8 +55,6 @@ namespace Platformer
             pixelPoint.Y = Camera.gDevManager.PreferredBackBufferHeight - pixelPoint.Y;
 
             return pixelPoint;
-
-
         }
 
         public static Rectangle WorldSize2PixelRectangle(Vector2 pos, Vector2 size)
@@ -75,14 +66,10 @@ namespace Platformer
             int pixelWidth = (int)(size.X * Camera.ratio + .5f);
             int pixelHeight = (int)(size.Y * Camera.ratio + .5f);
 
-            //pixelPos.X -= pixelWidth / 2;
-            //pixelPos.Y -= pixelHeight / 2;
-
             return new Rectangle((int)pixelPos.X, (int)pixelPos.Y, pixelWidth, pixelHeight);
         }
 
         public static Vector2 GetTarget() { return Camera.target; }
-
 
     }
 }

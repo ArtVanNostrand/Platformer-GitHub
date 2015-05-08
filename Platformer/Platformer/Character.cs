@@ -19,8 +19,7 @@ namespace Platformer
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
-        //float holdtime = 0f;
-        float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
+        float[] bluestarstimer = new float[10], explosiontimer = new float[10];
         float[] distPlatforms = new float[4];
         bool ZPressed = false;
         public bool canjump = false;
@@ -37,10 +36,11 @@ namespace Platformer
             this.spriteBatch = spriteBatch;
             this.EnableCollisions();
             this.Scl(0.3f);
-            //AnimatedSprite animated = new AnimatedSprite(content, "SonicCorrerInicio", 1, 4);
-            //animated.Scl(0.4f);
-            //animated.EnableCollisions();
 
+            //Platforms width
+            distPlatforms[1] = 0.3f;
+            distPlatforms[2] = 0.55f;
+            distPlatforms[3] = 0.35f;
 
             //Images:
             hearts = content.Load<Texture2D>("lifes");
@@ -82,27 +82,27 @@ namespace Platformer
             stunlock += (float)gameTime.ElapsedGameTime.TotalSeconds;
             //holdtime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            for (int x = 0; x < 999; x++)
-            {
-                if (bluestarstimerflag[x] == 1)
-                {
-                    bluestarstimer[x]++;
-                }
-                if (bluestarstimer[x] >7)
-                {
-                    bluestars[x].Destroy();
-                }
-            }
-
-            for (int x = 0; x < 999; x++)
+            for (int x = 0; x < 9; x++)
             {
                 if (explosiontimerflag[x] == 1)
                 {
                     explosiontimer[x]++;
                 }
-                if (explosiontimer[x] >7)
+                if (explosiontimer[x] > 0)
                 {
                     explosion[x].Destroy();
+                }
+            }
+
+            for (int x = 0; x < 9; x++)
+            {
+                if (bluestarstimerflag[x] == 1)
+                {
+                    bluestarstimer[x]++;
+                }
+                if (bluestarstimer[x] > 0)
+                {
+                    bluestars[x].Destroy();
                 }
             }
 
@@ -124,11 +124,6 @@ namespace Platformer
                 }
                 afterimageflag = 0;
             }
-            
-
-    
-
-
         }
 
         void gettinghit()
@@ -136,15 +131,14 @@ namespace Platformer
 
             if (invincibilityflashtime > 3f)
             {
-                health = health - 1;
-                score = score - 100;
+                health -= - 1;
+                score -= 100;
                 invincibilityflashtime = 0f;
                 stunlock = 0f;
                 soundgethit.Play();
 
                 if (health < 1)
                 {
-                    //gameover
                     soundgameover.Play();
                 }
             }
@@ -188,27 +182,15 @@ namespace Platformer
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
-            //float a = (float)mpos.Y - tpos.Y;
-            //float l = (float)mpos.X - tpos.X;
-            //float rot = (float)Math.Atan2(a, l);
-            //turret.SetRotation(rot+(float)Math.PI/2f);
-
             calcAnimInterval(holdtime);
 
             timers(gameTime);
             movimento(gameTime);
             colisao2();
 
-            //habilidades
             jump();
             slam();
             dash();
-
-            //if (dashflagtimer > 1f)
-            //{
-            //    dashflag = 0;
-            //}
-
 
             Camera.SetTarget(this.position);
 
@@ -414,7 +396,7 @@ namespace Platformer
 
             Sprite other;
             Vector2 colPosition;
-            if (scene.Collides(this, out other, out colPosition))
+            if (scene.Collides(this, out other, out colPosition) && other.name != "imagewaterdrop2" && other.name != "lifes")
             {
                 if (this.position.Y > other.position.Y)
                 {
@@ -470,7 +452,7 @@ namespace Platformer
                         bluestars[totalmagic].Scale(0.12f);
 
                     }
-                    if (other.name == "lifes")
+                    else if (other.name == "lifes")
                     {
                         other.Destroy();
                         sound1up.Play();
@@ -478,7 +460,7 @@ namespace Platformer
 
 
                     }
-                    if (other.name == "crab")
+                    else if (other.name == "crab")
                     {
 
                         if (jumpflag == 1 || dashflag == 1 || slamflag == 1)
@@ -544,75 +526,65 @@ namespace Platformer
             }
             //clicar saltar
 
-            //ascender
-            if (jumpflag > 0 && jumptime <0.35f)
+            if (jumpflag == 1)
             {
-                this.position.Y += 0.04f;
-            }
-            if (jumpflag > 0 && jumptime >0.35f && jumptime < 0.45f)
-            {
-                this.position.Y += 0.03f;
-            }
-            if (jumpflag > 0 && jumptime > 0.45f && jumptime < 0.50f)
-            {
-                this.position.Y += 0.02f;
-            }
-            //ascender
 
-            distPlatforms[1] = 0.3f;
-            distPlatforms[2] = 0.55f;
-            distPlatforms[3] = 0.35f;
-
-            //descender
-            if (jumpflag > 0)
-            {
-                if (jumptime > 0.50f && jumptime <0.62f)
+                //ascender
+                if (jumptime < 0.35f)
                 {
-                    this.position.Y -= 0.03f;
-                    auxsalto = 0.03f;
+                    this.position.Y += 0.04f;
                 }
-                if (jumptime > 0.62f && jumptime < 0.75f)
+                if (jumptime > 0.35f && jumptime < 0.45f)
                 {
-                    this.position.Y -= 0.04f;
-                    auxsalto = 0.04f;
+                    this.position.Y += 0.03f;
                 }
-                if (jumptime > 0.75f)
+                if (jumptime > 0.45f && jumptime < 0.50f)
                 {
-                    this.position.Y -= 0.055f;
-                    auxsalto = 0.055f;
+                    this.position.Y += 0.02f;
                 }
+                //ascender
 
+                //descender
+                    if (jumptime > 0.50f && jumptime < 0.62f)
+                    {
+                        this.position.Y -= 0.03f;
+                        auxsalto = 0.03f;
+                    }
+                    if (jumptime > 0.62f && jumptime < 0.75f)
+                    {
+                        this.position.Y -= 0.04f;
+                        auxsalto = 0.04f;
+                    }
+                    if (jumptime > 0.75f)
+                    {
+                        this.position.Y -= 0.055f;
+                        auxsalto = 0.055f;
+                    }
+                    colisao1();
+                //descender
 
-                colisao1();
-
-            }
-            //descender
-
-            //para
-            if (jumpflag > 0)
-            {
+                //para
                 if (this.position.Y <= 0f)
                 {
-                    if (this.position.Y < 0f)
-                    {
-                        this.position.Y = 0f;
+                        if (this.position.Y < 0f)
+                        {
+                            this.position.Y = 0f;
+                        }
+                        if (directionfaced == 1)
+                        {
+                            ReplaceImage("sonicstill", 1, 1);
+                        }
+                        else
+                        {
+                            ReplaceImage("sonicstillR", 1, 1);
+                        }
+                        jumptime = 0f;
+                        canjump = true;
+                        jumpflag = 0;
                     }
-                    if (directionfaced == 1)
-                    {
-                        ReplaceImage("sonicstill", 1, 1);
-                    }
-                    else
-                    {
-                        ReplaceImage("sonicstillR", 1, 1);
-                    }
-                    jumptime = 0f;
-                    canjump = true;
-                    jumpflag = 0;
-                }
+                //para
             }
-            //para
         }
-
 
         void slam()
         {
@@ -645,11 +617,11 @@ namespace Platformer
         void dash()
         {
 
-            if (magic > 2)
+            if (magic > 0)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag == 0 && dashcooldown > 0.2f)
                 {
-                    magic = magic - 3;
+                    magic -= 1;
                     dashflag = 1;
                     soundslam.Play();
                     holdtime = 2f;

@@ -10,7 +10,6 @@ namespace Platformer
 {
     class AnimatedSprite : Sprite
     {
-
         private int ncols, nrows;
         private Point currentFrame;
         private float animationInterval = 1f / 20f;
@@ -25,9 +24,6 @@ namespace Platformer
                 animationTimer = 0f;
                 nextframe();
             }
-
-
-
             base.Update(gameTime);
         }
 
@@ -35,7 +31,6 @@ namespace Platformer
         {
             get;
             set;
-
         }
 
         private void nextframe()
@@ -53,13 +48,7 @@ namespace Platformer
             {
                 currentFrame = Point.Zero;
             }
-            else
-            {
-                //Destroy();
-            }
-
         }
-
 
         public AnimatedSprite(ContentManager content, string filename, int nrows, int ncols) :
             base(content, filename)
@@ -73,25 +62,18 @@ namespace Platformer
             Loop = true;
         }
 
-
         public override void Draw(GameTime gametime)
         {
             source = new Rectangle((int)(currentFrame.X * pixelsize.X), (int)(currentFrame.Y * pixelsize.Y), (int)pixelsize.X, (int)pixelsize.Y);
             base.Draw(gametime);
-
         }
 
         public override void EnableCollisions()
         {
-
             this.HasCollisions = true;
-            //this.radius = (float)Math.Sqrt(Math.Pow(size.X / 2, 2) + Math.Pow(size.Y / 2, 2));
             pixels = new Color[(int)(pixelsize.X * pixelsize.Y)];
             image.GetData<Color>(0, new Rectangle((int)(currentFrame.X * pixelsize.X), (int)(currentFrame.Y * pixelsize.Y), (int)pixelsize.X, (int)pixelsize.Y), pixels, 0, (int)(pixelsize.X * pixelsize.Y));
-
-
         }
-
 
         public void ReplaceImage(string assetName, int nrows, int ncols)
         {
@@ -112,7 +94,6 @@ namespace Platformer
         {
             animationInterval = 1 / (mov * 2 + 5);
         }
-
 
     }
 }

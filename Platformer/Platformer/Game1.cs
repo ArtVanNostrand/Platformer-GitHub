@@ -31,10 +31,8 @@ namespace Platformer
             Content.RootDirectory = "Content";
         }
 
-
         protected override void Initialize()
         {
-            //1200x600
             graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 600;
             graphics.ApplyChanges();
@@ -76,7 +74,6 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 1.1f)));
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 1.5f)));
 
-
             scene.AddSprite(new Level(Content, "imagerock1").At(new Vector2(30f, -0.1f)));
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(31.35f, -0.10f)));
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(31.57f, -0.10f)));
@@ -97,7 +94,6 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.8f)));
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.5f)));
 
-
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(43f, 1.8f)));
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(44.5f, 1.8f)));
 
@@ -117,17 +113,35 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(14.98f, -0.10f)));
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(15.20f, -0.10f)));
 
+            //
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(48, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(48.22f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(48.44f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(48.66f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(48.88f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.10f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.32f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.54f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.76f, -0.10f)));
+            //scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.98f, -0.10f)));
+            //
 
             //extra lives:
-
             scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(-1f, 2.3f)));
-
 
             //enemies:
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(6, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(8, -0.06f)));
             scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(10, -0.06f)));
+
+            //
             //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(1.5f, 1.8f)));
+            //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(42.75f, -0.06f)));
+            //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.25f, -0.06f)));
+            //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.75f, -0.06f)));
+            //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(44.25f, -0.06f)));
+            //scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(44.75f, -0.06f)));
+            //
 
             for (float i = -100; i < 100;  i+= 16)
             {
@@ -161,28 +175,24 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(30.8f, 0.5f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(32f, 0.6f)));
 
-           // scene.AddSprite(new Sprite(Content, "lifecounter").Scl((float)Camera.worldWidth * 3.2f)
-           //.At(new Vector2(3f,3f)));  
+            //
+            //scene.AddSprite(new Pickups(Content).At(new Vector2(43.75f, 1.8f)));
+            //scene.AddSprite(new Pickups(Content).At(new Vector2(43.75f, 1.4f)));
+            //scene.AddSprite(new Pickups(Content).At(new Vector2(43.75f, 1)));
+            //scene.AddSprite(new Pickups(Content).At(new Vector2(43.75f, 0.6f)));
+            //
 
             //Sound Effects:
-         
-
 
             //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
 
-           
-
             scene.AddSprite(new Character(Content, spriteBatch));
-
-            // TODO: use this.Content to load your game content here
         }
-
 
         protected override void UnloadContent()
         {
-          musiclevel1.Dispose();
-
+            musiclevel1.Dispose();
         }
 
         protected override void Update(GameTime gameTime)
@@ -196,11 +206,9 @@ namespace Platformer
                  ZPressed = true;
 
              }
-
             scene.Update(gameTime);
             base.Update(gameTime);
         }
-
 
         protected override void Draw(GameTime gameTime)
         {
@@ -212,10 +220,6 @@ namespace Platformer
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
-
-
-
 
     }
 }

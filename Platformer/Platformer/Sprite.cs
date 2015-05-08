@@ -10,7 +10,6 @@ namespace Platformer
 {
     class Sprite
     {
-
         public bool HasCollisions { protected set; get; }
         
         public string name;
@@ -25,7 +24,6 @@ namespace Platformer
         protected Color[] pixels;
         protected ContentManager cmanager;
 
-
         public Sprite(ContentManager contents, String assetName)
         {
             this.name = assetName;
@@ -36,7 +34,6 @@ namespace Platformer
             this.pixelsize = new Vector2(image.Width, image.Height);
             this.size = new Vector2(1f, (float)image.Height / (float)image.Width);
             cmanager = contents;
-
         }
 
         public virtual void Scale(float scale)
@@ -53,8 +50,6 @@ namespace Platformer
 
             float distance = (this.position - other.position).Length();
 
-            //if (distance > this.radius + other.radius) return false;
-
             return this.PixelTouches(other, out collisionPoint);
         }
 
@@ -62,8 +57,6 @@ namespace Platformer
         {
             this.Scale(scale);
             return this;
-
-
         }
 
         public virtual void SetScene(Scene s)
@@ -74,7 +67,6 @@ namespace Platformer
         public virtual void Draw(GameTime gametime)
         {
             Rectangle pos = Camera.WorldSize2PixelRectangle(this.position, this.size);
-            //scene.spriteBatch.Draw(this.image, pos, Color.White);
             scene.spriteBatch.Draw(this.image, pos, source, Color.White, this.rotation, new Vector2(pixelsize.X / 2, pixelsize.Y / 2), SpriteEffects.None, 0);
         }
 
@@ -83,7 +75,6 @@ namespace Platformer
             this.rotation = r;
         }
 
-
         public virtual void Update(GameTime gameTime)
         {
 
@@ -91,9 +82,7 @@ namespace Platformer
 
         public virtual void Dispose()
         {
-            //TODO
             this.image.Dispose();
-
         }
 
         internal void SetPosition(Vector2 position)
@@ -109,37 +98,24 @@ namespace Platformer
 
         public virtual void EnableCollisions()
         {
-
             this.HasCollisions = true;
             pixels = new Color[(int)(pixelsize.X * pixelsize.Y)];
             image.GetData<Color>(pixels);
-
         }
-
 
         public virtual void Destroy()
         {
             this.scene.RemoveSprite(this);
-
         }
-
-        //public virtual void EnableJumping()
-        //{
-        //    Character.canjump = true;
-
-        //}
-
 
         public Color GetColorAt(int x, int y)
         {
             // Se não houver collider, da erro!
             return pixels[x + y * (int)pixelsize.X];
-
         }
 
         private Vector2 VirtualWorldPointToImagePixel(Vector2 p)
         {
-
             Vector2 delta = p - position;
             float i = delta.X * pixelsize.X / size.X;
             float j = delta.Y * pixelsize.Y / size.Y;
@@ -148,7 +124,6 @@ namespace Platformer
             j = pixelsize.Y * 0.5f - j;
 
             return new Vector2(i, j);
-
         }
 
         public bool PixelTouches(Sprite other, out Vector2 collisionPoint)
@@ -178,12 +153,10 @@ namespace Platformer
                             }
                         }
                     }
-
                     j++;
                 }
                 i++;
             }
-
             return touches;
         }
 
@@ -195,7 +168,5 @@ namespace Platformer
 
         }
         
-
-
     }
 }
