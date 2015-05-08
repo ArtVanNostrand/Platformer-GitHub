@@ -13,21 +13,23 @@ namespace Platformer
     class Character : AnimatedSprite
     {
 
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, directionfaced = 1, estado = 0;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd=0, directionfaced = 1, estado = 0;
         int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
+        int afterimageflag = 0;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
-        float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, movtimer = 0, auxmov = 0f, auxsalto=0f;
-        float invincibilityflashtime = 3f, totaltime=0f, stunlock=0f;
+        float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
+        float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
+        //float holdtime = 0f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
         float[] distPlatforms = new float[4];
         bool ZPressed = false;
         public bool canjump = false;
 
         Texture2D hearts;
-        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover;
+        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover, sound1up;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
-        Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999];
+        Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999], afterimage= new Sprite[7];
 
 
         public Character(ContentManager content, SpriteBatch spriteBatch) : base(content, "sonicstill", 1, 1)
@@ -55,6 +57,7 @@ namespace Platformer
             soundwaterget = content.Load<SoundEffect>("soundgetdrop");
             soundgethit = content.Load<SoundEffect>("soundgethit");
             soundgameover = content.Load<SoundEffect>("soundgameover");
+            sound1up = content.Load<SoundEffect>("sound1up");
 
         }
 
@@ -74,7 +77,10 @@ namespace Platformer
             dashcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
             bluestarcooldown += (float)gameTime.ElapsedGameTime.TotalSeconds;
             invincibilityflashtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            dashflagtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            afterimagetimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             stunlock += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //holdtime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             for (int x = 0; x < 999; x++)
             {
@@ -99,6 +105,29 @@ namespace Platformer
                     explosion[x].Destroy();
                 }
             }
+
+
+            if (afterimageflag == 1)
+            {
+                if (afterimagetimer > 0.2f)
+                {
+                    afterimageflag = 2;
+                }
+
+            }
+
+            if (afterimageflag == 2)
+            {
+                for (int x = 1; x < 6; x++)
+                {
+                  afterimage[x].Destroy();
+                }
+                afterimageflag = 0;
+            }
+            
+
+    
+
 
         }
 
@@ -143,6 +172,14 @@ namespace Platformer
             {
                 spriteBatch.Draw(hearts, new Vector2(80f, 560f));
             }
+            if (health > 3)
+            {
+                spriteBatch.Draw(hearts, new Vector2(95f, 560f));
+            }
+            if (health > 4)
+            {
+                spriteBatch.Draw(hearts, new Vector2(110f, 560f));
+            }
 
 
         }
@@ -156,7 +193,7 @@ namespace Platformer
             //float rot = (float)Math.Atan2(a, l);
             //turret.SetRotation(rot+(float)Math.PI/2f);
 
-            calcAnimInterval(movtimer);
+            calcAnimInterval(holdtime);
 
             timers(gameTime);
             movimento(gameTime);
@@ -166,6 +203,11 @@ namespace Platformer
             jump();
             slam();
             dash();
+
+            //if (dashflagtimer > 1f)
+            //{
+            //    dashflag = 0;
+            //}
 
 
             Camera.SetTarget(this.position);
@@ -198,13 +240,26 @@ namespace Platformer
                 {
                     this.position.Y += 0.1f;
                 }
+                //apenas para testing
+                if (state.IsKeyDown(Keys.Y))
+                {
+                    magic = magic + 10;
+                }
+                //apenas para testing
+                if (state.IsKeyDown(Keys.U))
+                {
+                    health++;
+                }
 
                 //movimento basico
                 if (state.IsKeyDown(Keys.Right))
                 {
+                    holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    //holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
                     if (directionfaced == 2)
                     {
-                        movtimer = 0f;
+                        holdtime = 0f;
                     }
                     directionfaced = 1;
                     if (jumpflag == 0 || flagPlatf == 1)
@@ -225,32 +280,32 @@ namespace Platformer
                             estado = 1;
                         }
                     }
-                    movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (movtimer > 2f)
+         
+                    if (holdtime > 2f)
                     {
-                        movtimer = 2f;
+                        holdtime = 2f;
                     }
-                    if (movtimer > 0f && movtimer < 0.5f)
+                    if (holdtime > 0f && holdtime < 0.5f)
                     {
                         this.position.X += 0.05f;
                         auxmov = 0.05f;
                     }
-                    if (movtimer > 0.5f && movtimer < 1f)
+                    if (holdtime > 0.5f && holdtime < 1f)
                     {
                         this.position.X += 0.062f;
                         auxmov = 0.062f;
                     }
-                    if (movtimer > 1f && movtimer < 1.5f)
+                    if (holdtime > 1f && holdtime < 1.5f)
                     {
                         this.position.X += 0.074f;
                         auxmov = 0.074f;
                     }
-                    if (movtimer > 1.5f && movtimer < 2f)
+                    if (holdtime > 1.5f && holdtime < 2f)
                     {
                         this.position.X += 0.082f;
                         auxmov = 0.082f;
                     }
-                    if (movtimer == 2)
+                    if (holdtime == 2)
                     {
                         this.position.X += 0.09f;
                         auxmov = 0.09f;
@@ -269,9 +324,12 @@ namespace Platformer
                 }
                 else if (state.IsKeyDown(Keys.Left))
                 {
+                    holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    //holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
                     if (directionfaced == 1)
                     {
-                        movtimer = 0f;
+                        holdtime = 0f;
                     }
                     directionfaced = 2;
                     if (jumpflag == 0 || flagPlatf == 1)
@@ -289,32 +347,32 @@ namespace Platformer
                         if (estado != 2) ReplaceImage("sonicstillR", 1, 1);
                         estado = 2;
                     }
-                    movtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    if (movtimer > 2f)
+          
+                    if (holdtime > 2f)
                     {
-                        movtimer = 2f;
+                        holdtime = 2f;
                     }
-                    if (movtimer > 0f && movtimer < 0.5f)
+                    if (holdtime > 0f && holdtime < 0.5f)
                     {
                         this.position.X -= 0.05f;
                         auxmov = 0.05f;
                     }
-                    if (movtimer > 0.5f && movtimer < 1f)
+                    if (holdtime > 0.5f && holdtime < 1f)
                     {
                         this.position.X -= 0.062f;
                         auxmov = 0.062f;
                     }
-                    if (movtimer > 1f && movtimer < 1.5f)
+                    if (holdtime > 1f && holdtime < 1.5f)
                     {
                         this.position.X -= 0.074f;
                         auxmov = 0.074f;
                     }
-                    if (movtimer > 1.5f && movtimer < 2f)
+                    if (holdtime > 1.5f && holdtime < 2f)
                     {
                         this.position.X -= 0.082f;
                         auxmov = 0.082f;
                     }
-                    if (movtimer == 2)
+                    if (holdtime == 2)
                     {
                         this.position.X -= 0.09f;
                         auxmov = 0.09f;
@@ -412,7 +470,14 @@ namespace Platformer
                         bluestars[totalmagic].Scale(0.12f);
 
                     }
+                    if (other.name == "lifes")
+                    {
+                        other.Destroy();
+                        sound1up.Play();
+                        health = health + 1;
 
+
+                    }
                     if (other.name == "crab")
                     {
 
@@ -580,65 +645,94 @@ namespace Platformer
         void dash()
         {
 
-            if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag==0 && dashcooldown>2f)
+            if (magic > 2)
             {
-                dashflag = 1;
-                soundslam.Play();
-                movtimer = 2f;
-            }
-            if (dashflag == 1)
-            {
-                if (directionfaced == 1)
+                if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag == 0 && dashcooldown > 0.2f)
                 {
-
-                    Sprite afterimage;
-                    afterimage = new Sprite(cmanager, "sonicstillA");
-                    scene.AddSprite(afterimage);
-                    afterimage.SetPosition(this.position);
-                    afterimage.Scl(0.3f);
-
-                    this.position.X += 0.25f;
-                    Sprite other;
-                    Vector2 colPosition;
-                    
-                    //para nao deixar passar a frente de obstaculos/objetos
-                    if (scene.Collides(this, out other, out colPosition))
-                    {
-                        do{
-                        this.position.X -= 0.01f;
-                        } while (scene.Collides(this, out other, out colPosition));
-
-                        dashflag = 0;
-                    }
-                    //
+                    magic = magic - 3;
+                    dashflag = 1;
+                    soundslam.Play();
+                    holdtime = 2f;
+                    xd = 0;
                 }
-                if (directionfaced == 2)
+                if (dashflag == 1)
                 {
-                
-                    this.position.X -= 0.25f;
-                    Sprite other;
-                    Vector2 colPosition;
-
-                    if (scene.Collides(this, out other, out colPosition))
+             
+                    if (directionfaced == 1)
                     {
-                        do
+
+                        xd++;
+                        afterimage[xd] = new Sprite(cmanager, "sonicafterimage");
+                        scene.AddSprite(afterimage[xd]);
+                        afterimage[xd].SetPosition(this.position);
+                        afterimage[xd].Scl(0.4f);
+
+                        this.position.X += 0.25f;
+                        Sprite other;
+                        Vector2 colPosition;
+
+                        //para nao deixar passar a frente de obstaculos/objetos
+                        if (scene.Collides(this, out other, out colPosition))
                         {
-                            this.position.X += 0.01f;
-                        } while (scene.Collides(this, out other, out colPosition));
+                            if (other.name != "crab")
+                            {
+                                do
+                                {
+                                    this.position.X -= 0.01f;
+                                } while (scene.Collides(this, out other, out colPosition));
+                                contdash = 0;
+                                dashflag = 0;
+                                dashcooldown = 0f;
+                                afterimagetimer = 0f;
+                                afterimageflag = 1;
+                            }
+                            
+                        }
+                        //
+                    }
+                    if (directionfaced == 2)
+                    {
+
+                        xd++;
+                        afterimage[xd] = new Sprite(cmanager, "sonicafterimageR");
+                        scene.AddSprite(afterimage[xd]);
+                        afterimage[xd].SetPosition(this.position);
+                        afterimage[xd].Scl(0.4f);
+
+                        this.position.X -= 0.25f;
+                        Sprite other;
+                        Vector2 colPosition;
+
+                        if (scene.Collides(this, out other, out colPosition))
+                        {
+                            if (other.name != "crab")
+                            {
+                                do
+                                {
+                                    this.position.X += 0.01f;
+                                } while (scene.Collides(this, out other, out colPosition));
+                                contdash = 0;
+                                dashflag = 0;
+                                dashcooldown = 0f;
+                                afterimagetimer = 0f;
+                                afterimageflag = 1;
+                            }
+                          
+                        }
+                    }
+                    contdash++;
+                    if (contdash == 5)
+                    {
+                        contdash = 0;
                         dashflag = 0;
+                        dashcooldown = 0f;
+                        afterimagetimer = 0f;
+                        afterimageflag = 1;
                     }
                 }
-                contdash++;
-                if (contdash == 5)
-                {
-                    contdash = 0;
-                    dashflag = 0;
-                    dashcooldown = 0f;
-                }
+
             }
 
         }
-
-
     }
 }
