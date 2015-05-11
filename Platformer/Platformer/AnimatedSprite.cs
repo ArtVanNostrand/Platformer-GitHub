@@ -60,7 +60,6 @@ namespace Platformer
             this.size = new Vector2(1f, (float)pixelsize.Y / (float)pixelsize.X);
             this.currentFrame = Point.Zero;
             Loop = true;
-            this.radius = size.Length();
         }
 
         public override void Draw(GameTime gametime)

@@ -13,13 +13,14 @@ namespace Platformer
     class Character : AnimatedSprite
     {
 
-        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
+        int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd=0, directionfaced = 1, estado = 0;
         int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
-        int afterimageflag = 0;
+        int afterimageflag = 0, holddirection=0, div=60;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
-        float[] bluestarstimer = new float[10], explosiontimer = new float[10];
+        float accel = 0f;
+        float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
         float[] distPlatforms = new float[4];
         bool ZPressed = false;
         public bool canjump = false;
@@ -80,27 +81,27 @@ namespace Platformer
             dashflagtimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             afterimagetimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             stunlock += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //holdtime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+     
 
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < 999; x++)
             {
                 if (explosiontimerflag[x] == 1)
                 {
                     explosiontimer[x]++;
                 }
-                if (explosiontimer[x] > 0)
+                if (explosiontimer[x] > 7)
                 {
                     explosion[x].Destroy();
                 }
             }
 
-            for (int x = 0; x < 9; x++)
+            for (int x = 0; x < 999; x++)
             {
                 if (bluestarstimerflag[x] == 1)
                 {
                     bluestarstimer[x]++;
                 }
-                if (bluestarstimer[x] > 0)
+                if (bluestarstimer[x] > 7)
                 {
                     bluestars[x].Destroy();
                 }
@@ -120,7 +121,10 @@ namespace Platformer
             {
                 for (int x = 1; x < 6; x++)
                 {
-                  afterimage[x].Destroy();
+                   
+                    
+                        afterimage[x].Destroy();
+                    
                 }
                 afterimageflag = 0;
             }
@@ -131,7 +135,7 @@ namespace Platformer
 
             if (invincibilityflashtime > 3f)
             {
-                health -= - 1;
+                health -= 1;
                 score -= 100;
                 invincibilityflashtime = 0f;
                 stunlock = 0f;
@@ -182,14 +186,13 @@ namespace Platformer
 
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
-            if (flagSalto == 1) calcAnimInterval(3);
-            else calcAnimInterval(holdtime);
+            calcAnimInterval(holdtime);
 
             timers(gameTime);
             movimento(gameTime);
             colisao2();
 
-            jump();
+            jump(gameTime);
             slam();
             dash();
 
@@ -209,6 +212,7 @@ namespace Platformer
 
         void movimento(GameTime gameTime)
         {
+            holddirection = 0;
             if (stunlock > 0.2f)
             {
                 KeyboardState state = Keyboard.GetState();
@@ -238,10 +242,11 @@ namespace Platformer
                 if (state.IsKeyDown(Keys.Right))
                 {
                     holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    holddirection = 1;
 
                     if (directionfaced == 2)
                     {
+                        stunlock = 0.08f;
                         holdtime = 0f;
                     }
                     directionfaced = 1;
@@ -257,62 +262,25 @@ namespace Platformer
                     }
                     else
                     {
-                        if (estado != 1 && jumpflag == 0)
+                        if (estado != 1)
                         {
                             ReplaceImage("sonicstill", 1, 1);
                             estado = 1;
                         }
                     }
          
-                    if (holdtime > 2f)
-                    {
-                        holdtime = 2f;
-                    }
-                    if (holdtime > 0f && holdtime < 0.5f)
-                    {
-                        this.position.X += 0.05f;
-                        auxmov = 0.05f;
-                    }
-                    if (holdtime > 0.5f && holdtime < 1f)
-                    {
-                        this.position.X += 0.062f;
-                        auxmov = 0.062f;
-                    }
-                    if (holdtime > 1f && holdtime < 1.5f)
-                    {
-                        this.position.X += 0.074f;
-                        auxmov = 0.074f;
-                    }
-                    if (holdtime > 1.5f && holdtime < 2f)
-                    {
-                        this.position.X += 0.082f;
-                        auxmov = 0.082f;
-                    }
-                    if (holdtime == 2)
-                    {
-                        this.position.X += 0.09f;
-                        auxmov = 0.09f;
-                    }
-                    Sprite other;
-                    Vector2 colPosition;
-                    if (scene.Collides(this, out other, out colPosition))
-                    {
-                        if (other.name != "imagewaterdrop2" && other.name != "crab")
-                        {
-                            this.position.X -= auxmov;
-                        }
-
-                    }
+                   
 
                 }
                 else if (state.IsKeyDown(Keys.Left))
                 {
+                    holddirection = 2;
                     holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
                     if (directionfaced == 1)
                     {
                         holdtime = 0f;
+                        stunlock=0.08f;
                     }
                     directionfaced = 2;
                     if (jumpflag == 0 || flagPlatf == 1)
@@ -327,48 +295,11 @@ namespace Platformer
                     }
                     else
                     {
-                        if (estado != 2 && jumpflag == 0) ReplaceImage("sonicstillR", 1, 1);
+                        if (estado != 2) ReplaceImage("sonicstillR", 1, 1);
                         estado = 2;
                     }
           
-                    if (holdtime > 2f)
-                    {
-                        holdtime = 2f;
-                    }
-                    if (holdtime > 0f && holdtime < 0.5f)
-                    {
-                        this.position.X -= 0.05f;
-                        auxmov = 0.05f;
-                    }
-                    if (holdtime > 0.5f && holdtime < 1f)
-                    {
-                        this.position.X -= 0.062f;
-                        auxmov = 0.062f;
-                    }
-                    if (holdtime > 1f && holdtime < 1.5f)
-                    {
-                        this.position.X -= 0.074f;
-                        auxmov = 0.074f;
-                    }
-                    if (holdtime > 1.5f && holdtime < 2f)
-                    {
-                        this.position.X -= 0.082f;
-                        auxmov = 0.082f;
-                    }
-                    if (holdtime == 2)
-                    {
-                        this.position.X -= 0.09f;
-                        auxmov = 0.09f;
-                    }
-                    Sprite other;
-                    Vector2 colPosition;
-                    if (scene.Collides(this, out other, out colPosition))
-                    {
-                        if (other.name != "imagewaterdrop2" && other.name != "crab")
-                        {
-                            this.position.X += auxmov;
-                        }
-                    }
+                 
 
 
 
@@ -376,18 +307,36 @@ namespace Platformer
 
                 else
                 {
-                    if (estado == 3)
+                    if (estado == 3 && holdtime == 0)
                     {
                         ReplaceImage("sonicstill", 1, 1);
                         estado = 1;
                     }
-                    else if (estado == 4)
+                    else if (estado == 4 && holdtime == 0)
                     {
                         ReplaceImage("sonicstillR", 1, 1);
                         estado = 2;
                     }
                 }
 
+                aceleracao(gameTime);
+                Sprite other;
+                Vector2 colPosition;
+                if (scene.Collides(this, out other, out colPosition))
+                {
+                    if (other.name != "imagewaterdrop2" && other.name != "crab")
+                    {
+                        if (directionfaced == 1)
+                        {
+                            this.position.X -= accel;
+                        }
+                        else
+                        {
+                            this.position.X += accel;
+                        }
+                    }
+
+                }
             }
 
         }
@@ -409,7 +358,6 @@ namespace Platformer
                         this.position.Y += auxsalto;
                         canjump = true;
                         flagPlatf = 1;
-                        flagSalto = 0;
                     }
 
                 }
@@ -500,8 +448,79 @@ namespace Platformer
         }
 
 
+        void aceleracao(GameTime gameTime)
+        {
 
-        void jump()
+         if (holddirection == 0)
+            {
+                holdtime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                holdtime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+                
+                if (holdtime < 0f)
+                {
+                    holdtime = 0f;
+                }
+            }
+
+            if (holddirection > 0)
+            {
+                holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+                if (holdtime > 3f)
+                {
+                    holdtime = 3f;
+                }
+                if (holdtime < 1f)
+                {
+                    accel = holdtime / 50;
+                }
+                if (holdtime > 1f && holdtime < 2f)
+                {
+                    accel = holdtime / 47;
+                }
+                if (holdtime > 2f && holdtime <3f)
+                {
+                    accel = holdtime / 44;
+                }
+                if (holdtime > 3f)
+                {
+                    accel = holdtime / 40;
+                }
+
+                if (jumpflag == 1)
+                {
+                    if (holddirection > 0)
+                    {
+                        accel = 0.060f;
+                    }
+                    
+                }
+
+                if (holddirection == 0)
+                {
+                    if (directionfaced == 1)
+                    {
+                        position.X += accel;
+                    }
+                    else
+                    {
+                        position.X -= accel;
+                    }
+                }
+
+                if (holddirection == 1)
+                {
+                    position.X += accel;
+                }
+                if (holddirection == 2)
+                {
+                    position.X -= accel;
+                }
+
+
+        }
+
+        void jump(GameTime gameTime)
         {
             //clicar saltar
             if (canjump==true)
@@ -509,18 +528,17 @@ namespace Platformer
                 if (Keyboard.GetState().IsKeyUp(Keys.Z) && canjump==true) ZPressed = false;
                 if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
-                    flagSalto = 1;
+                    holdtime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    //holdtime = 2f;
+
                     if (directionfaced == 1)
                     {
-                        ReplaceImage("SaltarSonic", 1, 8);
-                        this.Scale(1.5f);
+                        ReplaceImage("sonicstill", 1, 1);
                     }
                     else
                     {
-                        ReplaceImage("SaltarSonicEsquerda", 1, 8);
-                        this.Scale(1.5f);
+                        ReplaceImage("sonicstillR", 1, 1);
                     }
-                    if (flagPlatf == 1) flagPlatf = 0;
                     canjump = false;
                     soundjump.Play();
                     ZPressed = true;
@@ -586,7 +604,6 @@ namespace Platformer
                         jumptime = 0f;
                         canjump = true;
                         jumpflag = 0;
-                        flagSalto = 0;
                     }
                 //para
             }
@@ -640,10 +657,19 @@ namespace Platformer
                     {
 
                         xd++;
-                        afterimage[xd] = new Sprite(cmanager, "sonicafterimage");
+                        if (jumpflag == 0)
+                        {
+                            afterimage[xd] = new Sprite(cmanager, "sonicafterimage");
+                            afterimage[xd].Scl(0.4f);
+                        }
+                        else
+                        {
+                            afterimage[xd] = new Sprite(cmanager, "sonicballA");
+                            afterimage[xd].Scl(0.27f);
+                        }
                         scene.AddSprite(afterimage[xd]);
                         afterimage[xd].SetPosition(this.position);
-                        afterimage[xd].Scl(0.4f);
+                     
 
                         this.position.X += 0.25f;
                         Sprite other;
@@ -672,10 +698,18 @@ namespace Platformer
                     {
 
                         xd++;
-                        afterimage[xd] = new Sprite(cmanager, "sonicafterimageR");
+                        if (jumpflag == 0)
+                        {
+                            afterimage[xd] = new Sprite(cmanager, "sonicafterimageR");
+                            afterimage[xd].Scl(0.4f);
+                        }
+                        else
+                        {
+                            afterimage[xd] = new Sprite(cmanager, "sonicballA");
+                            afterimage[xd].Scl(0.27f);
+                        }
                         scene.AddSprite(afterimage[xd]);
                         afterimage[xd].SetPosition(this.position);
-                        afterimage[xd].Scl(0.4f);
 
                         this.position.X -= 0.25f;
                         Sprite other;
