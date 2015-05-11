@@ -13,7 +13,7 @@ namespace Platformer
         public bool HasCollisions { protected set; get; }
         
         public string name;
-
+        protected float radius;
         protected Texture2D image;
         public Vector2 position;
         protected Vector2 size;
@@ -33,7 +33,9 @@ namespace Platformer
             this.image = contents.Load<Texture2D>(assetName);
             this.pixelsize = new Vector2(image.Width, image.Height);
             this.size = new Vector2(1f, (float)image.Height / (float)image.Width);
-            cmanager = contents;
+            cmanager = contents;          
+            this.radius = size.Length();
+
         }
 
         public virtual void Scale(float scale)
@@ -49,8 +51,8 @@ namespace Platformer
             if (!other.HasCollisions) return false;
 
             float distance = (this.position - other.position).Length();
-
-            return this.PixelTouches(other, out collisionPoint);
+            if (distance <= this.radius + other.radius) return this.PixelTouches(other, out collisionPoint);
+            else return (false);
         }
 
         public Sprite Scl(float scale)
