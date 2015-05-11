@@ -242,3 +242,124 @@ C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sound1up.xnb
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonic.png
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonicEsquerda.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\3spikes.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\bluesparks.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\crab.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\explosao30x30.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\imagerock1.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\imagerock2.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\imagerock3.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\imagewaterdrop2.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\lifecounter.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\lifes.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\nuvens.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\oceano.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\platform1.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\platform2.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sand.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimage.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimageR.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicball.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SonicCorrerDireita.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SonicCorrerEsquerda.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicstill.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicstillA.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonicstillR.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\[Music] Sonic Generations - Angel Island Zone -Jukebox-.wma
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\fontquartz.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\fontstandard.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sound1up.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundboom.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundeffectjump.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgetdrop.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgethit.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundslam.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\[Music] Sonic Generations - Angel Island Zone -Jukebox-.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonic.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonicEsquerda.png
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Lidgren.Network.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Asus\Desktop\Platformer-GitHub\Platformer-GitHub\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\obj\x86\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\obj\x86\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\3spikes.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\bluesparks.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\crab.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\explosao30x30.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\imagerock1.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\imagerock2.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\imagerock3.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\imagewaterdrop2.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\lifecounter.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\lifes.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\nuvens.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\oceano.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\platform1.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\platform2.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonic.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\SaltarSonicEsquerda.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sand.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimage.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicafterimageR.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicball.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\SonicCorrerDireita.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\SonicCorrerEsquerda.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicstill.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicstillA.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicstillR.png
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\[Music] Sonic Generations - Angel Island Zone -Jukebox-.wma
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\fontquartz.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\fontstandard.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sound1up.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundboom.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundeffectjump.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundgetdrop.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundgethit.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\soundslam.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\[Music] Sonic Generations - Angel Island Zone -Jukebox-.xnb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Platformer.exe
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Platformer.pdb
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\MonoGame.Framework.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Lidgren.Network.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.dll
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Platformer-GitHub 2\Platformer\Platformer\bin\Windows\Debug\Content\sonicballA.png
