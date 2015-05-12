@@ -225,9 +225,21 @@ namespace Platformer
                 }
 
                 //apenas para testing
-                if (state.IsKeyDown(Keys.T))
+                if (state.IsKeyDown(Keys.I))
                 {
-                    this.position.Y += 0.1f;
+                    this.position.Y += 0.3f;
+                }
+                if (state.IsKeyDown(Keys.K))
+                {
+                    this.position.Y -= 0.3f;
+                }
+                if (state.IsKeyDown(Keys.L))
+                {
+                    this.position.X += 0.3f;
+                }
+                if (state.IsKeyDown(Keys.J))
+                {
+                    this.position.X -= 0.3f;
                 }
                 //apenas para testing
                 if (state.IsKeyDown(Keys.Y))

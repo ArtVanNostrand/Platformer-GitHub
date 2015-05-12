@@ -50,6 +50,9 @@ namespace Platformer
             return collisionExists;
         }
 
+
+
+
         public void Update(GameTime gameTime)
         {
             foreach (var sprite in sprites.ToList())

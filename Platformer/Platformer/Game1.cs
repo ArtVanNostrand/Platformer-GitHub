@@ -94,6 +94,12 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.8f)));
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(45.25f, 0.5f)));
 
+
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(49f, 2.3f)));
+            scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(49f, 2.5f)));
+
+
+
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(43f, 1.8f)));
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(44.5f, 1.8f)));
 
