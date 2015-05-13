@@ -60,19 +60,19 @@ namespace Platformer
             scene.AddBackground(fundo);
 
             //platforms:
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(4, 0)));
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(5, 1)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(4, 0)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(5, 1)));
 
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(2, 1.5f)));
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(1f, 1.5f)));
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(0, 1.5f)));
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(-1, 1.5f)));
 
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, -0.1f)));
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 0.3f)));
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 0.7f)));
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 1.1f)));
-            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.2f).At(new Vector2(-4, 1.5f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(-4, -0.1f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(-4, 0.3f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(-4, 0.7f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(-4, 1.1f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(-4, 1.5f)));
 
             scene.AddSprite(new Level(Content, "imagerock1").At(new Vector2(30f, -0.1f)));
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(31.35f, -0.10f)));

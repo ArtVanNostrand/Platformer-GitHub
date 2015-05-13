@@ -21,6 +21,7 @@ namespace Platformer
         float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
         float[] distPlatforms = new float[4];
+        float[] altPlatforms = new float[6];
         bool ZPressed = false;
         public bool canjump = false;
 
@@ -44,6 +45,13 @@ namespace Platformer
             distPlatforms[1] = 0.3f;
             distPlatforms[2] = 0.55f;
             distPlatforms[3] = 0.35f;
+
+            //Platforms height
+            altPlatforms[1] = 0.44f;
+            altPlatforms[2] = 0.34f;
+            altPlatforms[3] = 0.33f;
+            altPlatforms[4] = 0.42f;
+            altPlatforms[5] = 0.56f;
 
             //Images:
             hearts = content.Load<Texture2D>("lifes");
@@ -292,7 +300,6 @@ namespace Platformer
                     directionfaced = 1;
                     if (jumpflag == 0 || flagPlatf == 1)
                     {
-                        flagPlatf = 0;
                         if (estado != 3)
                         {
                             ReplaceImage("SonicCorrerDireita", 1, 4);
@@ -302,11 +309,8 @@ namespace Platformer
                     }
                     else
                     {
-                        if (estado != 1 && jumpflag == 0)
-                        {
-                            ReplaceImage("sonicstill", 1, 1);
-                            estado = 1;
-                        }
+                        if (estado != 1 && jumpflag == 0) ReplaceImage("sonicstill", 1, 1);
+                        estado = 1;
                     }
 
 
@@ -328,7 +332,6 @@ namespace Platformer
                     directionfaced = 2;
                     if (jumpflag == 0 || flagPlatf == 1)
                     {
-                        flagPlatf = 0;
                         if (estado != 4)
                         {
                             ReplaceImage("SonicCorrerEsquerda", 1, 4);
@@ -398,7 +401,20 @@ namespace Platformer
                         (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3" || other.name == "3spikes") &&
                         (this.position.X - other.position.X) <= distPlatforms[3])
                     {
-                        this.position.Y += auxsalto;
+                        if (directionfaced == 1 && flagPlatf == 0)
+                        {
+                            ReplaceImage("sonicstill", 1, 1);
+                        }
+                        else if (flagPlatf == 0)
+                        {
+                            ReplaceImage("sonicstillR", 1, 1);
+                        }
+                        if (other.name == "platform1") this.position.Y = other.position.Y + altPlatforms[1];
+                        else if (other.name == "platform2") this.position.Y = other.position.Y + altPlatforms[2];
+                        else if (other.name == "imagerock1") this.position.Y = other.position.Y + altPlatforms[3];
+                        else if (other.name == "imagerock2") this.position.Y = other.position.Y + altPlatforms[4];
+                        else if (other.name == "imagerock3") this.position.Y = other.position.Y + altPlatforms[5];
+                        else if (other.name == "3spikes") this.position.Y = other.position.Y + 0.32f;
                         canjump = true;
                         flagPlatf = 1;
                         flagSalto = 0;
@@ -581,6 +597,7 @@ namespace Platformer
                 if (ZPressed == false && Keyboard.GetState().IsKeyDown(Keys.Z))
                 {
                     flagSalto = 1;
+                    flagPlatf = 0;
                     if (directionfaced == 1)
                     {
                         ReplaceImage("SaltarSonic", 1, 8);
@@ -591,7 +608,6 @@ namespace Platformer
                         ReplaceImage("SaltarSonicEsquerda", 1, 8);
                         this.Scale(1.5f);
                     }
-                    if (flagPlatf == 1) flagPlatf = 0;
                     canjump = false;
                     soundjump.Play();
                     ZPressed = true;
@@ -640,12 +656,9 @@ namespace Platformer
                 //descender
 
                 //para
-                if (this.position.Y <= 0f)
+                if (this.position.Y < 0f)
                 {
-                        if (this.position.Y < 0f)
-                        {
-                            this.position.Y = 0f;
-                        }
+                        this.position.Y = 0f;
                         if (directionfaced == 1)
                         {
                             ReplaceImage("sonicstill", 1, 1);
