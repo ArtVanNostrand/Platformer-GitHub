@@ -13,6 +13,8 @@ namespace Platformer
         private List<Sprite> sprites;
         private List<SlidingBackground> backgrounds;
 
+        bool enemygoleft=false, enemygoright = false;
+
         public Scene(SpriteBatch sb)
         {
             this.spriteBatch = sb;
@@ -52,6 +54,8 @@ namespace Platformer
 
 
 
+
+   
 
         public void Update(GameTime gameTime)
         {

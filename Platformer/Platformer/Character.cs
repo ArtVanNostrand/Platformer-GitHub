@@ -70,8 +70,15 @@ namespace Platformer
         public override void SetScene(Scene s)
         {
             this.scene = s;
-         
         }
+
+        
+        //public override void SetEnemy(Enemy e)
+        //{
+        //    this.enemy2 = e;
+        //}
+
+
 
         void timers(GameTime gameTime)
         {
@@ -191,6 +198,7 @@ namespace Platformer
 
             timers(gameTime);
             movimento(gameTime);
+            //enemyai();
             colisao2();
 
             jump();
@@ -210,7 +218,22 @@ namespace Platformer
             base.Draw(gameTime);
         }
 
+        //void enemyai()
+        //{
+        //    Sprite enemy2;
+        //    if (enemy.PlayerDetectionleft(this, out enemy2))
+        //    {
+        //        if (enemy2.name == "crab")
+        //        {
+        //            enemy2.position.X = enemy2.position.X + 0.05f;
+        //        }
 
+        //    }
+
+            
+
+
+        //}
 
         void movimento(GameTime gameTime)
         {
