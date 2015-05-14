@@ -23,7 +23,7 @@ namespace Platformer
         public float totaltime = 0f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
         float[] distPlatforms = new float[4];
-        float[] altPlatforms = new float[6];
+        float[] altPlatforms = new float[7];
         bool ZPressed = false;
         public bool canjump = false;
 
@@ -403,7 +403,8 @@ namespace Platformer
                 {
                     if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
                         other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2]||
-                        (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3" || other.name == "3spikes") &&
+                        (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3" || other.name == "3spikes"
+                        || other.name == "platform3" || other.name == "platform4") &&
                         (this.position.X - other.position.X) <= distPlatforms[3])
                     {
                         if (directionfaced == 1 && flagPlatf == 0)
@@ -420,6 +421,7 @@ namespace Platformer
                         else if (other.name == "imagerock2") this.position.Y = other.position.Y + altPlatforms[4];
                         else if (other.name == "imagerock3") this.position.Y = other.position.Y + altPlatforms[5];
                         else if (other.name == "3spikes") this.position.Y = other.position.Y + 0.32f;
+                        else if (other.name == "platform3" || other.name == "platform4") this.position.Y = other.position.Y + 0.45f;
                         canjump = true;
                         flagPlatf = 1;
                         flagSalto = 0;
