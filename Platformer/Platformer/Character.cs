@@ -12,13 +12,15 @@ namespace Platformer
 {
     class Character : AnimatedSprite
     {
-
+        GraphicsDeviceManager graphics;
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
-        int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
+        int health = 3, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
         int afterimageflag = 0;
+        public int gameover = 0, score = 0, magic = 0;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000], afterimagecreated = new int[7];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
-        float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
+        float invincibilityflashtime = 3f, dashflagtimer = 1f, stunlock = 0f, afterimagetimer = 9f;
+        public float totaltime = 0f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
         float[] distPlatforms = new float[4];
         float[] altPlatforms = new float[6];
@@ -35,9 +37,11 @@ namespace Platformer
         Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999], afterimage= new Sprite[7];
 
 
-        public Character(ContentManager content, SpriteBatch spriteBatch) : base(content, "sonicstill", 1, 1)
+        public Character(ContentManager content, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
+            : base(content, "sonicstill", 1, 1)
         {
             this.spriteBatch = spriteBatch;
+            this.graphics = graphics;
             this.EnableCollisions();
             this.Scl(0.3f);
 
@@ -163,6 +167,7 @@ namespace Platformer
                 if (health < 1)
                 {
                     soundgameover.Play();
+                    gameover = 1;
                 }
             }
 
@@ -172,10 +177,6 @@ namespace Platformer
 
         void HUD(GameTime gameTime)
         {
-
-            spriteBatch.DrawString(fontquartz, "Time: " + totaltime, new Vector2(8f, 5f), Color.Black);
-            spriteBatch.DrawString(fontquartz, "Score: " + score, new Vector2(10f, 25f), Color.Black);
-            spriteBatch.DrawString(fontquartz, "Magic: " + magic, new Vector2(10f, 45f), Color.Black);
 
             if (health > 0)
             {

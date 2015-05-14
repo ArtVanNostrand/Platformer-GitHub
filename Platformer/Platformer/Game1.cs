@@ -17,8 +17,9 @@ namespace Platformer
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        Texture2D life, icon;
+        Texture2D life, icon, box;
         SpriteBatch spriteBatch;
+        SpriteFont fontquartz;
         Scene scene;
         Character sonic;
         Song musiclevel1;
@@ -55,6 +56,8 @@ namespace Platformer
             //sonic.vi
             life = Content.Load<Texture2D>("lifes");
             icon = Content.Load<Texture2D>("lifecounter");
+            fontquartz = Content.Load<SpriteFont>("fontquartz");
+            box = Content.Load<Texture2D>("bloco");
 
             SlidingBackground fundo = new SlidingBackground(Content, "oceano");
             scene.AddBackground(fundo);
@@ -239,7 +242,8 @@ namespace Platformer
             //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
 
-            scene.AddSprite(new Character(Content, spriteBatch));
+            sonic = new Character(Content, spriteBatch, graphics);
+            scene.AddSprite(sonic);
         }
 
         protected override void UnloadContent()
@@ -258,17 +262,79 @@ namespace Platformer
                  ZPressed = true;
 
              }
-            scene.Update(gameTime);
+            if (sonic.gameover == 0) scene.Update(gameTime);
+            else MediaPlayer.Stop();
             base.Update(gameTime);
+        }
+
+        private void DrawRectangle(Rectangle r, Color c)
+        {
+            spriteBatch.Draw(box, new Rectangle(r.X, r.Y, r.Width, 1), c);
+            spriteBatch.Draw(box, new Rectangle(r.X, r.Y, 1, r.Height), c);
+            spriteBatch.Draw(box, new Rectangle(r.X, r.Y + r.Height - 1, r.Width, 1), c);
+            spriteBatch.Draw(box, new Rectangle(r.X + r.Width - 1, r.Y, 1, r.Height), c);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            scene.Draw(gameTime);
+            if (sonic.gameover == 0) scene.Draw(gameTime);
           
             spriteBatch.Begin();
-            spriteBatch.Draw(icon, new Rectangle(4, 550, 50, 50), Color.White);
+
+            spriteBatch.DrawString(fontquartz, "Time: " + sonic.totaltime, new Vector2(8f, 5f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Score: " + sonic.score, new Vector2(10f, 25f), Color.Black);
+            spriteBatch.DrawString(fontquartz, "Magic: " + sonic.magic, new Vector2(10f, 45f), Color.Black);
+            if (sonic.gameover == 0) spriteBatch.Draw(icon, new Rectangle(4, 550, 50, 50), Color.White);
+
+            if (sonic.gameover == 1)
+            {
+                GraphicsDevice.Clear(Color.Black);
+                spriteBatch.Draw(icon, new Vector2(420, 18));
+                spriteBatch.Draw(icon, new Vector2(450, 18));
+                spriteBatch.Draw(icon, new Vector2(480, 18));
+                spriteBatch.Draw(icon, new Vector2(510, 18));
+                spriteBatch.Draw(icon, new Vector2(540, 18));
+                spriteBatch.Draw(icon, new Vector2(570, 18));
+                spriteBatch.Draw(icon, new Vector2(600, 18));
+                spriteBatch.Draw(icon, new Vector2(630, 18));
+                spriteBatch.Draw(icon, new Vector2(660, 18));
+                spriteBatch.Draw(icon, new Vector2(690, 18));
+                spriteBatch.Draw(icon, new Vector2(720, 18));
+                spriteBatch.Draw(icon, new Vector2(418, 50));
+                spriteBatch.Draw(icon, new Vector2(418, 80));
+                spriteBatch.Draw(icon, new Vector2(418, 110));
+                spriteBatch.Draw(icon, new Vector2(418, 140));
+                spriteBatch.Draw(icon, new Vector2(418, 170));
+                spriteBatch.Draw(icon, new Vector2(418, 200));
+                spriteBatch.Draw(icon, new Vector2(418, 230));
+                spriteBatch.Draw(icon, new Vector2(418, 260));
+                spriteBatch.Draw(icon, new Vector2(720, 50));
+                spriteBatch.Draw(icon, new Vector2(720, 80));
+                spriteBatch.Draw(icon, new Vector2(720, 110));
+                spriteBatch.Draw(icon, new Vector2(720, 140));
+                spriteBatch.Draw(icon, new Vector2(720, 170));
+                spriteBatch.Draw(icon, new Vector2(720, 200));
+                spriteBatch.Draw(icon, new Vector2(720, 230));
+                spriteBatch.Draw(icon, new Vector2(720, 260));
+                spriteBatch.Draw(icon, new Vector2(418, 290));
+                spriteBatch.Draw(icon, new Vector2(450, 290));
+                spriteBatch.Draw(icon, new Vector2(480, 290));
+                spriteBatch.Draw(icon, new Vector2(510, 290));
+                spriteBatch.Draw(icon, new Vector2(540, 290));
+                spriteBatch.Draw(icon, new Vector2(570, 290));
+                spriteBatch.Draw(icon, new Vector2(600, 290));
+                spriteBatch.Draw(icon, new Vector2(630, 290));
+                spriteBatch.Draw(icon, new Vector2(660, 290));
+                spriteBatch.Draw(icon, new Vector2(690, 290));
+                spriteBatch.Draw(icon, new Vector2(720, 290));
+                DrawRectangle(new Rectangle(450, 50, 269, 239), Color.Red);
+                spriteBatch.DrawString(fontquartz, "GAME OVER", new Vector2(530, 70), Color.Blue);
+                spriteBatch.DrawString(fontquartz, "Time: " + sonic.totaltime, new Vector2(475, 150), Color.Blue);
+                spriteBatch.DrawString(fontquartz, "Magic: " + sonic.magic, new Vector2(475, 180), Color.Blue);
+                spriteBatch.DrawString(fontquartz, "Score:" + sonic.score, new Vector2(475, 210), Color.Blue);
+            }
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

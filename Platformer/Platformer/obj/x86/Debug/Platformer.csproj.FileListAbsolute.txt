@@ -414,3 +414,7 @@ C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\S
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\obj\x86\Debug\Platformer.csprojResolveAssemblyReference.cache
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\platform3.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\platform4.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\spriteenemy2.png
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\bloco.png
