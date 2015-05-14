@@ -71,7 +71,7 @@ namespace Platformer
             soundboom = content.Load<SoundEffect>("soundboom");
             soundwaterget = content.Load<SoundEffect>("soundgetdrop");
             soundgethit = content.Load<SoundEffect>("soundgethit");
-            soundgameover = content.Load<SoundEffect>("soundgameover");
+            soundgameover = content.Load<SoundEffect>("soundgameover2");
             sound1up = content.Load<SoundEffect>("sound1up");
 
         }
@@ -159,7 +159,7 @@ namespace Platformer
             {
                 holdtime = 0f;
                 health -= 1;
-                score -= 100;
+                score -= 50;
                 invincibilityflashtime = 0f;
                 stunlock = 0f;
                 soundgethit.Play();
@@ -474,8 +474,7 @@ namespace Platformer
                         other.Destroy();
                         sound1up.Play();
                         health = health + 1;
-
-
+                        score = score + 25;
                     }
                     else if (other.name == "crab" || other.name == "spriteenemy2")
                     {
@@ -734,14 +733,14 @@ namespace Platformer
         void dash()
         {
 
-            if (magic > 0)
+            if (magic > 0 || dashflag==1)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.X) && dashflag == 0 && dashcooldown > 0.2f)
                 {
                     magic -= 1;
                     dashflag = 1;
                     soundslam.Play();
-                    holdtime = 2f;
+                    holdtime = 3f;
                     xd = 0;
                 }
                 if (dashflag == 1)
