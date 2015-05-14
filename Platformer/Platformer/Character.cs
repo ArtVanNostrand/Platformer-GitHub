@@ -16,7 +16,7 @@ namespace Platformer
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
         int health = 3, score = 0, magic = 0, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
         int afterimageflag = 0;
-        int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000];
+        int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000], afterimagecreated = new int[7];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, dashflagtimer = 1f, totaltime = 0f, stunlock = 0f, afterimagetimer = 9f;
         float[] bluestarstimer = new float[1000], explosiontimer = new float[1000];
@@ -138,7 +138,11 @@ namespace Platformer
             {
                 for (int x = 1; x < 6; x++)
                 {
-                  afterimage[x].Destroy();
+                    if (afterimagecreated[x] == 1)
+                    {
+                        afterimage[x].Destroy();
+                        afterimagecreated[x] = 0;
+                    }
                 }
                 afterimageflag = 0;
             }
@@ -370,7 +374,7 @@ namespace Platformer
                 Vector2 colPosition;
                 if (scene.Collides(this, out other, out colPosition))
                 {
-                    if (other.name != "imagewaterdrop2" && other.name != "crab")
+                    if (other.name != "imagewaterdrop2" && other.name != "crab" && other.name != "spriteenemy2")
                     {
                         if (directionfaced == 1)
                         {
@@ -470,7 +474,7 @@ namespace Platformer
 
 
                     }
-                    else if (other.name == "crab")
+                    else if (other.name == "crab" || other.name == "spriteenemy2")
                     {
 
                         if (jumpflag == 1 || dashflag == 1 || slamflag == 1)
@@ -537,15 +541,15 @@ namespace Platformer
             {
                 accel = holdtime / 45;
             }
-            if (holdtime > 1f && holdtime < 2f)
+            if (holdtime >= 1f && holdtime < 2f)
             {
                 accel = holdtime / 43;
             }
-            if (holdtime > 2f && holdtime < 3f)
+            if (holdtime >= 2f && holdtime < 3f)
             {
                 accel = holdtime / 41;
             }
-            if (holdtime > 3f)
+            if (holdtime >= 3f)
             {
                 accel = holdtime / 40;
             }
@@ -554,10 +558,14 @@ namespace Platformer
             {
                 if (holddirection > 0)
                 {
-                    if (holdtime < 1f)
+
+
+                    if (holdtime < 1.7f)
                     {
                         accel = 0.04f;
                     }
+
+
                 }
 
             }
@@ -637,21 +645,37 @@ namespace Platformer
                 //ascender
 
                 //descender
-                    if (jumptime > 0.50f && jumptime < 0.62f)
+                   if (jumptime >= 0.50f && jumptime < 0.60f)
                     {
                         this.position.Y -= 0.03f;
                         auxsalto = 0.03f;
                     }
-                    if (jumptime > 0.62f && jumptime < 0.75f)
-                    {
+                    if (jumptime >= 0.60f && jumptime < 0.75f){
+                    
                         this.position.Y -= 0.04f;
                         auxsalto = 0.04f;
                     }
-                    if (jumptime > 0.75f)
+                    if (jumptime >= 0.75f && jumptime < 0.90f)
                     {
-                        this.position.Y -= 0.055f;
-                        auxsalto = 0.055f;
+                        this.position.Y -= 0.053f;
+                        auxsalto = 0.053f;
                     }
+                    if (jumptime >= 0.90f && jumptime < 1.10f)
+                    {
+                        this.position.Y -= 0.065f;
+                        auxsalto = 0.065f;
+                    }
+                    if (jumptime > 1.10f && jumptime <= 1.35f)
+                    {
+                        this.position.Y -= 0.080f;
+                        auxsalto = 0.080f;
+                    }
+                    if (jumptime >= 1.35f)
+                    {
+                        this.position.Y -= 0.1f;
+                        auxsalto = 0.1f;
+                    }
+
                     colisao1();
                 //descender
 
@@ -737,6 +761,7 @@ namespace Platformer
                         
                         scene.AddSprite(afterimage[xd]);
                         afterimage[xd].SetPosition(this.position);
+                        afterimagecreated[xd] = 1;
          
 
                         this.position.X += 0.25f;
@@ -746,7 +771,7 @@ namespace Platformer
                         //para nao deixar passar a frente de obstaculos/objetos
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab")
+                            if (other.name != "crab" && other.name != "spriteenemy2")
                             {
                                 do
                                 {
@@ -779,6 +804,8 @@ namespace Platformer
                         
                         scene.AddSprite(afterimage[xd]);
                         afterimage[xd].SetPosition(this.position);
+                        afterimagecreated[xd] = 1;
+         
                
 
                         this.position.X -= 0.25f;
@@ -787,7 +814,7 @@ namespace Platformer
 
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab")
+                            if (other.name != "crab" && other.name != "spriteenemy2")
                             {
                                 do
                                 {
@@ -811,6 +838,7 @@ namespace Platformer
                         afterimagetimer = 0f;
                         afterimageflag = 1;
                     }
+
                 }
 
             }
