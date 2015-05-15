@@ -399,6 +399,19 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "spriteenemy2").Scl((float)1f).At(new Vector2(96.5f, -0.06f)));
             //
 
+            //Torre
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(110, 0)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(110, 0.5f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(111, 1)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(111, 1.5f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(110, 2)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(110, 2.5f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(109, 3)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(109, 3.5f)));
+            scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(110, 4)));
+            scene.AddSprite(new Pickups(Content).At(new Vector2(110, 4.5f)));
+            //Torre
+
             //extra lives:
             scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(-1f, 2.3f)));
 
@@ -426,7 +439,7 @@ namespace Platformer
             for (float i = -100; i < 150; i += 16)
             {
                 scene.AddSprite(new Sprite(Content, "nuvens").Scl((float)Camera.worldWidth * 3.2f)
-            .At(new Vector2(i, 5.2f)));   // de 16 em 16(x)
+            .At(new Vector2(i, 10)));   // de 16 em 16(x)
             }
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(-3.65f, 0f)));
