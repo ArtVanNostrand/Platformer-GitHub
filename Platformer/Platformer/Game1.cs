@@ -62,17 +62,20 @@ namespace Platformer
             SlidingBackground fundo = new SlidingBackground(Content, "oceano");
             scene.AddBackground(fundo);
 
+            sonic = new Character(Content, spriteBatch, graphics);
+        
+ 
+
             //platforms:
             scene.AddSprite(new Level(Content, "platform1").Scl((float)1.3f).At(new Vector2(4.3f, 0.7f)));
-            
 
-        
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(1f, 1.5f)));
-            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(0, 1.5f)));
-            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(-1, 1.5f)));
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(0f, 1.5f)));
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(-1f, 1.5f)));
 
-            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(6, 1.9f)));
-            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(7, 1.9f)));
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(7f, 1.9f)));
+            scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(6f, 1.9f)));
+            
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(8.8f, 3.4f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(9f, 3.4f)));
@@ -80,6 +83,7 @@ namespace Platformer
 
 
             scene.AddSprite(new Level(Content, "platform2").Scl((float)2.5f).At(new Vector2(11f, 2.3f)));
+           
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(12.8f, 3.7f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(13f, 3.7f)));
@@ -273,7 +277,7 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(49.98f, -0.10f)));
             //
 
-            scene.AddSprite(new Enemy(Content, "spriteenemy2").At(new Vector2(51f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "spriteenemy2", sonic).At(new Vector2(51f, -0.06f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 2.6f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 2.4f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 2.2f)));
@@ -281,7 +285,7 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 1.8f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 1.6f)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(51.5f, 1.4f)));
-            scene.AddSprite(new Enemy(Content, "spriteenemy2").At(new Vector2(52f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "spriteenemy2", sonic).At(new Vector2(52f, -0.06f)));
 
             //
             scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(53f, -0.10f)));
@@ -417,15 +421,15 @@ namespace Platformer
 
             //enemies:
 
-            scene.AddSprite(new Enemy(Content, "crab").At(new Vector2(7.5f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(9f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(10.5f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).At(new Vector2(7.5f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(9f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(10.5f, -0.06f)));
 
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(42.75f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.25f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(43.75f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(44.25f, -0.06f)));
-            scene.AddSprite(new Level(Content, "crab").Scl((float)1f).At(new Vector2(44.75f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(42.75f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(43.25f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(43.75f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(44.25f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "crab", sonic).Scl((float)1f).At(new Vector2(44.75f, -0.06f)));
             //
 
             scene.AddSprite(new Pickups(Content).At(new Vector2(45.25f, 0.02f)));
@@ -501,9 +505,8 @@ namespace Platformer
 
             //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
-
-            sonic = new Character(Content, spriteBatch, graphics);
             scene.AddSprite(sonic);
+         
         }
 
         protected override void UnloadContent()

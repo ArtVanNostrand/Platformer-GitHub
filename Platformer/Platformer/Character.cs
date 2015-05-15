@@ -85,10 +85,7 @@ namespace Platformer
         }
 
         
-        //public override void SetEnemy(Enemy e)
-        //{
-        //    this.enemy2 = e;
-        //}
+
 
 
 
@@ -198,6 +195,14 @@ namespace Platformer
             {
                 spriteBatch.Draw(hearts, new Vector2(110f, 560f));
             }
+            if (health > 5)
+            {
+                spriteBatch.Draw(hearts, new Vector2(125f, 560f));
+            }
+            if (health > 6)
+            {
+                spriteBatch.Draw(hearts, new Vector2(140f, 560f));
+            }
 
 
         }
@@ -211,7 +216,7 @@ namespace Platformer
 
             timers(gameTime);
             movimento(gameTime);
-            //enemyai();
+       
             colisao2();
 
             jump();
@@ -231,23 +236,8 @@ namespace Platformer
             base.Draw(gameTime);
         }
 
-        //void enemyai()
-        //{
-        //    Sprite enemy2;
-        //    if (enemy.PlayerDetectionleft(this, out enemy2))
-        //    {
-        //        if (enemy2.name == "crab")
-        //        {
-        //            enemy2.position.X = enemy2.position.X + 0.05f;
-        //        }
 
-        //    }
-
-            
-
-
-        //}
-
+    
         void movimento(GameTime gameTime)
         {
             holddirection = 0;
@@ -562,7 +552,7 @@ namespace Platformer
                 {
 
 
-                    if (holdtime < 1.7f)
+                    if (holdtime < 1.7f && flagPlatf ==0)
                     {
                         accel = 0.04f;
                     }

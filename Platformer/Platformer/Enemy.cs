@@ -11,44 +11,73 @@ namespace Platformer
     {
 
         bool enemygoleft = false, enemygoright = false;
-        Sprite e;
-
-        public Enemy(ContentManager Content, string assetName): base(Content, assetName,1,1)
+        Sprite player;
+    
+        public Enemy(ContentManager Content, string assetName, Sprite player): base(Content, assetName,1,1)
         {
             this.EnableCollisions();
             this.Scl(0.4f);
+            this.player = player;
         }
 
-        //public bool PlayerDetectionleft(Sprite player, out Sprite enemy)
-        //{
-        //    enemygoleft = false;
+        public bool PlayerDetectionleft()
+        {
+            enemygoleft = false;
 
 
-        //    if (((enemy.position.X - player.position.X) < 1f) && (enemy.position.X > player.position.X))
-        //    {
-        //        enemygoleft = true;
-        //    }
-        //    if (((enemy.position.X - player.position.X) < 1f) && (enemy.position.X < player.position.X))
-        //    {
-        //        enemygoright = true;
-        //    }
+            if (((this.position.X - player.position.X) < 1f) && (this.position.X > player.position.X))
+            {
+                enemygoleft = true;
+            }
+       
 
-        //    return enemygoleft;
-        //}
+            return enemygoleft;
+        }
 
 
-        //public bool PlayerDetectionright(Sprite player, out Sprite enemy)
-        //{
-        //    enemygoright = false;
+        public bool PlayerDetectionright()
+        {
+            enemygoright = false;
 
-        //    if (((enemy.position.X - player.position.X) < 1f) && (enemy.position.X < player.position.X))
-        //    {
-        //        enemygoright = true;
-        //    }
+            if (((player.position.X - this.position.X) < 1f) && (this.position.X < player.position.X))
+            {
+                enemygoright = true;
+            }
 
-        //    return enemygoright;
-        //}
-     
+            return enemygoright;
+        }
+
+
+        public override void Update(GameTime gameTime)
+        {
+
+            
+            if (PlayerDetectionleft())
+            {
+                if (this.name == "crab")
+                {
+                    this.position.X = this.position.X + 0.02f;
+                }
+                else if(this.name == "spriteenemy2"){
+                    this.position.X = this.position.X - 0.02f;
+                }
+            }
+
+            if (PlayerDetectionright())
+            {
+                if (this.name == "crab")
+                {
+                    this.position.X = this.position.X - 0.02f;
+                }
+                else if (this.name == "spriteenemy2")
+                {
+                    this.position.X = this.position.X + 0.02f;
+                }
+            }
+
+
+        }
+      
 
 
 
