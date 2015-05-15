@@ -773,7 +773,7 @@ namespace Platformer
                         //para nao deixar passar a frente de obstaculos/objetos
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab" && other.name != "spriteenemy2")
+                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2")
                             {
                                 do
                                 {
@@ -816,7 +816,7 @@ namespace Platformer
 
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab" && other.name != "spriteenemy2")
+                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2")
                             {
                                 do
                                 {
