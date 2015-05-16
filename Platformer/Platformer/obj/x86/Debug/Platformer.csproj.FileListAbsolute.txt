@@ -421,3 +421,4 @@ C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\Content\bloco.png
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover2.xnb
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover2.xnb
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\chalice.png

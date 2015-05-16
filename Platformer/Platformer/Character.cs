@@ -391,6 +391,7 @@ namespace Platformer
             {
                 if (this.position.Y > other.position.Y)
                 {
+                    if (other.name == "chalice") gameover = 2;
                     if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
                         other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2]||
                         (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3" || other.name == "3spikes"
