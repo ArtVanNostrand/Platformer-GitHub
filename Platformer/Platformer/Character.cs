@@ -31,7 +31,7 @@ namespace Platformer
         float accel = 60;
 
         Texture2D hearts;
-        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover, sound1up;
+        SoundEffect soundjump, soundslam, soundboom, soundwaterget, soundgethit, soundgameover, soundgameoveralt,  sound1up;
         SpriteFont fontquartz;
         SpriteBatch spriteBatch;
         Sprite[] bluestars = new Sprite[999], explosion = new Sprite[999], afterimage= new Sprite[7];
@@ -72,6 +72,7 @@ namespace Platformer
             soundwaterget = content.Load<SoundEffect>("soundgetdrop");
             soundgethit = content.Load<SoundEffect>("soundgethit");
             soundgameover = content.Load<SoundEffect>("soundgameover2");
+            soundgameoveralt = content.Load<SoundEffect>("soundgameover3");
             sound1up = content.Load<SoundEffect>("sound1up");
 
         }
@@ -163,7 +164,15 @@ namespace Platformer
 
                 if (health < 1)
                 {
-                    soundgameover.Play();
+                    if (score > -140)
+                    {
+                        soundgameover.Play();
+                    }
+                    else
+                    {
+                        soundgameoveralt.Play();
+                    }
+                  
                     gameover = 1;
                 }
             }

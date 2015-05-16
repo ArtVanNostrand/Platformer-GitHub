@@ -23,7 +23,9 @@ namespace Platformer
         Scene scene;
         Character sonic;
         Song musiclevel1;
+        SoundEffect victorytune;
         bool ZPressed = false;
+        int contvictory = 0;
         
         public Game1()
             : base()
@@ -705,6 +707,8 @@ namespace Platformer
             //
 
             //Sound Effects:
+            victorytune = Content.Load<SoundEffect>("victorytune");
+
 
             //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
@@ -795,8 +799,17 @@ namespace Platformer
                 spriteBatch.Draw(icon, new Vector2(690, 290));
                 spriteBatch.Draw(icon, new Vector2(720, 290));
                 DrawRectangle(new Rectangle(450, 50, 269, 239), Color.Red);
-                if (sonic.gameover == 1) spriteBatch.DrawString(fontquartz, "GAME OVER", new Vector2(530, 70), Color.Blue);
-                else spriteBatch.DrawString(fontquartz, "YOU WIN", new Vector2(530, 70), Color.Blue);
+                if (sonic.gameover == 1)
+                {
+                    spriteBatch.DrawString(fontquartz, "GAME OVER", new Vector2(530, 70), Color.Blue);
+                }else{
+                    contvictory++;
+                    spriteBatch.DrawString(fontquartz, "YOU WIN", new Vector2(530, 70), Color.Blue);
+                    if (contvictory == 1)
+                    {
+                        victorytune.Play();
+                    }
+                     }
                 spriteBatch.DrawString(fontquartz, "Time: " + sonic.totaltime, new Vector2(475, 150), Color.Blue);
                 spriteBatch.DrawString(fontquartz, "Magic: " + sonic.magic, new Vector2(475, 180), Color.Blue);
                 spriteBatch.DrawString(fontquartz, "Score:" + sonic.score, new Vector2(475, 210), Color.Blue);
