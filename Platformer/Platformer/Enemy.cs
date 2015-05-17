@@ -28,6 +28,7 @@ namespace Platformer
             if (((this.position.X - player.position.X) < 1f) && (this.position.X > player.position.X))
             {
                 enemygoleft = true;
+               
             }
        
 
@@ -61,9 +62,11 @@ namespace Platformer
                 if (this.name == "crab")
                 {
                     this.position.X = this.position.X + 0.02f;
+                    enemycollision();
                 }
                 else if(this.name == "spriteenemy2"){
                     this.position.X = this.position.X - 0.02f;
+                    enemycollision();
                 }
             }
 
@@ -72,14 +75,16 @@ namespace Platformer
                 if (this.name == "crab")
                 {
                     this.position.X = this.position.X - 0.02f;
+                    enemycollision();
                 }
                 else if (this.name == "spriteenemy2")
                 {
                     this.position.X = this.position.X + 0.02f;
+                    enemycollision();
                 }
             }
 
-            enemycollision();
+      
 
         }
 
