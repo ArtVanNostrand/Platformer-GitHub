@@ -48,8 +48,12 @@ namespace Platformer
         }
 
 
+
+
+
         public override void Update(GameTime gameTime)
         {
+
 
             
             if (PlayerDetectionleft())
@@ -75,9 +79,30 @@ namespace Platformer
                 }
             }
 
+            enemycollision();
 
         }
-      
+
+        void enemycollision()
+        {
+            Sprite other;
+            Vector2 colPosition;
+            if (scene.Collides(this, out other, out colPosition))
+            {
+                if (other.name != "sonic" && other.name != "crab" && other.name !="spriteenemy2")
+                {
+                    if (PlayerDetectionright())
+                    {
+                        this.position.X += 0.2f;
+                    }
+                    if (PlayerDetectionleft())
+                    {
+                        this.position.X -= 0.2f;
+                    }
+                }
+            }
+        }
+
 
 
 
