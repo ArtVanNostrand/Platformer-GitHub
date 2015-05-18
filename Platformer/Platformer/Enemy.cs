@@ -25,7 +25,7 @@ namespace Platformer
             enemygoleft = false;
 
 
-            if (((this.position.X - player.position.X) < 1f) && (this.position.X > player.position.X))
+            if (((this.position.X - player.position.X) < 2.22f) && (this.position.X > player.position.X))
             {
                 enemygoleft = true;
                
@@ -40,7 +40,7 @@ namespace Platformer
         {
             enemygoright = false;
 
-            if (((player.position.X - this.position.X) < 1f) && (this.position.X < player.position.X))
+            if (((player.position.X - this.position.X) < 2.72f) && (this.position.X < player.position.X))
             {
                 enemygoright = true;
             }
@@ -55,7 +55,7 @@ namespace Platformer
         public override void Update(GameTime gameTime)
         {
 
-
+    
             
             if (PlayerDetectionleft())
             {
@@ -63,10 +63,12 @@ namespace Platformer
                 {
                     this.position.X = this.position.X + 0.02f;
                     enemycollision();
+                 
                 }
                 else if(this.name == "spriteenemy2"){
                     this.position.X = this.position.X - 0.02f;
                     enemycollision();
+               
                 }
             }
 
@@ -92,20 +94,39 @@ namespace Platformer
         {
             Sprite other;
             Vector2 colPosition;
-            if (scene.Collides(this, out other, out colPosition))
-            {
-                if (other.name != "sonic" && other.name != "crab" && other.name !="spriteenemy2")
+
+          
+
+                if (scene.Collides(this, out other, out colPosition))
                 {
-                    if (PlayerDetectionright())
+                    if (other.name != "sonic" && other.name != "crab" && other.name != "spriteenemy2")
                     {
-                        this.position.X += 0.2f;
-                    }
-                    if (PlayerDetectionleft())
-                    {
-                        this.position.X -= 0.2f;
+                        if (PlayerDetectionright())
+                        {
+                            if (this.name == "crab")
+                            {
+                                this.position.X += 0.2f;
+                            }
+                            else
+                            {
+                                this.position.X -= 0.2f;
+                            }
+
+                        }
+                        if (PlayerDetectionleft())
+                        {
+                            if (this.name == "crab")
+                            {
+                                this.position.X -= 0.2f;
+                            }
+                            else
+                            {
+                                this.position.X += 0.2f;
+                            }
+                        }
                     }
                 }
-            }
+          
         }
 
 

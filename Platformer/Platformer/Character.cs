@@ -453,6 +453,7 @@ namespace Platformer
 
                 if (scene.Collides(this, out other, out colPosition))
                 {
+
                     if (other.name == "imagewaterdrop2")
                     {
                         score = score + 2;

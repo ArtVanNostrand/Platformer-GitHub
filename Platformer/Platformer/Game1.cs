@@ -401,8 +401,8 @@ namespace Platformer
             scene.AddSprite(new Pickups(Content).At(new Vector2(94.75f, 0)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(95, 0)));
             scene.AddSprite(new Pickups(Content).At(new Vector2(95.25f, 0)));
-            scene.AddSprite(new Level(Content, "spriteenemy2").Scl((float)1f).At(new Vector2(96, -0.06f)));
-            scene.AddSprite(new Level(Content, "spriteenemy2").Scl((float)1f).At(new Vector2(96.5f, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "spriteenemy2", sonic).Scl((float)1f).At(new Vector2(96, -0.06f)));
+            scene.AddSprite(new Enemy(Content, "spriteenemy2", sonic).Scl((float)1f).At(new Vector2(96.5f, -0.06f)));
             //
 
             //»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»»Torre
@@ -448,6 +448,8 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(108, 18)));
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(108, 18.5f)));
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(108, 19)));
+
+            scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(111.6f, -0.04f)));
 
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(112, 0)));
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(112, 0.5f)));
