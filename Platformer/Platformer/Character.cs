@@ -14,9 +14,10 @@ namespace Platformer
     {
         GraphicsDeviceManager graphics;
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
-        int health = 3, totalmagic = 0, explosioncont = 0, flagPlatf = 0;
+        int health = 3, explosioncont = 0, flagPlatf = 0;
+        public int rank = 5;
         int afterimageflag = 0;
-        public int gameover = 0, score = 0, magic = 0;
+        public int gameover = 0, score = 0, magic = 0, totalmagic=0;
         int[] bluestarstimerflag = new int[1000], explosiontimerflag = new int[1000], afterimagecreated = new int[7];
         float jumptime = 0f, dashcooldown = 5, bluestarcooldown=0, holdtime = 0f, auxmov = 0f, auxsalto=0f;
         float invincibilityflashtime = 3f, dashflagtimer = 1f, stunlock = 0f, afterimagetimer = 9f;
@@ -400,7 +401,46 @@ namespace Platformer
             {
                 if (this.position.Y > other.position.Y)
                 {
-                    if (other.name == "chalice") gameover = 2;
+
+                    if (other.name == "3spikes")
+                    {
+                        gettinghit();
+                    }
+
+                    if (other.name == "chalice")
+                    {
+                        if (totaltime < 60f)
+                        {
+                            score = score + 250;
+                        }
+                        if (totaltime < 90f)
+                        {
+                            score = score + 100;
+                        }
+                        if (totaltime < 120f)
+                        {
+                            score = score + 25;
+                        }
+
+                        if (score > 199)
+                        {
+                            rank = 4;
+                        }
+                        if (score > 299)
+                        {
+                            rank = 3;
+                        }
+                        if (score > 399)
+                        {
+                            rank = 2;
+                        }
+                        if (score > 499)
+                        {
+                            rank = 1;
+                        }
+                     
+                        gameover = 2;
+                    }
                     if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
                         other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2]||
                         (other.name == "imagerock1" || other.name == "imagerock2" || other.name == "imagerock3" || other.name == "3spikes"
@@ -429,10 +469,7 @@ namespace Platformer
 
                 }
 
-                if (other.name == "3spikes")
-                {
-                    gettinghit();
-                }
+
 
                 else
                 {
@@ -711,6 +748,8 @@ namespace Platformer
                 {
                     soundslam.Play();
                     slamflag = 1;
+                    stunlock = 0.1f;
+                    holdtime = 0f;
                 }
                 ReplaceImage("sonicball", 1, 1);
                 this.position.Y -= 0.16f;

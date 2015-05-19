@@ -99,17 +99,17 @@ namespace Platformer
 
                 if (scene.Collides(this, out other, out colPosition))
                 {
-                    if (other.name != "sonic" && other.name != "crab" && other.name != "spriteenemy2")
+                    if (other.name != "sonic")
                     {
                         if (PlayerDetectionright())
                         {
                             if (this.name == "crab")
                             {
-                                this.position.X += 0.2f;
+                                this.position.X += 0.02f;
                             }
                             else
                             {
-                                this.position.X -= 0.2f;
+                                this.position.X -= 0.02f;
                             }
 
                         }
@@ -117,11 +117,11 @@ namespace Platformer
                         {
                             if (this.name == "crab")
                             {
-                                this.position.X -= 0.2f;
+                                this.position.X -= 0.02f;
                             }
                             else
                             {
-                                this.position.X += 0.2f;
+                                this.position.X += 0.02f;
                             }
                         }
                     }
