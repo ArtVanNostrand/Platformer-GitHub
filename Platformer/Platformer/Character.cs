@@ -47,7 +47,7 @@ namespace Platformer
             this.Scl(0.3f);
 
             //Platforms width
-            distPlatforms[1] = 0.3f;
+            distPlatforms[1] = 0.5f;   
             distPlatforms[2] = 0.55f;
             distPlatforms[3] = 0.35f;
 
@@ -373,8 +373,10 @@ namespace Platformer
                 aceleracao(gameTime);
                 Sprite other;
                 Vector2 colPosition;
-                if (scene.Collides(this, out other, out colPosition))
+                if (scene.Collides(this, out other, out colPosition))    //Momentum depois de parar de andar
                 {
+                    if (other.name != "platform4") canjump = true;
+                    else canjump = false;
                     if (other.name != "imagewaterdrop2" && other.name != "crab" && other.name != "spriteenemy2")
                     {
                         if (directionfaced == 1)
@@ -399,47 +401,45 @@ namespace Platformer
             Vector2 colPosition;
             if (scene.Collides(this, out other, out colPosition) && other.name != "imagewaterdrop2" && other.name != "lifes")
             {
+                if (other.name == "chalice")
+                {
+                    if (totaltime < 60f)
+                    {
+                        score = score + 250;
+                    }
+                    if (totaltime < 90f)
+                    {
+                        score = score + 100;
+                    }
+                    if (totaltime < 120f)
+                    {
+                        score = score + 25;
+                    }
+
+                    if (score > 199)
+                    {
+                        rank = 4;
+                    }
+                    if (score > 299)
+                    {
+                        rank = 3;
+                    }
+                    if (score > 399)
+                    {
+                        rank = 2;
+                    }
+                    if (score > 499)
+                    {
+                        rank = 1;
+                    }
+
+                    gameover = 2;
+                }
                 if (this.position.Y > other.position.Y)
                 {
-
                     if (other.name == "3spikes")
                     {
                         gettinghit();
-                    }
-
-                    if (other.name == "chalice")
-                    {
-                        if (totaltime < 60f)
-                        {
-                            score = score + 250;
-                        }
-                        if (totaltime < 90f)
-                        {
-                            score = score + 100;
-                        }
-                        if (totaltime < 120f)
-                        {
-                            score = score + 25;
-                        }
-
-                        if (score > 199)
-                        {
-                            rank = 4;
-                        }
-                        if (score > 299)
-                        {
-                            rank = 3;
-                        }
-                        if (score > 399)
-                        {
-                            rank = 2;
-                        }
-                        if (score > 499)
-                        {
-                            rank = 1;
-                        }
-                     
-                        gameover = 2;
                     }
                     if (other.name == "platform1" && (this.position.X - other.position.X) <= distPlatforms[1] ||
                         other.name == "platform2" && (this.position.X - other.position.X) <= distPlatforms[2]||

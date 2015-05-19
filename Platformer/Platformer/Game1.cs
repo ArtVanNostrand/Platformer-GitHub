@@ -450,7 +450,9 @@ namespace Platformer
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(108, 18.5f)));
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(108, 19)));
 
-            scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(111.6f, -0.04f)));
+            scene.AddSprite(new Level(Content, "lifes").Scl((float)0.5f).At(new Vector2(111, -0.04f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(111.35f, -0.1f)));
+            scene.AddSprite(new Level(Content, "3spikes").Scl((float)0.55f).At(new Vector2(111.6f, -0.1f)));
 
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(112, 0)));
             scene.AddSprite(new Level(Content, "platform4").Scl((float)1.3f).At(new Vector2(112, 0.5f)));
@@ -846,7 +848,7 @@ namespace Platformer
                     GraphicsDevice.Clear(Color.Black);
                      //chalice.Scl(0.27f);
 
-                    spriteBatch.Draw(chalice, new Vector2(420, 18));
+                    spriteBatch.Draw(chalice, new Vector2(410, 0));
                     spriteBatch.Draw(icon, new Vector2(450, 18));
                     spriteBatch.Draw(icon, new Vector2(480, 18));
                     spriteBatch.Draw(icon, new Vector2(510, 18));
@@ -856,7 +858,7 @@ namespace Platformer
                     spriteBatch.Draw(icon, new Vector2(630, 18));
                     spriteBatch.Draw(icon, new Vector2(660, 18));
                     spriteBatch.Draw(icon, new Vector2(690, 18));
-                    spriteBatch.Draw(icon, new Vector2(720, 18));
+                    spriteBatch.Draw(chalice, new Vector2(713, 0));
                     spriteBatch.Draw(icon, new Vector2(418, 50));
                     spriteBatch.Draw(icon, new Vector2(418, 80));
                     spriteBatch.Draw(icon, new Vector2(418, 110));
@@ -873,7 +875,7 @@ namespace Platformer
                     spriteBatch.Draw(icon, new Vector2(720, 200));
                     spriteBatch.Draw(icon, new Vector2(720, 230));
                     spriteBatch.Draw(icon, new Vector2(720, 260));
-                    spriteBatch.Draw(icon, new Vector2(418, 290));
+                    spriteBatch.Draw(chalice, new Vector2(410, 290));
                     spriteBatch.Draw(icon, new Vector2(450, 290));
                     spriteBatch.Draw(icon, new Vector2(480, 290));
                     spriteBatch.Draw(icon, new Vector2(510, 290));
@@ -883,7 +885,7 @@ namespace Platformer
                     spriteBatch.Draw(icon, new Vector2(630, 290));
                     spriteBatch.Draw(icon, new Vector2(660, 290));
                     spriteBatch.Draw(icon, new Vector2(690, 290));
-                    spriteBatch.Draw(icon, new Vector2(720, 290));
+                    spriteBatch.Draw(chalice, new Vector2(715, 290));
                     DrawRectangle(new Rectangle(450, 50, 269, 239), Color.Blue);
                 }
                
