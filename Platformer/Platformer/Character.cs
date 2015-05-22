@@ -382,13 +382,13 @@ namespace Platformer
                 Vector2 colPosition;
                 if (scene.Collides(this, out other, out colPosition))    //Momentum depois de parar de andar
                 {
-                    if (flagPlatf == 0 && jumpflag == 0 && other.name!="imagewaterdrop2")
+                    if (flagPlatf == 0 && jumpflag == 0 && other.name != "imagewaterdrop2" && other.name != "lifes")
                     {
                         holdtime = 0f;
                     }
                     if (other.name != "platform4") canjump = true;
                     else canjump = false;
-                    if (other.name != "imagewaterdrop2" && other.name != "crab" && other.name != "spriteenemy2")
+                    if (other.name != "imagewaterdrop2" && other.name != "crab" && other.name != "spriteenemy2" && other.name != "lifes")
                     {
                         if (directionfaced == 1)
                         {
@@ -824,7 +824,7 @@ namespace Platformer
                         //para nao deixar passar a frente de obstaculos/objetos
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2")
+                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2" && other.name != "lifes")
                             {
                                 do
                                 {
@@ -867,7 +867,7 @@ namespace Platformer
 
                         if (scene.Collides(this, out other, out colPosition))
                         {
-                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2")
+                            if (other.name != "crab" && other.name != "spriteenemy2" && other.name != "imagewaterdrop2" && other.name != "lifes")
                             {
                                 do
                                 {
