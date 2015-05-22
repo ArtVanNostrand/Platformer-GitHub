@@ -251,6 +251,13 @@ namespace Platformer
         void movimento(GameTime gameTime)
         {
             holddirection = 0;
+
+
+
+         
+
+
+
             if (stunlock > 0.2f)
             {
                 KeyboardState state = Keyboard.GetState();
@@ -375,6 +382,10 @@ namespace Platformer
                 Vector2 colPosition;
                 if (scene.Collides(this, out other, out colPosition))    //Momentum depois de parar de andar
                 {
+                    if (flagPlatf == 0 && jumpflag == 0 && other.name!="imagewaterdrop2")
+                    {
+                        holdtime = 0f;
+                    }
                     if (other.name != "platform4") canjump = true;
                     else canjump = false;
                     if (other.name != "imagewaterdrop2" && other.name != "crab" && other.name != "spriteenemy2")
