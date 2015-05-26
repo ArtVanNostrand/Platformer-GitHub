@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.GamerServices;
+//using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 #endregion
@@ -17,15 +17,15 @@ namespace Platformer
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        Texture2D life, icon, box, chalice;
+        Texture2D life, icon, box, chalice, wallpaper;
         SpriteBatch spriteBatch;
         SpriteFont fontquartz;
         Scene scene;
         Character sonic;
-        Song musiclevel1;
+        Song musiclevel1, musicMenu;
         SoundEffect victorytune;
         bool ZPressed = false;
-        int contvictory = 0;
+        int contvictory = 0, flagEnter = 0;
         
         public Game1()
             : base()
@@ -46,7 +46,7 @@ namespace Platformer
 
             base.Initialize();
 
-            MediaPlayer.Play(musiclevel1);
+           // MediaPlayer.Play(musicMenu);
         }
 
         protected override void LoadContent()
@@ -61,6 +61,7 @@ namespace Platformer
             fontquartz = Content.Load<SpriteFont>("fontquartz");
             box = Content.Load<Texture2D>("bloco");
             chalice = Content.Load<Texture2D>("chalice");
+            wallpaper = Content.Load<Texture2D>("sonic_wallpaper");
 
             SlidingBackground fundo = new SlidingBackground(Content, "oceano");
             scene.AddBackground(fundo);
@@ -752,6 +753,7 @@ namespace Platformer
 
             //Music:
             musiclevel1 = Content.Load<Song>("[Music] Sonic Generations - Angel Island Zone -Jukebox-");
+            musicMenu = Content.Load<Song>("titlescreenmusic.mp3");
             scene.AddSprite(sonic);
          
         }
@@ -763,6 +765,18 @@ namespace Platformer
 
         protected override void Update(GameTime gameTime)
         {
+            if (flagEnter == 1)
+            {
+                MediaPlayer.Stop();
+                MediaPlayer.Play(musiclevel1);
+                flagEnter = 2;
+            }
+
+            if (flagEnter == 0 && MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(musicMenu);
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter) && flagEnter == 0)
+                flagEnter = 1;
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -772,8 +786,8 @@ namespace Platformer
                  ZPressed = true;
 
              }
-            if (sonic.gameover == 0) scene.Update(gameTime);
-            else MediaPlayer.Stop();
+            if (sonic.gameover == 0 && flagEnter != 0) scene.Update(gameTime);
+            else if (sonic.gameover == 1) MediaPlayer.Stop();
             base.Update(gameTime);
         }
 
@@ -792,10 +806,15 @@ namespace Platformer
           
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(fontquartz, "Time: " + sonic.totaltime, new Vector2(8f, 5f), Color.Black);
-            spriteBatch.DrawString(fontquartz, "Score: " + sonic.score, new Vector2(10f, 25f), Color.Black);
-            spriteBatch.DrawString(fontquartz, "Magic: " + sonic.magic, new Vector2(10f, 45f), Color.Black);
-            if (sonic.gameover == 0) spriteBatch.Draw(icon, new Rectangle(4, 550, 50, 50), Color.White);
+            if (flagEnter == 0) spriteBatch.Draw(wallpaper, new Vector2(0, 0));
+            else
+            {
+                spriteBatch.DrawString(fontquartz, "Time: " + sonic.totaltime, new Vector2(8f, 5f), Color.Black);
+                spriteBatch.DrawString(fontquartz, "Score: " + sonic.score, new Vector2(10f, 25f), Color.Black);
+                spriteBatch.DrawString(fontquartz, "Magic: " + sonic.magic, new Vector2(10f, 45f), Color.Black);
+            }
+
+            if (sonic.gameover == 0 && flagEnter != 0) spriteBatch.Draw(icon, new Rectangle(4, 550, 50, 50), Color.White);
 
             if (sonic.gameover == 1 || sonic.gameover == 2)
             {

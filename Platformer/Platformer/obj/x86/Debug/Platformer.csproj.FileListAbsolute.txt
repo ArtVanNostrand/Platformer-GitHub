@@ -100,7 +100,6 @@ C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D11.dll
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.DXGI.dll
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct2D1.dll
-C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Lidgren.Network.dll
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.XInput.dll
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.RawInput.dll
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\SharpDX.Direct3D9.dll
@@ -427,3 +426,7 @@ C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\C
 C:\Users\Asus\Desktop\Platform Game v2\Platformer\Platformer\bin\Windows\Debug\Content\victorytune.xnb
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\soundgameover3.xnb
 C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\victorytune.xnb
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\sonic_wallpaper.jpg
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\titlescreenmusic.mp3.xnb
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\Content\titlescreenmusic.mp3.wma
+C:\Users\fill__000\Documents\GitHub\Platformer-GitHub\Platformer\Platformer\bin\Windows\Debug\MonoGame.Framework.xml
