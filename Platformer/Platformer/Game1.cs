@@ -23,7 +23,7 @@ namespace Platformer
         Scene scene;
         Character sonic;
         Song musiclevel1, musicMenu;
-        SoundEffect victorytune;
+        SoundEffect victorytune, soundpressenter;
         bool ZPressed = false;
         int contvictory = 0, flagEnter = 0;
         
@@ -749,6 +749,7 @@ namespace Platformer
 
             //Sound Effects:
             victorytune = Content.Load<SoundEffect>("victorytune");
+            soundpressenter = Content.Load<SoundEffect>("soundeffectpressenter");
 
 
             //Music:
@@ -780,7 +781,11 @@ namespace Platformer
             }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter) && flagEnter == 0)
+            {
+                
                 flagEnter = 1;
+                soundpressenter.Play();
+            }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
