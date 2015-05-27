@@ -25,6 +25,8 @@ namespace Platformer
         Song musiclevel1, musicMenu;
         SoundEffect victorytune, soundpressenter;
         bool ZPressed = false;
+        int menutimerflag = 0;
+        float menutimer = 0f;
         int contvictory = 0, flagEnter = 0;
         
         public Game1()
@@ -766,11 +768,26 @@ namespace Platformer
 
         protected override void Update(GameTime gameTime)
         {
+
+
+            if (menutimerflag > 0)
+            {
+                menutimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (menutimer > 1f)
+            {
+                flagEnter = 1;
+            }
+
+
+
             if (flagEnter == 1)
             {
-                MediaPlayer.Stop();
                 MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(musiclevel1);
+                menutimerflag = 0;
+                menutimer = 0f;
                 flagEnter = 2;
             }
 
@@ -782,8 +799,8 @@ namespace Platformer
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter) && flagEnter == 0)
             {
-                
-                flagEnter = 1;
+                menutimerflag = 1;
+                MediaPlayer.Stop();
                 soundpressenter.Play();
             }
 
