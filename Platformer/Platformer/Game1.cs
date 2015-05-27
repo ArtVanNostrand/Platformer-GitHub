@@ -768,11 +768,16 @@ namespace Platformer
             if (flagEnter == 1)
             {
                 MediaPlayer.Stop();
+                MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(musiclevel1);
                 flagEnter = 2;
             }
 
-            if (flagEnter == 0 && MediaPlayer.State != MediaState.Playing) MediaPlayer.Play(musicMenu);
+            if (flagEnter == 0 && MediaPlayer.State != MediaState.Playing)
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(musicMenu);
+            }
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Enter) && flagEnter == 0)
                 flagEnter = 1;
