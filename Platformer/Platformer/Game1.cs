@@ -768,6 +768,40 @@ namespace Platformer
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
+
+
+            //code
+            if (flagEnter == 0)
+            {
+                if (state.IsKeyDown(Keys.A))
+                {
+                    if (state.IsKeyDown(Keys.B))
+                    {
+                        if (state.IsKeyDown(Keys.C))
+                        {
+                          
+                                sonic.flagcode = 1;
+                            
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+
+                }
+
+            }
+            //code
+
 
 
             if (menutimerflag > 0)

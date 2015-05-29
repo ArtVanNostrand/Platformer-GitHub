@@ -15,6 +15,7 @@ namespace Platformer
         GraphicsDeviceManager graphics;
         int jumpflag = 0, slamflag = 0, dashflag = 0, contdash = 0, xd = 0, directionfaced = 1, estado = 0, flagSalto = 0;
         int health = 3, explosioncont = 0, flagPlatf = 0;
+        public int flagcode = 0;
         public int rank = 5;
         int afterimageflag = 0;
         public int gameover = 0, score = 0, magic = 0, totalmagic=0;
@@ -219,6 +220,15 @@ namespace Platformer
 
         public override void Update(GameTime gameTime){
 
+
+            KeyboardState state = Keyboard.GetState();
+
+           
+
+
+
+
+
             Vector2 tpos = Camera.WorldPoint2Pixels(position);
 
             if (flagSalto == 1) calcAnimInterval(3);
@@ -267,33 +277,40 @@ namespace Platformer
                     canjump = true;
                 }
 
-                //apenas para testing
-                if (state.IsKeyDown(Keys.I))
+
+
+                if (flagcode == 1)
                 {
-                    this.position.Y += 0.3f;
+                    //apenas para testing
+                    if (state.IsKeyDown(Keys.I))
+                    {
+                        this.position.Y += 0.3f;
+                    }
+                    if (state.IsKeyDown(Keys.K))
+                    {
+                        this.position.Y -= 0.3f;
+                    }
+                    if (state.IsKeyDown(Keys.L))
+                    {
+                        this.position.X += 0.3f;
+                    }
+                    if (state.IsKeyDown(Keys.J))
+                    {
+                        this.position.X -= 0.3f;
+                    }
+                    //apenas para testing
+                    if (state.IsKeyDown(Keys.Y))
+                    {
+                        magic = magic + 10;
+                    }
+                    //apenas para testing
+                    if (state.IsKeyDown(Keys.U))
+                    {
+                        health++;
+                    }
                 }
-                if (state.IsKeyDown(Keys.K))
-                {
-                    this.position.Y -= 0.3f;
-                }
-                if (state.IsKeyDown(Keys.L))
-                {
-                    this.position.X += 0.3f;
-                }
-                if (state.IsKeyDown(Keys.J))
-                {
-                    this.position.X -= 0.3f;
-                }
-                //apenas para testing
-                if (state.IsKeyDown(Keys.Y))
-                {
-                    magic = magic + 10;
-                }
-                //apenas para testing
-                if (state.IsKeyDown(Keys.U))
-                {
-                    health++;
-                }
+
+
 
                 //movimento basico
                 if (state.IsKeyDown(Keys.Right))
